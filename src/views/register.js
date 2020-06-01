@@ -6,7 +6,6 @@ const register = () => {
   `;
 
   const divRegister = document.createElement('div');
-  
   divRegister.innerHTML = registerForm;
   return divRegister;
 };
