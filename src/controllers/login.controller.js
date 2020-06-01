@@ -11,3 +11,7 @@ export default () => {
 
   return divElement;
 };
+
+export const signUpWithEmailAndPassword = () => {
+
+}
