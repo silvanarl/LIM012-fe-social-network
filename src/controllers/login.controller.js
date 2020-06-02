@@ -4,14 +4,10 @@ export default () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = login;
 
-  const btnClick = divElement.querySelector('#btnClick');
+  const btnClick = divElement.querySelector('.link');
   btnClick.addEventListener('click', () => {
-    window.location.hash = '/home';
+    window.location.hash = '/register';
   });
 
   return divElement;
 };
-
-export const signUpWithEmailAndPassword = () => {
-
-}
