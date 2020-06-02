@@ -13,6 +13,9 @@ const router = async (route) => {
     case '#/home': {
       return content.appendChild(await pages.home());
     }
+    case '#/register': {
+      return content.appendChild(pages.register());
+    }
     default: {
       return content.appendChild(pages.login());
     }
