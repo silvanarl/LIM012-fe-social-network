@@ -25,11 +25,14 @@ export default () => {
   const createUser = (user, email, password) => {
     console.log('creando usuario con nombre:', user);
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         console.log('usuario creado');
+        window.location.hash = '/home';
       })
-      .catch((error => console.error(error)));
+      .catch((error) => console.error(error));
   };
 
   return divRegister;
