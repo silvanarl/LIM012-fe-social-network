@@ -13,8 +13,9 @@ const registerForm = `
         <input type="password" name="password" placeholder="Contraseña" class ="input" required/>
         <div class="container-button-register">
         <button class="button-register">Registrarme</button>
-        <img src="img/selloCorreo.svg" alt="selloCorreo">
+        <img id="mail-icon" src="img/selloCorreo.svg" alt="selloCorreo">
       </div>
+      <span>¿Ya tienes una cuenta? <a class="link" href="#/login">Ingresa</a></span>
   </form>
  </div> 
 `;

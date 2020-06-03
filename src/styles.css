@@ -57,11 +57,30 @@ body {
   margin-bottom: 1rem;
 }
 
+.container-button-register {
+  display: flex;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
 .button-register {
-  color: #5d9cec;
-  border-radius: 3px;
+  background: #5d9cec;
+  opacity: 0.8;
+  border-radius: 15px;
   color: #ffffff;
-  padding: 0px 50px 0px 30px;
+  font-weight: bold;
+  outline: none;
+  outline-style: none;
+  border-style: none;
+  padding: 3px 20px 3px 15px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: #232222;
+  font-weight: bolder;
 }
 
 .input {
@@ -120,6 +139,12 @@ body {
   transform: translate(0, -8px);
 }
 
+#mail-icon {
+  position: absolute;
+  right: 0;
+  padding-top: 7px;
+  transform: translate(22px, 15px);
+}
 @media screen and (max-width: 768px) {
   .container-general {
     display: flex;
