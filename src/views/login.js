@@ -15,7 +15,7 @@ const login = `
                   <span class="line"></span>
                   <span id="or">O</span>
                   <span class="line"></span>
-              </div>
+                </div>
                 <div class="loginGoogle">
                   <button id="button-google">Continuar con google</button>
                   <img id="google-icon" src="img/selloGmail.svg" alt="selloGoogle" />
