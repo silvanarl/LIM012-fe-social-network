@@ -1,32 +1,142 @@
-*{
- margin: 0;
- padding: 0;
- font-family: 'Kanit', sans-serif;
- background-color: #FFE9D4;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Kanit', sans-serif;
+  font-size: 18px;
+}
+body {
+  background-color: #ffe9d4;
 }
 
-.container-login{
+.container-general {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
 }
-.container-backgroundImage{
-  width: 600px;
-  height: 600px;
+
+.container-backgroundImage {
+  justify-self: center;
   align-self: center;
 }
-@media (min-width: 360px) and (max-width: 600px) {
-  .container-login{
+
+.container-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.button-login {
+  background: #5d9cec;
+  opacity: 0.8;
+  border-radius: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  outline: none;
+  outline-style: none;
+  border-style: none;
+  padding: 3px 10px 3px 10px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.line {
+  height: 1px;
+  width: 94px;
+  opacity: 0.8;
+  background-color: #393a3a;
+}
+.loginGoogle {
+  display: flex;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.button-register {
+  color: #5d9cec;
+  border-radius: 3px;
+  color: #ffffff;
+  padding: 0px 50px 0px 30px;
+}
+
+.input {
+  margin-top: 1rem;
+  border-style: none;
+  opacity: 0.8;
+  border-bottom: 2px solid #393a3a;
+  background-color: #ffe9d4;
+}
+
+.input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+#bagtravelImage {
+  display: none;
+}
+
+#logoImage {
+  width: 210px;
+}
+
+#motoBack {
+  width: 600px;
+  height: 600px;
+}
+
+#or {
+  padding: 4px;
+}
+
+#button-google {
+  outline: none;
+  background: #f58f8f;
+  border-radius: 6px;
+  border: 1px solid #f58f8f;
+  color: #ffffff;
+  padding: 0px 50px 0px 30px;
+}
+
+#button-google:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+#google-icon {
+  position: absolute;
+  right: 0;
+  transform: translate(0, -8px);
+}
+
+@media screen and (max-width: 768px) {
+  .container-general {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
   }
-  #bagtravelImage{
-    width: 150px ;
-    height: 150px ;
-  }
-  #logoImage{
-    width: 100;
-    height: 50;
+  .container-backgroundImage {
+    display: none;
   }
 
+  #bagtravelImage {
+    display: flex;
+    width: 198px;
+    height: 198px;
+  }
+  #logoImage {
+    width: 160px;
+  }
 }
