@@ -1,7 +1,7 @@
 import { pages } from '../controllers/index.js';
 
 const router = async (route) => {
-  let content = document.getElementById('root');
+  const content = document.getElementById('root');
   content.innerHTML = '';
 
   console.log('route', route);
