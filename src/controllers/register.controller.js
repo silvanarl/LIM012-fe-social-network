@@ -17,7 +17,19 @@ export default () => {
     const email = formRegister.email.value;
     const password = formRegister.password.value;
 
+    const regexpEmail = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
+    const regexpPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+
+    const validationEmail = email.match(regexpEmail);
+    // console.log(validationEmail);
+
+    const validationPassword = password.match(regexpPassword);
+    // console.log(validationPassword);
+
     if (user && email && password) {
+      if ((validationEmail === null) && (validationPassword === null)) {
+        return 'hubo un error';
+      }
       return createUser(user, email, password);
     }
   });
