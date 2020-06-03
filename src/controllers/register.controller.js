@@ -21,31 +21,28 @@ export default () => {
     const regexpPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
 
     const validationEmail = email.match(regexpEmail);
-    // console.log(validationEmail);
-
     const validationPassword = password.match(regexpPassword);
-    // console.log(validationPassword);
+
+    const createUser = (inputUser, inputEmail, inputPassword) => {
+      console.log('creando usuario con nombre:', inputUser);
+
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(inputEmail, inputPassword)
+        .then(() => {
+          console.log('usuario creado');
+          window.location.hash = '/home';
+        })
+        .catch(error => console.error(error));
+    };
 
     if (user && email && password) {
       if ((validationEmail === null) && (validationPassword === null)) {
         return 'hubo un error';
       }
-      return createUser(user, email, password);
     }
+    return createUser(user, email, password);
   });
-
-  const createUser = (user, email, password) => {
-    console.log('creando usuario con nombre:', user);
-
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('usuario creado');
-        window.location.hash = '/home';
-      })
-      .catch((error) => console.error(error));
-  };
 
   return divRegister;
 };

@@ -9,7 +9,6 @@ export default () => {
     window.location.hash = '/register';
   });
 
-  const buttonLogin = divLogin.querySelector('.button-login');
   const loginRegister = divLogin.querySelector('#loginRegister');
   loginRegister.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -17,23 +16,25 @@ export default () => {
     const email = loginRegister.email.value;
     const password = loginRegister.password.value;
     console.log(email);
-    if (email && password) {
-      return loginUser(email, password);
+
+    const loginUser = (inputEmail, InputPassword) => {
+      console.log('inicio de sesion con', email);
+
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(inputEmail, InputPassword)
+        .then((user) => {
+          console.log('usuario logeado', user);
+          window.location.hash = '/home';
+        })
+        .catch(error => console.error(error));
+    };
+
+    if (!email && !password) {
+      return 'hubo un error';
     }
+    return loginUser(email, password);
   });
 
   return divLogin;
-};
-
-const loginUser = (email, password) => {
-  console.log('inicio de sesion con', email);
-
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      console.log('usuario logeado', user);
-      window.location.hash = '/home';
-    })
-    .catch((error) => console.error(error));
 };
