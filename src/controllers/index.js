@@ -1,9 +1,9 @@
-import Login from './login.controller.js';
+import { loginUserWithEmail } from './login.controller.js';
 import Home from './home.controller.js';
 import Register from './register.controller.js';
 
 const pages = {
-  login: Login,
+  loginUserWithEmail,
   home: Home,
   register: Register,
 };
