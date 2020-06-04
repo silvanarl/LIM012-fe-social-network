@@ -1,4 +1,4 @@
-const home = (name) => `
+const home = name => `
   <div>Home ${name} </div>
 `;
 

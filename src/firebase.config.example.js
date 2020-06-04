@@ -1,12 +1,12 @@
-let firebaseConfig = {
+const firebaseConfig = {
   apiKey: 'AIzaSyAmHvye9yUUr9yEuZVtp2X06zO1MhNuE_8',
   authDomain: 'roadtips-513c4.firebaseapp.com',
-  databaseURL: "https://roadtips-513c4.firebaseio.com",
-  projectId: "roadtips-513c4",
-  storageBucket: "roadtips-513c4.appspot.com",
-  messagingSenderId: "314087993993",
-  appId: "1:314087993993:web:68893283686c982460cc58",
-  measurementId: "G-PJTL3H0VRK"
+  databaseURL: 'https://roadtips-513c4.firebaseio.com',
+  projectId: 'roadtips-513c4',
+  storageBucket: 'roadtips-513c4.appspot.com',
+  messagingSenderId: '314087993993',
+  appId: '1:314087993993:web:68893283686c982460cc58',
+  measurementId: 'G-PJTL3H0VRK',
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
