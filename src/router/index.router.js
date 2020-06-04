@@ -8,7 +8,7 @@ const router = async (route) => {
 
   switch (route) {
     case '#/': {
-      return content.appendChild(pages.login());
+      return content.appendChild(pages.loginUserWithEmail());
     }
     case '#/home': {
       return content.appendChild(await pages.home());
@@ -17,7 +17,7 @@ const router = async (route) => {
       return content.appendChild(pages.register());
     }
     default: {
-      return content.appendChild(pages.login());
+      return content.appendChild(pages.loginUserWithEmail());
     }
   }
 };
