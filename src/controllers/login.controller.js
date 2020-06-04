@@ -1,9 +1,10 @@
 import { login } from '../views/login.js';
+import loginUser from '../models/auth.js';
 
-export default () => {
-  const divLogin = document.createElement('div');
-  divLogin.innerHTML = login;
+const divLogin = document.createElement('div');
+divLogin.innerHTML = login;
 
+export const loginUserWithEmail = () => {
   const btnClick = divLogin.querySelector('.link');
   btnClick.addEventListener('click', () => {
     window.location.hash = '/register';
@@ -17,24 +18,25 @@ export default () => {
     const password = loginRegister.password.value;
     console.log(email);
 
-    const loginUser = (inputEmail, InputPassword) => {
-      console.log('inicio de sesion con', email);
-
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(inputEmail, InputPassword)
-        .then((user) => {
-          console.log('usuario logeado', user);
-          window.location.hash = '/home';
-        })
-        .catch(error => console.error(error));
-    };
-
     if (!email && !password) {
       return 'hubo un error';
     }
-    return loginUser(email, password);
+    loginUser(email, password);
+    return divLogin;
   });
-
-  return divLogin;
 };
+
+// const loginWithGoogle = () => {
+//   const buttonGoogle = divLogin.getElementById('button-google');
+//   console.log(buttonGoogle);
+//   buttonGoogle.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log('click');
+//     const provider = new firebase.auth.GoogleAuthProvider();
+//     firebase.auth().signInWithPopup(provider)
+//       .then(() => {
+//         console.log('logeado con google');
+//       });
+//   });
+//   return divLogin;
+// };
