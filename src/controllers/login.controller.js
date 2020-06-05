@@ -1,10 +1,10 @@
 import { login } from '../views/login.js';
-import loginUser from '../models/auth.js';
+import { loginUser } from '../models/auth.js';
 
 const divLogin = document.createElement('div');
 divLogin.innerHTML = login;
 
-export const loginUserWithEmail = () => {
+const loginUserWithEmail = () => {
   const btnClick = divLogin.querySelector('.link');
   btnClick.addEventListener('click', () => {
     window.location.hash = '/register';
@@ -26,6 +26,12 @@ export const loginUserWithEmail = () => {
   });
 };
 
+const buttonGoogle = divLogin.querySelector('#button-google');
+buttonGoogle.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('hiciste click con google');
+});
+
 // const loginWithGoogle = () => {
 //   const buttonGoogle = divLogin.getElementById('button-google');
 //   console.log(buttonGoogle);
@@ -40,3 +46,5 @@ export const loginUserWithEmail = () => {
 //   });
 //   return divLogin;
 // };
+
+export { loginUserWithEmail };
