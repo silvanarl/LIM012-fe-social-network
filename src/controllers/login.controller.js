@@ -1,10 +1,10 @@
 import { login } from '../views/login.js';
-import loginUser from '../models/auth.js';
-
-const divLogin = document.createElement('div');
-divLogin.innerHTML = login;
+import { loginUser, loginWithGoogle } from '../models/auth.js';
 
 export const loginUserWithEmail = () => {
+  const divLogin = document.createElement('div');
+  divLogin.innerHTML = login;
+
   const btnClick = divLogin.querySelector('.link');
   btnClick.addEventListener('click', () => {
     window.location.hash = '/register';
@@ -22,21 +22,14 @@ export const loginUserWithEmail = () => {
       return 'hubo un error';
     }
     loginUser(email, password);
-    return divLogin;
   });
-};
 
-// const loginWithGoogle = () => {
-//   const buttonGoogle = divLogin.getElementById('button-google');
-//   console.log(buttonGoogle);
-//   buttonGoogle.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log('click');
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     firebase.auth().signInWithPopup(provider)
-//       .then(() => {
-//         console.log('logeado con google');
-//       });
-//   });
-//   return divLogin;
-// };
+  const buttonGoogle = divLogin.querySelector('#button-google');
+
+  buttonGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginWithGoogle();
+  });
+
+  return divLogin;
+};

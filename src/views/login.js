@@ -11,17 +11,18 @@ const login = `
             <input type="email" name="email" placeholder="E-mail" class ="input" required/>
             <input type="password" name="password" placeholder="Contraseña" class ="input" required/>
             <button type="submit" class="button-login">Iniciar sesión</button>
-              <div class="option">
-                <span class="line"></span>
-                <span id="or">O</span>
-                <span class="line"></span>
-              </div>
-            
-              <button type="button" id="button-google">Continuar con google</button>
-              <img id="google-icon" src="img/selloGmail.svg" alt="selloGoogle" />
-         
-          <span>¿No tienes cuenta? <a class="link" href="#/register">Regístrate</a></span> 
-        </form>            
+        </form>
+        <div class="option">
+          <span class="line"></span>
+          <span id="or">O</span>
+          <span class="line"></span>
+        </div>
+        <div class="loginGoogle">
+          <button id="button-google">Continuar con google</button>
+          <img id="google-icon" src="img/selloGmail.svg" alt="selloGoogle" />
+        </div>
+  
+    <span>¿No tienes cuenta? <a class="link" href="#/register">Regístrate</a></span>             
   </div>
 </div>`;
 
