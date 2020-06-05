@@ -1,4 +1,4 @@
-const loginUser = (inputEmail, InputPassword) => (
+const loginUser = (inputEmail, InputPassword) =>
   // console.log('inicio de sesion con', email);
   firebase
     .auth()
@@ -7,7 +7,18 @@ const loginUser = (inputEmail, InputPassword) => (
       window.location.hash = '/home';
       return user;
     })
-    .catch(error => console.error(error))
-);
+    .catch((error) => console.error(error));
 
-export { loginUser };
+const loginWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((user) => {
+      console.log('logeado con google');
+      window.location.hash = '/home';
+      return user;
+    });
+};
+
+export { loginUser, loginWithGoogle };
