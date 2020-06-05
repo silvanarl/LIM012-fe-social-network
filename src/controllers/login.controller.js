@@ -4,7 +4,6 @@ import { loginUser, loginWithGoogle } from '../models/auth.js';
 export const loginUserWithEmail = () => {
   const divLogin = document.createElement('div');
   divLogin.innerHTML = login;
-
   const btnClick = divLogin.querySelector('.link');
   btnClick.addEventListener('click', () => {
     window.location.hash = '/register';
