@@ -1,4 +1,4 @@
-const home = `
+const home = (posts) => `
 <header>
   <div class="header">
     <div>
@@ -34,4 +34,8 @@ const home = `
 </main>
 `;
 
-export { home };
+const post = (post) => `
+  <div>post : ${post} </div>
+`;
+
+export { home, post };
