@@ -11,7 +11,7 @@ const router = async (route) => {
       return content.appendChild(pages.loginUserWithEmail());
     }
     case '#/home': {
-      return content.appendChild(await pages.showDiv());
+      return content.appendChild(await pages.home());
     }
     case '#/register': {
       return content.appendChild(pages.register());
