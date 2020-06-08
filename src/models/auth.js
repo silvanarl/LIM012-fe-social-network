@@ -1,10 +1,9 @@
 // import { dataPost } from './crud.js';
 
-import { db } from '../firebase.config.js';
+import { auth } from '../firebase.config.js';
 
 const loginUser = (inputEmail, InputPassword) =>
-  firebase
-    .auth()
+  auth
     .signInWithEmailAndPassword(inputEmail, InputPassword)
     .then((user) => {
       window.location.hash = '/home';
@@ -14,28 +13,21 @@ const loginUser = (inputEmail, InputPassword) =>
 
 const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then((user) => {
-      console.log('logeado con google');
-      window.location.hash = '/home';
-      return user;
-    });
+  return auth.signInWithPopup(provider).then((user) => {
+    console.log('logeado con google');
+    window.location.hash = '/home';
+    return user;
+  });
 };
 
+const getCurrentUser = () => auth.getCurrentUser;
+
 const userStatus = () => {
-  firebase.auth().onAuthStateChanged((user) => {
+  auth.onAuthStateChanged((user) => {
     if (user) {
-      db.collection('posts')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data().title}`);
-          });
-        });
+      return user;
     }
   });
 };
 
-export { loginUser, loginWithGoogle, userStatus };
+export { loginUser, loginWithGoogle, userStatus, getCurrentUser };

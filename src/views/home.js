@@ -18,15 +18,15 @@ const home = (posts) => `
   <div class="post-createPost">
     <div class="container-createPost">
       <div>
-        <input type="text" placeholder="¡Comparte tus tips aquí!">
+        <input class="createPost" type="text" placeholder="¡Comparte tus tips aquí!">
       </div>
       <img src="" alt="createPostAddImage">
       <img src="" alt="createPostPublic">
       <img src="" alt="createPostPrivate">
       <button class="button-createPost">Publicar</button>
     </div>
-    <div class="posts"
-      <ul class = "postPublic">
+    <div class="posts">
+      <ul class="postPublic" id="publicPost">
 
       </ul>
     </div>
@@ -35,7 +35,10 @@ const home = (posts) => `
 `;
 
 const post = (post) => `
-  <div>post : ${post} </div>
+  <li class="postList">
+  <h5>${post.title}</h5>
+  <p>${post.content}</p>
+</li>
 `;
 
 export { home, post };
