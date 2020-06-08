@@ -20,11 +20,10 @@ export const loginUserWithEmail = () => {
     if (!email && !password) {
       return 'hubo un error';
     }
-    loginUser(email, password);
+    return loginUser(email, password);
   });
 
   const buttonGoogle = divLogin.querySelector('#button-google');
-
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     loginWithGoogle();

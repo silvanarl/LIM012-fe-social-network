@@ -1,7 +1,9 @@
+// import { dataPost } from './crud.js';
+
+import { auth } from '../firebase.config.js';
+
 const loginUser = (inputEmail, InputPassword) =>
-  // console.log('inicio de sesion con', email);
-  firebase
-    .auth()
+  auth
     .signInWithEmailAndPassword(inputEmail, InputPassword)
     .then((user) => {
       window.location.hash = '/home';
@@ -11,14 +13,21 @@ const loginUser = (inputEmail, InputPassword) =>
 
 const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then((user) => {
-      console.log('logeado con google');
-      window.location.hash = '/home';
-      return user;
-    });
+  return auth.signInWithPopup(provider).then((user) => {
+    console.log('logeado con google');
+    window.location.hash = '/home';
+    return user;
+  });
 };
 
-export { loginUser, loginWithGoogle };
+const getCurrentUser = () => auth.getCurrentUser;
+
+const userStatus = () => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      return user;
+    }
+  });
+};
+
+export { loginUser, loginWithGoogle, userStatus, getCurrentUser };
