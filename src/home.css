@@ -1,0 +1,31 @@
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #ffe9d4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#logoImage {
+    align-items: center;
+}
+.hide {
+    display: none;
+}
+.logout {
+
+}
+.main {
+    background-color: white;
+    width: 100%;
+    height: 100% ;
+    display: flex;
+    flex-direction: column;
+}
+.profile {
+    flex-wrap: ;
+}
+.icon-world {
+    width: 20px;
+    height: 20px;
+}
