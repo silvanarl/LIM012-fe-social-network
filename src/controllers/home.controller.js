@@ -9,9 +9,9 @@ export default async () => {
 
   let postList = await getPosts();
 
-  let listOfPosts = divElement.querySelector('#publicPost');
+  const listOfPosts = divElement.querySelector('#publicPost');
   postList.forEach((postData) => {
-    let child = document.createElement('div');
+    const child = document.createElement('div');
     child.innerHTML = post(postData);
     listOfPosts.appendChild(child);
   });
@@ -22,11 +22,11 @@ export default async () => {
     e.preventDefault();
     const inputPost = divElement.querySelector('.createPost').value;
     const user = await getCurrentUser();
-    createPost({ author: 'mbmbmnb', content: inputPost, title: 'cualquiera' });
+    createPost({ author: user, content: inputPost, title: 'cualquiera' });
     postList = await getPosts();
     listOfPosts.innerHTML = '';
     postList.forEach((postData) => {
-      let child = document.createElement('div');
+      const child = document.createElement('div');
       child.innerHTML = post(postData);
       listOfPosts.appendChild(child);
     });
