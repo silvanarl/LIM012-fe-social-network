@@ -5,7 +5,7 @@ const login = `
   </div>
   <div class="container-form">
         <img id="bagtravelImage" src="img/bagtravel.png" alt="icon-roadTips">
-        <img id ="logoImage" src="img/logo.svg" alt="logo-road-tips">
+        <img id ="logoImage" src="img/logo-roadtips.svg" alt="logo-road-tips">
         <form name="loginRegister" id="loginRegister" class="container-form">
           <label for="formGreeting">¡Bienvenidx usuarix!</label>
             <input type="email" name="email" placeholder="E-mail" class ="input" required/>
