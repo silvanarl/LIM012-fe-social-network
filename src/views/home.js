@@ -1,4 +1,4 @@
-const home = posts => `
+const home = () => `
 <header>
   <div class="header">
     <div>
@@ -11,35 +11,37 @@ const home = posts => `
   </div>
 </header>
 <main>
-  <div class="profile">
-    <img src="" alt="">
-    <img src="" alt="img-profile">
-    <img src="" alt="icon-travel">
-  </div>
-  <div class="post-createPost">
-    <div class="container-createPost">
-      <div>
-        <input class="createPost" type="text" placeholder="¡Comparte tus tips aquí!">
-      </div>
-      <img src="" alt="createPostAddImage">
-      <img src="" alt="createPostPublic">
-      <img src="" alt="createPostPrivate">
-      <button class="button-createPost">Publicar</button>
+  <div class ="main">
+    <div class="profile">
+      <img src="" alt="">
+      <img src="" alt="img-profile">
+      <img src="" alt="icon-travel">
     </div>
-    <div class="posts">
-      <ul class="postPublic" id="publicPost">
+    <div class="post-createPost">
+      <div class="container-createPost">
+        <div>
+          <input class="createPost" type="text" placeholder="¡Comparte tus tips aquí!">
+        </div>
+        <img src="" alt="createPostAddImage">
+        <img src="" alt="createPostPublic">
+        <img src="" alt="createPostPrivate">
+        <button class="button-createPost">Publicar</button>
+      </div>
+      <div class="posts">
+        <ul class="postPublic" id="publicPost">
 
-        </ul>
+          </ul>
+        
       </div>
     </div>
   </div>
 </main>
 `;
 
-const post = (post) => `
+const post = postView => `
   <li class="postList">
-  <h5>${post.title}</h5>
-  <p>${post.content}</p>
+  <h5>${postView.title}</h5>
+  <p>${postView.content}</p>
 </li>
 `;
 
