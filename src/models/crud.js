@@ -1,7 +1,7 @@
-import { db } from '../firebase.config.js';
+import { db } from '../firebase-config.js';
 
 const getPosts = async () => {
-  let posts = [];
+  const posts = [];
   await db
     .collection('posts')
     .get()
