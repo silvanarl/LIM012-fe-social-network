@@ -6,8 +6,6 @@ export default async () => {
   await userStatus();
   divElement.innerHTML = home();
 
-  return divElement;
-
   const postList = document.querySelector('.postPublic');
   const setupPosts = (data) => {
     let postData = '';
@@ -29,4 +27,5 @@ export default async () => {
     }
     return postData;
   };
+  return divElement;
 };
