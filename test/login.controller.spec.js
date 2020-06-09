@@ -1,5 +1,5 @@
-import { loginUser } from '../src/models/auth.js';
 import '../__mocks__/functionMock.js';
+import { loginUser } from '../src/models/auth.js';
 
 describe('loginUser', () => {
   it('debería ser una función', () => {

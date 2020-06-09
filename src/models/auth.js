@@ -1,8 +1,8 @@
 // import { dataPost } from './crud.js';
 
-import { auth } from '../firebase-config.js';
+// import { auth } from '../firebase-config.js';
 
-const loginUser = (inputEmail, InputPassword) => auth
+const loginUser = (inputEmail, InputPassword) => firebase.auth()
   .signInWithEmailAndPassword(inputEmail, InputPassword)
   .then((user) => {
     window.location.hash = '/home';
@@ -12,17 +12,17 @@ const loginUser = (inputEmail, InputPassword) => auth
 
 const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return auth.signInWithPopup(provider).then((user) => {
+  return firebase.auth().signInWithPopup(provider).then((user) => {
     console.log('logeado con google');
     window.location.hash = '/home';
     return user;
   });
 };
 
-const getCurrentUser = () => auth.getCurrentUser;
+const getCurrentUser = () => firebase.auth().getCurrentUser;
 
 const userStatus = () => {
-  auth.onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (!user) {
       return 'Usuario no existe';
     }

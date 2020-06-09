@@ -1,8 +1,8 @@
-import { db } from '../firebase-config.js';
+// import { db } from '../firebase-config.js';
 
 const getPosts = async () => {
   const posts = [];
-  await db
+  await firebase.firestore()
     .collection('posts')
     .get()
     .then((querySnapshot) => {
@@ -23,7 +23,7 @@ const getPosts = async () => {
 };
 
 const createPost = ({ title, author, content }) => {
-  db.collection('posts').add({
+  firebase.firestore().collection('posts').add({
     title,
     author,
     content,

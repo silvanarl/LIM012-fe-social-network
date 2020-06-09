@@ -1,8 +1,9 @@
-import firebaseAuthMock from 'firebase-mock';
+import firebasemock from 'firebase-mock';
 
-const mockauth = new firebaseAuthMock.MockFirebase();
+console.log(firebasemock);
+const mockauth = new firebasemock.MockAuthentication();
 mockauth.autoFlush();
-global.firebase = firebaseAuthMock.MockFirebaseSdk(
+global.firebase = firebasemock.MockFirebaseSdk(
   () => null,
   () => mockauth,
 );
