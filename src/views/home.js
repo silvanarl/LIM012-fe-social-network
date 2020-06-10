@@ -7,7 +7,7 @@ const home = () => `
       <img src="img/icon-menu.svg" class="icon-menu" alt="icon-menu">
     </div>
     <img id ="logoImage" src="img/logo-roadtips.svg" alt="logo-road-tips">
-    <a href="#" class="hide"><span>Cerrar Sesión</span></a>
+    <a href="#" id ="logout"><span>Cerrar Sesión</span></a>
   </div>
 </header>
 <main>

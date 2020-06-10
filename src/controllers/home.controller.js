@@ -1,6 +1,9 @@
 import { home } from '../views/home.js';
 import { post } from '../views/posts.js';
-import { userStatus, getCurrentUser } from '../models/auth.js';
+import {
+  userStatus, getCurrentUser,
+  logOut,
+} from '../models/auth.js';
 import { getPosts, createPost } from '../models/crud.js';
 
 export default async () => {
@@ -9,6 +12,18 @@ export default async () => {
   divElement.innerHTML = home();
 
   let postList = await getPosts();
+
+  const logoutBtn = divElement.querySelector('#logout');
+  logoutBtn.addEventListener('click', logOut);
+  // para verificar si hay usuario loggueado
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user.displayName);
+    } else {
+      console.log('no hay usuario signed in');
+    }
+  });
+
 
   const listOfPosts = divElement.querySelector('#publicPost');
   postList.forEach((postData) => {
