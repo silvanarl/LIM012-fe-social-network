@@ -22,11 +22,15 @@ const home = () => `
         <div>
           <input class="createPost" type="text" size="30" placeholder="¡Comparte tus tips aquí!">
         </div>
-        <div class="icons-createPost">
-          <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
-          <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
-          <img src="img/icon-privacy.svg" class="hide" alt="createPostPrivate">
-          <button class="button-createPost">Publicar</button>
+        <div id="containerIconsAndButton">
+          <div class="icons-createPost">
+            <img src="img/icon-addImage.svg" class="icon-createPost" alt="createPostAddImage">
+            <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
+            <img src="img/icon-privacy.svg" class="hide icon-createPost" alt="createPostPrivate">
+          </div> 
+          <div class="container-buttonCreatePost">  
+            <button class="button-createPost">Publicar</button>
+          </div>
         </div>
       </div>
       <div class="posts">
@@ -38,12 +42,4 @@ const home = () => `
 </main>
 `;
 
-const post = postView => `
-  <li class="postList">
-  <h5>${postView.title}</h5>
-  <p>${postView.content}</p>
-  <button data-value="${postView.id}" class="button-deletePost">Borrar</button>
-</li>
-`;
-
-export { home, post };
+export { home };

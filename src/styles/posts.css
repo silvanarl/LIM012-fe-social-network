@@ -1,0 +1,32 @@
+.container-post{
+    width: 300px;
+    height: 80px;
+    margin: 22px;
+    display: flex;
+    border: solid 1px;
+    border-radius: 5px;
+    border-color: rgba(107, 163, 236, 0.486);
+}
+.user-post{
+    width: 300px;
+    height: 22px;
+    background-color: rgba(107, 163, 236, 0.486);
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 4;
+    padding: 8px;
+}
+.content-post{
+    width: 300px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+}
+.icon-contentPost{
+    width: 25px;
+    height: 25px;
+    justify-content: flex-start;
+}
+
+
