@@ -48,9 +48,10 @@
     flex-wrap: nowrap;
     align-items: flex-start;
 }
-.icon-createPost{
+.icons-createPost{
     width: 26px;
     height: 26px;
+    flex-grow: 3;
 }
 .container-buttonCreatePost{
     justify-content: right;
