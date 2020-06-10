@@ -8,6 +8,8 @@ const router = async (route) => {
   const user = firebase.auth().currentUser;
   console.log('user', user);
   switch (route) {
+    case '':
+    case '#':
     case '#/': {
       return content.appendChild(pages.loginUserWithEmail());
     }
@@ -18,7 +20,7 @@ const router = async (route) => {
       return content.appendChild(pages.register());
     }
     default: {
-      return content.appendChild(pages.noFound());
+      return content.appendChild(pages.NoFound());
     }
   }
 };

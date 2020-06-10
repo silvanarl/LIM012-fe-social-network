@@ -30,9 +30,14 @@ const userStatus = () => {
   });
 };
 
+const logOut = () => {
+  firebase.auth().signOut().then(() => console.log('funcion logOut en auth'));
+};
+
 export {
   loginUser,
   loginWithGoogle,
   userStatus,
   getCurrentUser,
+  logOut,
 };
