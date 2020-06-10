@@ -18,7 +18,7 @@ const router = async (route) => {
       return content.appendChild(pages.register());
     }
     default: {
-      return content.appendChild(pages.loginUserWithEmail());
+      return content.appendChild(pages.noFound());
     }
   }
 };
