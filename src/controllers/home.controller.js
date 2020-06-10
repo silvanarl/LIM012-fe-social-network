@@ -1,4 +1,5 @@
-import { home, post } from '../views/home.js';
+import { home } from '../views/home.js';
+import { post } from '../views/posts.js';
 import { userStatus, getCurrentUser } from '../models/auth.js';
 import { getPosts, createPost } from '../models/crud.js';
 
