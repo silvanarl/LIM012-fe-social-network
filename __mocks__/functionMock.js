@@ -1,4 +1,4 @@
-import firebasemock from 'firebase-mock';
+/* import firebasemock from 'firebase-mock';
 
 console.log(firebasemock);
 const mockauth = new firebasemock.MockAuthentication();
@@ -7,3 +7,4 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => null,
   () => mockauth,
 );
+ */

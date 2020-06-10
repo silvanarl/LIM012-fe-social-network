@@ -31,7 +31,6 @@ const home = () => `
       </div>
       <div class="posts">
         <ul class="postPublic" id="publicPost">
-
         </ul>
       </div>
     </div>
@@ -43,6 +42,7 @@ const post = postView => `
   <li class="postList">
   <h5>${postView.title}</h5>
   <p>${postView.content}</p>
+  <button data-value="${postView.id}" class="button-deletePost">Borrar</button>
 </li>
 `;
 

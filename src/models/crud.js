@@ -1,8 +1,9 @@
-// import { db } from '../firebase-config.js';
+import { db } from '../firebase-config.js';
 
 const getPosts = async () => {
   const posts = [];
-  await firebase.firestore()
+  await firebase
+    .firestore()
     .collection('posts')
     .get()
     .then((querySnapshot) => {
@@ -23,13 +24,22 @@ const getPosts = async () => {
 };
 
 const createPost = ({ title, author, content }) => {
-  firebase.firestore().collection('posts').add({
+  db.collection('posts').add({
     title,
     author,
     content,
   });
 };
 
-export { getPosts, createPost };
+ const deletePost = async (id) => {
+  await db.collection('posts').doc(id).delete();
+ }
 
-// export { dataPost };
+ const updatePost = async ({ id, title, author, content }) => {
+  db.collection('posts').doc(id).update({
+    title,
+    author,
+    content,
+     });
+    }
+export { getPosts, createPost, deletePost, updatePost };

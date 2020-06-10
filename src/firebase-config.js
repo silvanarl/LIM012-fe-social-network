@@ -15,4 +15,9 @@ const initFirebase = () => {
   firebase.analytics();
 };
 
-export { initFirebase };
+initFirebase();
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+export { db, auth };
