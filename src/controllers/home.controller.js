@@ -8,7 +8,6 @@ import {
   updatePost,
 } from '../models/crud.js';
 
-
 export default async () => {
   const onDeleteClick = async (id) => {
     await deletePost(id);

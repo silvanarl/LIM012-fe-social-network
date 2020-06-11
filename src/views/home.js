@@ -20,7 +20,7 @@ const home = () => `
     <div class="post-createPost">
       <div class="container-createPost">
         <div>
-          <input class="createPost" type="text" size="30" placeholder="¡Comparte tus tips aquí!">
+          <input class="createPost" type="text" minlength="5" maxlength="100" placeholder="¡Comparte tus tips aquí!">
         </div>
         <div id="containerIconsAndButton">
           <div class="icons-createPost">
@@ -33,11 +33,11 @@ const home = () => `
           </div>
         </div>
       </div>
-      <div class="posts">
-        <ul class="postPublic" id="publicPost">
+    </div> 
+    <div class="posts">
+      <ul class="postPublic" id="publicPost">
 
-        </ul>
-      </div>
+      </ul>
     </div>
   </div>
 </main>

@@ -21,6 +21,10 @@
     flex-direction: column;
     align-content: center;
 }
+.post-createPost{
+    display: flex;
+    flex-direction: row;
+}
 .container-createPost{
     width: 300px;
     height: 100px;
@@ -28,7 +32,7 @@
     border-radius: 5px;
     border-color: rgba(107, 163, 236, 0.486);
     margin: 17px;
-    padding: 10px;
+    padding: 10px 8px 2px;
     justify-content: space-between;
 }
 .createPost{
