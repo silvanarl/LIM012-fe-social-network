@@ -17,23 +17,32 @@ export default () => {
     const email = formRegister.email.value;
     const password = formRegister.password.value;
 
+    const regexpEmail = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
+    const regexpPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
+
+    const validationEmail = email.match(regexpEmail);
+    const validationPassword = password.match(regexpPassword);
+
+    const createUser = (inputUser, inputEmail, inputPassword) => {
+      console.log('creando usuario con nombre:', inputUser);
+
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(inputEmail, inputPassword)
+        .then(() => {
+          console.log('usuario creado');
+          window.location.hash = '/home';
+        })
+        .catch(error => console.error(error));
+    };
+
     if (user && email && password) {
-      return createUser(user, email, password);
+      if ((validationEmail === null) && (validationPassword === null)) {
+        return 'hubo un error';
+      }
     }
+    return createUser(user, email, password);
   });
-
-  const createUser = (user, email, password) => {
-    console.log('creando usuario con nombre:', user);
-
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('usuario creado');
-        window.location.hash = '/home';
-      })
-      .catch((error) => console.error(error));
-  };
 
   return divRegister;
 };

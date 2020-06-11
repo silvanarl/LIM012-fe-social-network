@@ -1,14 +1,17 @@
 import { pages } from '../controllers/index.js';
+// import { auth } from '../firebase.config.js';
 
 const router = async (route) => {
-  let content = document.getElementById('root');
+  const content = document.getElementById('root');
   content.innerHTML = '';
 
-  console.log('route', route);
-
+  const user = firebase.auth().currentUser;
+  console.log('user', user);
   switch (route) {
+    case '':
+    case '#':
     case '#/': {
-      return content.appendChild(pages.login());
+      return content.appendChild(pages.loginUserWithEmail());
     }
     case '#/home': {
       return content.appendChild(await pages.home());
@@ -17,7 +20,7 @@ const router = async (route) => {
       return content.appendChild(pages.register());
     }
     default: {
-      return content.appendChild(pages.login());
+      return content.appendChild(pages.NoFound());
     }
   }
 };

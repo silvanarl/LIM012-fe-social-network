@@ -1,3 +1,3 @@
 export const example = () => {
-    // aquí tu código
-}
+// aquí tu código
+};
