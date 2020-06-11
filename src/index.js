@@ -15,14 +15,15 @@ window.addEventListener('load', init);
 */
 
 const init = () => {
+  console.log('llama a index');
   initFirebase();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       window.location.hash = '#/home';
     } else {
       window.location.hash = '#/';
-      router(window.location.hash);
     }
+    router(window.location.hash);
   });
 
   window.addEventListener('hashchange', () => {

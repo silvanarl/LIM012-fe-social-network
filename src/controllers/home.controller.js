@@ -9,6 +9,7 @@ import {
 } from '../models/crud.js';
 
 export default async () => {
+  console.log('Estoy aquí');
   const onDeleteClick = async (id) => {
     await deletePost(id);
     mapListToScreen();
@@ -26,7 +27,9 @@ export default async () => {
     });
     btnEdit.addEventListener('click', async (e) => {
       e.preventDefault();
-      mapEditingList(id);
+      // mapEditingList(id);
+      child.innerHTML = '';
+      child.innerHTML = post(postData, true);
     });
     return child;
   };
