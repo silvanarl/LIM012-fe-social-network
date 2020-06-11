@@ -45,6 +45,23 @@
     margin: 4px;
 }
 
+
+.icon-deletePost {
+    width: 25px;
+    height: 25px;
+}
+
+.icon-editPost{
+    width: 25px;
+    height: 25px;
+}
+
+.icon-savePost{
+    width: 25px;
+    height: 25px;
+}
+
+
 /*Comments*/
 .containerComments{
     width: 280px;
@@ -58,4 +75,5 @@
 .user-photo{
     flex-direction: column;
 }
+
 
