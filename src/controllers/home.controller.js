@@ -1,7 +1,8 @@
 import { home } from '../views/home.js';
 import { post } from '../views/posts.js';
 import {
-  userStatus, getCurrentUser,
+  userStatus,
+  getCurrentUser,
   logOut,
 } from '../models/auth.js';
 import { getPosts, createPost } from '../models/crud.js';
@@ -38,7 +39,7 @@ export default async () => {
     e.preventDefault();
     const inputPost = divElement.querySelector('.createPost').value;
     const user = await getCurrentUser();
-    createPost({ author: user, content: inputPost, title: 'cualquiera' });
+    createPost({ author: '', content: inputPost, title: 'post' });
     postList = await getPosts();
     listOfPosts.innerHTML = '';
     postList.forEach((postData) => {
