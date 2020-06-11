@@ -1,5 +1,3 @@
-// import { db } from '../firebase-config.js';
-
 const getPosts = async () => {
   const posts = [];
   await firebase.firestore()
@@ -30,6 +28,18 @@ const createPost = ({ title, author, content }) => {
   });
 };
 
-export { getPosts, createPost };
+const deletePost = async (id) => {
+  await firebase.firestore().collection('posts').doc(id).delete();
+};
 
-// export { dataPost };
+const updatePost = async (
+  id, content,
+) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    content,
+  });
+};
+
+export {
+  getPosts, createPost, deletePost, updatePost,
+};
