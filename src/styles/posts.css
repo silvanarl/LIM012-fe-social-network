@@ -1,26 +1,26 @@
 .container-post{
     width: 300px;
-    height: 80px;
+    height: 120px;
     margin: 22px;
     display: flex;
+    flex-direction: column;
     border: solid 1px;
     border-radius: 5px;
     border-color: rgba(107, 163, 236, 0.486);
 }
 .user-post{
-    width: 300px;
-    height: 22px;
-    background-color: rgba(107, 163, 236, 0.486);
+    width: 285px;
+    height: 20px;
+    background-color: #FFE9D4;
     flex-direction: row;
     flex-wrap: wrap;
-    flex-grow: 4;
     padding: 8px;
 }
 .content-post{
     width: 300px;
     height: 40px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     padding: 8px;
 }
 .icon-contentPost{
@@ -28,5 +28,34 @@
     height: 25px;
     justify-content: flex-start;
 }
+.createComment{
+    display: flex;
+}
+.textComment{
+    width: 250px;
+    height: 20px;
+    border: solid 1px;
+    border-color: rgba(107, 163, 236, 0.486);
+    border-radius: 2px;
+    padding: 5px;
+}
+.iconSend{
+    width: 23px;
+    height: 25px;
+    margin: 4px;
+}
 
+/*Comments*/
+.containerComments{
+    width: 280px;
+    height: 30px;
+    border: solid 1px;
+    border-color: rgba(107, 163, 236, 0.486);
+    border-radius: 2px;
+    padding: 5px;
+    display: flex;
+}
+.user-photo{
+    flex-direction: column;
+}
 
