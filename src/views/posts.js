@@ -1,10 +1,10 @@
-const post = data => `
+const post = (data, editing = false) => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">${data.title}</span>
         <span class="timeUserPost">${data.date}</span>
     </div>
-    <div class="content-post">
+    <div class="content-post" data-visible="${!editing}">
         <p>${data.content}</p>
         <div class="likeAndCommentPost">
 
@@ -22,6 +22,13 @@ const post = data => `
             <div class="contentComment">
                 
             </div>
+        </div>
+    </div>
+    <div class="content-post" data-visible="${editing}">
+        <input class="inputPost" placeholder="${data.content}"> </input>
+        <div class="likeAndCommentPost">
+            <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+            <img src="img/save.png" class="icon-savePost" alt="icon save">
         </div>
     </div>
 </div>
@@ -58,4 +65,3 @@ const comment = dataComment => `
 `;
 
 export { post, comment, editingPost };
-

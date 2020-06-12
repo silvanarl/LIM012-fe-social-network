@@ -27,12 +27,12 @@
 }
 .container-createPost{
     width: 300px;
-    height: 100px;
+    height: 120px;
     border: solid 1px;
     border-radius: 5px;
     border-color: rgba(107, 163, 236, 0.486);
     margin: 17px;
-    padding: 10px 8px 2px;
+    padding: 8px 4px;
     justify-content: space-between;
 }
 .createPost{
@@ -41,24 +41,28 @@
     border: solid 1px;
     border-color: rgba(0, 0, 0, 0.308);
     border-radius: 2px;
-    margin: 5px 12px 0px;
+    margin: 5px 12px 7px;
     padding: 5px;
-
 }
 #containerIconsAndButton{
-    margin-top: 8px;
-    width: 100px;
     display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
 }
 .icons-createPost{
-    width: 26px;
-    height: 26px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 7px;
     flex-grow: 3;
+    padding-left: 5px;
+}
+.icon-addImage{
+    width: 28px;
+}
+.icon-world{
+    width: 28px;
+    padding-left: 4px;
 }
 .container-buttonCreatePost{
-    justify-content: right;
+    justify-content: flex-end;
 }
 .button-createPost{
     width: 80px;
@@ -68,6 +72,7 @@
     border: transparent;
     border-radius: 15px;
     font-size: 12pt;
+    margin: 7px;
 }
 .icon-menu{
     width: 30px;
