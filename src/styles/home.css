@@ -1,81 +1,82 @@
 .header {
-    width: 100%;
-    height: 80px;
-    background-color: #ffe9d4;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
+  width: 100%;
+  height: 80px;
+  background-color: #ffe9d4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
 }
 #logoImage {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 .hide {
-    display: none;
+  display: none;
 }
 .main {
-    background-color: white;
-    width: 100%;
-    height: 100% ;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
-.post-createPost{
-    display: flex;
-    flex-direction: row;
+.post-createPost {
+  display: flex;
+  flex-direction: row;
 }
-.container-createPost{
-    width: 300px;
-    height: 120px;
-    border: solid 1px;
-    border-radius: 5px;
-    border-color: rgba(107, 163, 236, 0.486);
-    margin: 17px;
-    padding: 8px 4px;
-    justify-content: space-between;
+.container-createPost {
+  width: 330px;
+  height: 120px;
+  border: solid 1px;
+  border-radius: 5px;
+  border-color: rgba(107, 163, 236, 0.486);
+  margin: 17px;
+  padding: 8px 4px;
+  justify-content: space-between;
 }
-.createPost{
-    width: 270px;
-    height: 55px;
-    border: solid 1px;
-    border-color: rgba(0, 0, 0, 0.308);
-    border-radius: 2px;
-    margin: 5px 12px 7px;
-    padding: 5px;
+.createPost {
+  width: 270px;
+  height: 55px;
+  border: solid 1px;
+  border-color: rgba(0, 0, 0, 0.308);
+  border-radius: 2px;
+  margin: 10px 22px 10px;
+
+  padding: 5px;
 }
-#containerIconsAndButton{
-    display: flex;
+#containerIconsAndButton {
+  display: flex;
 }
-.icons-createPost{
-    display: flex;
-    justify-content: flex-start;
-    margin: 7px;
-    flex-grow: 3;
-    padding-left: 5px;
+.icons-createPost {
+  display: flex;
+  justify-content: flex-start;
+  margin: 7px;
+  flex-grow: 3;
+  padding-left: 5px;
 }
-.icon-addImage{
-    width: 28px;
+.icon-addImage {
+  width: 28px;
 }
-.icon-world{
-    width: 28px;
-    padding-left: 4px;
+.icon-world {
+  width: 28px;
+  padding-left: 4px;
 }
-.container-buttonCreatePost{
-    justify-content: flex-end;
+.container-buttonCreatePost {
+  justify-content: flex-end;
 }
-.button-createPost{
-    width: 80px;
-    height: 27px;
-    background-color: #5D9CEC;
-    color: white;
-    border: transparent;
-    border-radius: 15px;
-    font-size: 12pt;
-    margin: 7px;
+.button-createPost {
+  width: 80px;
+  height: 27px;
+  background-color: #5d9cec;
+  color: white;
+  border: transparent;
+  border-radius: 15px;
+  font-size: 12pt;
+  margin: 7px;
 }
-.icon-menu{
-    width: 30px;
-    height: 30px;
-    margin: 18px;
+.icon-menu {
+  width: 30px;
+  height: 30px;
+  margin: 18px;
 }
