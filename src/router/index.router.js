@@ -1,24 +1,28 @@
 import { pages } from '../controllers/index.js';
 
-const router = async (route) => {
+const router = (route) => {
   const content = document.getElementById('root');
   content.innerHTML = '';
 
   switch (route) {
     case '':
     case '#':
-    case '#/': {
-      return content.appendChild(pages.loginUserWithEmail());
-    }
-    case '#/home': {
-      return content.appendChild(await pages.home());
-    }
-    case '#/register': {
-      return content.appendChild(pages.register());
-    }
-    default: {
-      return content.appendChild(pages.NoFound());
-    }
+    case '#/': content.appendChild(pages.loginUserWithEmail());
+      break;
+    case '#/home':
+      firebase.auth().onAuthStateChanged(async (userX) => {
+        if (!userX) {
+          window.location.hash = '#/';
+        } else {
+          content.appendChild(await pages.home());
+        }
+      });
+      break;
+    case '#/register': content.appendChild(pages.register());
+      break;
+    default:
+      content.appendChild(pages.NoFound());
+      break;
   }
 };
 
