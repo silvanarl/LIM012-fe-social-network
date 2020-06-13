@@ -5,7 +5,7 @@ const post = (data, user, editing = false) => `
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
-        <img src="img/dots.png" class="icon-dropdown dropbtn" alt="icon dropdown">
+        <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
         <div class="dropdown-content">
         <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
         <span class="letter-color"> Eliminar post </span>
@@ -62,7 +62,7 @@ const comment = (dataComment) => `
         <img src="img/icon-color-user.svg" alt="image user comment">
     </div>
     <div class="mainComment">
-        <span class="userComment">${dataComment.title}</span>
+        <span class="userComment">${dataComment.author}</span>
         <span class="contentComment">${dataComment.content}</span>
     </div>
     <span class="timeComment">${dataComment.date}</span>

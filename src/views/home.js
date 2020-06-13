@@ -19,8 +19,9 @@ const home = () => `
     </div>
     <div class="post-createPost">
       <div class="container-createPost">
-        <div>
-          <input class="createPost" type="text" minlength="5" maxlength="100" placeholder="¡Comparte tus tips aquí!">
+        <div class="text">
+          <textarea class="createPost" type="text" cols="40" 
+          rows="5" placeholder="¡Comparte tus tips aquí!"></textarea>
         </div>
         <div id="containerIconsAndButton">
           <div class="icons-createPost">

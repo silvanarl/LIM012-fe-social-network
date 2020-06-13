@@ -1,13 +1,6 @@
 import { home } from '../views/home.js';
-import {
-  userStatus,
-  getCurrentUser,
-  logOut,
-} from '../models/auth.js';
-import {
-  post,
-  editingPost,
-} from '../views/posts.js';
+import { userStatus, getCurrentUser, logOut } from '../models/auth.js';
+import { post, editingPost } from '../views/posts.js';
 
 import {
   getPosts,
@@ -15,7 +8,6 @@ import {
   deletePost,
   updatePost,
 } from '../models/crud.js';
-
 
 export default async () => {
   console.log('Estoy aquí');
@@ -36,7 +28,7 @@ export default async () => {
     });
     btnEdit.addEventListener('click', async (e) => {
       e.preventDefault();
-      // mapEditingList(id);
+      mapEditingList(id);
       child.innerHTML = '';
       child.innerHTML = post(postData, true);
     });
@@ -114,7 +106,11 @@ export default async () => {
     const inputPost = divElement.querySelector('.createPost').value;
     const user = await getCurrentUser();
     console.log(user);
-    createPost({ photo: user.photoUrl, author: user.displayName, content: inputPost });
+    createPost({
+      photo: user.photoUrl,
+      author: user.displayName,
+      content: inputPost,
+    });
     mapListToScreen();
   });
   return divElement;
