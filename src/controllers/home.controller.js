@@ -1,12 +1,21 @@
 import { home } from '../views/home.js';
-import { post, editingPost } from '../views/posts.js';
-import { userStatus, getCurrentUser, logOut } from '../models/auth.js';
+import {
+  userStatus,
+  getCurrentUser,
+  logOut,
+} from '../models/auth.js';
+import {
+  post,
+  editingPost,
+} from '../views/posts.js';
+
 import {
   getPosts,
   createPost,
   deletePost,
   updatePost,
 } from '../models/crud.js';
+
 
 export default async () => {
   console.log('Estoy aquí');
@@ -69,6 +78,7 @@ export default async () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       console.log(user.displayName);
+      console.log(user);
     } else {
       console.log('no hay usuario signed in');
     }
@@ -104,7 +114,7 @@ export default async () => {
     const inputPost = divElement.querySelector('.createPost').value;
     const user = await getCurrentUser();
     console.log(user);
-    createPost({ author: '', content: inputPost, title: 'cualquiera' });
+    createPost({ photo: user.photoUrl, author: user.displayName, content: inputPost });
     mapListToScreen();
   });
   return divElement;
