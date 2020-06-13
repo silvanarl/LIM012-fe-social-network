@@ -40,7 +40,7 @@ const post = (data, editing = false) => `
 </div>
 `;
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -56,7 +56,7 @@ const editingPost = (data) => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo">
         <img src="img/icon-color-user.svg" alt="image user comment">
