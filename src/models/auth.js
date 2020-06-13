@@ -1,6 +1,3 @@
-// import { dataPost } from './crud.js';
-
-// import { auth } from '../firebase-config.js';
 
 const loginUser = (inputEmail, InputPassword) => firebase.auth()
   .signInWithEmailAndPassword(inputEmail, InputPassword)
@@ -18,15 +15,14 @@ const loginWithGoogle = () => {
     return user;
   });
 };
-
-const getCurrentUser = () => firebase.auth().getCurrentUser;
+const user = () => firebase.auth().currentUser;
 
 const userStatus = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
+  firebase.auth().onAuthStateChanged((userExist) => {
+    if (!userExist) {
       return 'Usuario no existe';
     }
-    return user;
+    return userExist;
   });
 };
 
@@ -38,6 +34,6 @@ export {
   loginUser,
   loginWithGoogle,
   userStatus,
-  getCurrentUser,
+  user,
   logOut,
 };

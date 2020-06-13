@@ -1,12 +1,9 @@
 import { pages } from '../controllers/index.js';
-// import { auth } from '../firebase.config.js';
 
 const router = (route) => {
   const content = document.getElementById('root');
   content.innerHTML = '';
 
-  const user = firebase.auth().currentUser;
-  console.log('user', user);
   switch (route) {
     case '':
     case '#':

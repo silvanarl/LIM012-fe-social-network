@@ -5,11 +5,19 @@
   border-radius: 5px;
   border-color: rgba(107, 163, 236, 0.486);
 }
+.container-createPost {
+  display: inline-block;
+  min-width: 100px;
+}
+
+.text {
+  width: 100%;
+}
 .user-post {
   height: 25px;
   background-color: #ffe9d4;
   display: grid;
-  grid-template-columns: 40% 40% 10% 10%;
+  grid-template-columns: 50% 35% 10% 5%;
   justify-content: space-around;
   padding: 8px;
 }
@@ -20,6 +28,7 @@
 .data {
   width: 90%;
   padding: 3px;
+  overflow-wrap: break-word;
 }
 .content-post[data-visible='true'] {
   visibility: visible;
@@ -31,6 +40,10 @@
   width: 25px;
   height: 30px;
   justify-content: flex-start;
+}
+.icon-dropdown {
+  width: 20px;
+  justify-content: flex-end;
 }
 .createComment {
   display: flex;

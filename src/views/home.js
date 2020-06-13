@@ -26,17 +26,17 @@ const home = () => `
       </div>
     </div>
     <div>
-        <div class="post-createPost">
-            <div class="container-createPost">
-              <div>
-                <input class="createPost" type="text" minlength="5" maxlength="100" placeholder="¡Comparte tus tips aquí!">
-              </div>
-              <div id="containerIconsAndButton">
-                <div class="icons-createPost">
-                  <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
-                  <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
-                  <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
-                </div> 
+      <div class="post-createPost">
+        <div class="container-createPost">
+          <div class="text">
+           <textarea class="createPost" type="text" cols="40" rows="5" placeholder="¡Comparte tus tips aquí!"></textarea>
+          </div>
+        <div id="containerIconsAndButton">
+        <div class="icons-createPost">
+          <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
+          <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
+          <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPriv
+        </div> 
                 <div class="container-buttonCreatePost">  
                   <button class="button-createPost">Publicar</button>
                 </div>
