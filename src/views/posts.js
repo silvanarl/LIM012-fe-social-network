@@ -1,19 +1,21 @@
-const post = (data, user, editing = false) => `
+
+const post = data => `
 <div class="container-post">
     <div class="user-post">
+        <img src="${data.userPhoto}" class="photoUser" alt="image user">
         <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
         <img src="img/dots.png" class="icon-dropdown dropbtn" alt="icon dropdown">
         <div class="dropdown-content">
-        <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+        <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost hide" alt="icon delete">
         <span class="letter-color"> Eliminar post </span>
-        <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
+        <img src="img/icon-edit.png" class="icon-editPost hide" alt="icon edit">
         <span class="letter-color"> Editar post </span>
     </div>
 </div>
-<div class="content-post" data-visible="${editing}">
+<div class="content-post">
         <input class="inputPost" placeholder="${data.content}"> </input>
         <div class="likeAndCommentPost">
             <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
@@ -40,7 +42,7 @@ const post = (data, user, editing = false) => `
 </div>
 `;
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
