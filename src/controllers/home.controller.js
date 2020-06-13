@@ -1,6 +1,14 @@
 import { home } from '../views/home.js';
-import { userStatus, getCurrentUser, logOut } from '../models/auth.js';
-import { post, editingPost } from '../views/posts.js';
+import {
+  userStatus,
+  user,
+  logOut,
+} from '../models/auth.js';
+import {
+  post,
+  editingPost,
+} from '../views/posts.js';
+
 
 import {
   getPosts,
@@ -10,23 +18,27 @@ import {
 } from '../models/crud.js';
 
 export default async () => {
-  console.log('Estoy aquí');
+  const userUid = user().uid;
+  const userName = user().displayName;
+  const userEmail = user().email;
+  const userPhoto = user().photoURL;
+
   const onDeleteClick = async (id) => {
     await deletePost(id);
     mapListToScreen();
   };
   const buildPost = (postData) => {
-    const child = document.createElement('div');
+    const child = document.createElement('div'); // child de quién es hijo?
     child.innerHTML = post(postData);
 
     const btnDelete = child.querySelector('.icon-deletePost');
     const btnEdit = child.querySelector('.icon-editPost');
     const id = btnDelete.getAttribute('data-value');
-    btnDelete.addEventListener('click', async (e) => {
+    btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
     });
-    btnEdit.addEventListener('click', async (e) => {
+    btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
       mapEditingList(id);
       child.innerHTML = '';
@@ -67,10 +79,10 @@ export default async () => {
   const logoutBtn = divElement.querySelector('#logout');
   logoutBtn.addEventListener('click', logOut);
   // para verificar si hay usuario loggueado
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(user.displayName);
-      console.log(user);
+  firebase.auth().onAuthStateChanged((userExist) => {
+    if (userExist) {
+      console.log(userExist.displayName);
+      console.log(userExist);
     } else {
       console.log('no hay usuario signed in');
     }
@@ -101,15 +113,14 @@ export default async () => {
   mapListToScreen();
   const buttonPost = divElement.querySelector('.button-createPost');
 
-  buttonPost.addEventListener('click', async (e) => {
+  buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
     const inputPost = divElement.querySelector('.createPost').value;
-    const user = await getCurrentUser();
-    console.log(user);
     createPost({
-      photo: user.photoUrl,
-      author: user.displayName,
+      photo: userPhoto,
+      author: userName,
       content: inputPost,
+      title: userEmail,
     });
     mapListToScreen();
   });

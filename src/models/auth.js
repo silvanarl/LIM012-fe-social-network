@@ -15,51 +15,14 @@ const loginWithGoogle = () => {
     return user;
   });
 };
-const getCurrentUser = () => firebase.auth().currentUser;
-let name;
-let email;
-let photoUrl;
-let uid;
-
-if (getCurrentUser !== null) {
-  name = getCurrentUser.displayName;
-  email = getCurrentUser.email;
-  photoUrl = getCurrentUser.photoURL;
-  uid = getCurrentUser.uid;
-  console.log(name);
-  console.log(email);
-  console.log(photoUrl);
-  console.log(uid);
-}
-
-
-// if (getCurrentUser !== null) {
-//   getCurrentUser.providerData.forEach((profile) => {
-//     console.log('Provider-specific UID:', profile.uid);
-//     console.log('Sign-in provider:', profile.providerId);
-//     console.log('Name:', profile.displayName);
-//     console.log('Email:', profile.email);
-//     console.log('Photo URL:', profile.photoURL);
-//   });
-// }
-
-// const getCurrentUser = () => firebase.auth().getCurrentUser;
-// if (getCurrentUser != null) {
-//   const name = getCurrentUser.displayName;
-//   const email = getCurrentUser.email;
-//   const photoUrl = getCurrentUser.photoURL;
-//   console.log(name);
-//   console.log(email);
-//   console.log(photoUrl);
-// }
-
+const user = () => firebase.auth().currentUser;
 
 const userStatus = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
+  firebase.auth().onAuthStateChanged((userExist) => {
+    if (!userExist) {
       return 'Usuario no existe';
     }
-    return user;
+    return userExist;
   });
 };
 
@@ -71,6 +34,6 @@ export {
   loginUser,
   loginWithGoogle,
   userStatus,
-  getCurrentUser,
+  user,
   logOut,
 };
