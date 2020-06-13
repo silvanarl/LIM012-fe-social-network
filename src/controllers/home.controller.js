@@ -9,13 +9,13 @@ import {
   editingPost,
 } from '../views/posts.js';
 
+
 import {
   getPosts,
   createPost,
   deletePost,
   updatePost,
 } from '../models/crud.js';
-
 
 export default async () => {
   const userUid = user().uid;
@@ -40,7 +40,7 @@ export default async () => {
     });
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
-      // mapEditingList(id);
+      mapEditingList(id);
       child.innerHTML = '';
       child.innerHTML = post(postData, true);
     });
