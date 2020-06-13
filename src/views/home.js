@@ -14,7 +14,7 @@ const home = () => `
   <div class ="main">
     <div class="profile">
       <img src="" class="hide" alt="">
-      <img src="img/icon-color-user.svg" class="hide" alt="img-profile">
+      <img src="" class="" alt="img-profile">
       <img src="" class="hide" alt="icon-travel">
     </div>
     <div class="post-createPost">

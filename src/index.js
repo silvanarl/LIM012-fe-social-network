@@ -1,21 +1,8 @@
-import { router } from './router/index.router.js';
 import { initFirebase } from './firebase-config.js';
+import { router } from './router/index.router.js';
 
-/*
-const init = () => {
-  initFirebase();
-  router(window.location.hash);
-
-  window.addEventListener('hashchange', () => {
-    router(window.location.hash);
-  });
-};
-
-window.addEventListener('load', init);
-*/
 
 const init = () => {
-  console.log('llama a index');
   initFirebase();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {

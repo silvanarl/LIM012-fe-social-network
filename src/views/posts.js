@@ -1,7 +1,7 @@
-const post = (data, editing = false) => `
+const post = (data, user, editing = false) => `
 <div class="container-post">
     <div class="user-post">
-        <span class="titleUserPost">${data.title}</span>
+        <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
