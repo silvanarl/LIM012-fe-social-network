@@ -58,7 +58,7 @@ const editingPost = data => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo">
         <img src="img/icon-color-user.svg" alt="image user comment">

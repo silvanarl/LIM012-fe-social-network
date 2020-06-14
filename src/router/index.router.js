@@ -14,6 +14,7 @@ const router = (route) => {
         if (!userX) {
           window.location.hash = '#/';
         } else {
+          console.log(userX);
           content.appendChild(await pages.home());
         }
       });
