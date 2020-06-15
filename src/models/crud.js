@@ -3,6 +3,7 @@ const getPosts = async () => {
   await firebase
     .firestore()
     .collection('posts')
+    .orderBy('date', 'desc')
     .get()
     .then((querySnapshot) => {
       console.log(querySnapshot);
