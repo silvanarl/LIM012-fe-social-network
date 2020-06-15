@@ -2,7 +2,7 @@ import { user } from '../models/auth.js';
 
 const post = data => `<div class="container-post">
     <div class="user-post">
-        <img src="${user().photoURL}" class="photoUser" alt="${user().displayName}">
+        <img src="${data.photo}" class="photoUser" alt="${data.author}">
         <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">

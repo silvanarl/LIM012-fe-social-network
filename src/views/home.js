@@ -1,3 +1,5 @@
+import { user } from '../models/auth.js';
+
 const home = () => `
 <header>
   <div class="header">
@@ -17,8 +19,8 @@ const home = () => `
         <img src="img/fondo-amigos.png" class="img-fondo" alt="img-fondo">
       </div>
       <div class= "container-profiledata">
-        <img src="img/fondo-amigos.png" class="icon-user" alt="img-profile">
-        <span class="nameuser">Fulana Suarez</span>
+        <img src="${user().photoURL}" class="icon-user" alt="img-profile">
+        <span class="nameuser">${user().displayName}</span>
         <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
       </div>
       <div class="profile-bottom">
