@@ -1,11 +1,12 @@
 .header {
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: #ffe9d4;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
+  position: fixed;
 }
 #logoImage {
   margin: 0 auto;
@@ -14,6 +15,7 @@
   display: none;
 }
 .main {
+  padding-top: 50px;
   background-color: white;
   width: 100%;
   height: 100%;
@@ -76,11 +78,7 @@
   height: 80px;
   border-radius: 50%;
 }
-.img-fondo {
-  width: 450px;
-  height: 150px;
-  padding-top: 20px;
-}
+
 /*
 .profile {
   display: flex;
@@ -112,16 +110,23 @@ para bottom
   font-size: 12pt;
   margin: 7px;
 }
-.icon-menu {
-  width: 30px;
-  height: 30px;
-  margin: 18px;
+/* Cerrar sesion de desktop */
+#logout {
+  text-decoration:none;
+  display: flex;
+  align-items: center;
+  padding: 15px;
 }
-
+/* Seccion izquierda de home */
 .container-profileimg {
   display: flex;
   justify-content: center;
   margin: 17px 17px 0px 30px;
+}
+.img-fondo {
+  width: 450px;
+  height: 150px;
+  padding-top: 20px;
 }
 
 .container-profiledata {
@@ -132,6 +137,66 @@ para bottom
   padding: 8px 4px;
 }
 
+
+/* menu dropdown de movil */
+.menu-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.menu-dropdown:hover .menu-dropdown-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.menu-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.menu-dropdown-content :hover {
+  background-color: #ddd;
+}
+.menu-dropdown-content img {
+  cursor: pointer;
+}
+.icon-menu-dropdown {
+  width: 30px;
+  height: 30px;
+  margin: 18px;
+  justify-content: flex-end;
+}
+.menubtn {
+  display: flex;
+}
+.icon-userbtn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.menu-dropdown-content .icon-userbtn {
+  width: 20px;
+  height: 20px;
+  padding: 6px;
+}
+.icon-outbtn {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.menu-dropdown-content .icon-outbtn {
+  width: 20px;
+  height: 20px;
+  padding: 6px;
+}
+.letter {
+  color: #5d9cec;
+  cursor: pointer;
+  text-decoration:none;
+}
+
 @media screen and (max-width: 768px) {
   .main {
     display: flex;
@@ -140,6 +205,9 @@ para bottom
     justify-content: center;
   }
   .profile {
+    display: none;
+  }
+  #logout {
     display: none;
   }
 } 
