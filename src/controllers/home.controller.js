@@ -22,13 +22,20 @@ export default async () => {
   const userName = user().displayName;
   const userEmail = user().email;
   const userPhoto = user().photoURL;
+  console.log(userPhoto);
+
+  if (typeof (Storage) !== 'undefined') {
+    console.log('storage no es undefined');
+  } else {
+    console.log('storage es undefined');
+  }
 
   const onDeleteClick = async (id) => {
     await deletePost(id);
     mapListToScreen();
   };
   const buildPost = (postData) => {
-    const child = document.createElement('div'); // child de quién es hijo?
+    const child = document.createElement('div');
     child.innerHTML = post(postData);
 
     const btnDelete = child.querySelector('.icon-deletePost');
