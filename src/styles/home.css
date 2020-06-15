@@ -144,3 +144,15 @@ para bottom
     display: none;
   }
 } 
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .mainPost{
+    width: 100%;
+  }
+  .container-createPost{
+    width: 100%;
+  }
+  .createPost{
+    width: 100%;
+  }
+}
