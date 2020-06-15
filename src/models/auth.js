@@ -1,4 +1,3 @@
-
 const loginUser = (inputEmail, InputPassword) => firebase.auth()
   .signInWithEmailAndPassword(inputEmail, InputPassword)
   .then((user) => {

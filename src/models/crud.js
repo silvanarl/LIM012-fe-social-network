@@ -3,7 +3,7 @@ const getPosts = async () => {
   await firebase
     .firestore()
     .collection('posts')
-    .orderBy('date', 'asc')
+    .orderBy('date', 'desc')
     .get()
     .then((querySnapshot) => {
       console.log(querySnapshot);
@@ -24,7 +24,7 @@ const getPosts = async () => {
 };
 
 const createPost = ({ author, content }) => {
-  const time = firebase.firestore().Timestamp.fromDate(new Date());
+  const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
     author,
     content,
