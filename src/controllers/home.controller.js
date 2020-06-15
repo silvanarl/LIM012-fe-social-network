@@ -22,13 +22,6 @@ export default async () => {
   const userName = user().displayName;
   const userEmail = user().email;
   const userPhoto = user().photoURL;
-  console.log(userPhoto);
-
-  if (typeof (Storage) !== 'undefined') {
-    console.log('storage no es undefined');
-  } else {
-    console.log('storage es undefined');
-  }
 
   const onDeleteClick = async (id) => {
     await deletePost(id);
@@ -37,6 +30,8 @@ export default async () => {
   const buildPost = (postData) => {
     const child = document.createElement('div');
     child.innerHTML = post(postData);
+    // let userDocumentRef = firebase.firestore().collection('users').doc('id');
+
 
     const btnDelete = child.querySelector('.icon-deletePost');
     const btnEdit = child.querySelector('.icon-editPost');
@@ -127,7 +122,6 @@ export default async () => {
       photo: userPhoto,
       author: userName,
       content: inputPost,
-      title: userEmail,
     });
     mapListToScreen();
   });
