@@ -42,4 +42,9 @@ const updatePost = async (id, content) => {
   });
 };
 
-export { getPosts, createPost, deletePost, updatePost };
+export {
+  getPosts,
+  createPost,
+  deletePost,
+  updatePost,
+};
