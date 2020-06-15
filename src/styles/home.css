@@ -24,9 +24,9 @@
 .post-createPost {
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
 }
 .container-createPost {
-  width: 330px;
   height: 130px;
   border: solid 1px;
   border-radius: 5px;
@@ -34,15 +34,17 @@
   margin: 17px;
   padding: 8px 4px;
   justify-content: space-between;
+  display: inline-block;
+  min-width: 100px;
+  width: 500px;
 }
 .createPost {
-  width: 270px;
+  width: 450px;
   height: 55px;
   border: solid 1px;
   border-color: rgba(0, 0, 0, 0.308);
   border-radius: 2px;
   margin: 10px 22px 10px;
-
   padding: 5px;
 }
 #containerIconsAndButton {
@@ -54,10 +56,7 @@
 }
 .icons-createPost {
   display: flex;
-  justify-content: flex-start;
-  margin: 7px;
-  flex-grow: 3;
-  padding-left: 5px;
+  padding-left: 20px;
 }
 .icon-addImage {
   width: 28px;
@@ -67,20 +66,20 @@
   width: 28px;
   padding-left: 4px;
 }
-.icon-mochila{
+.icon-mochila {
   width: 28px;
   padding: 4px;
 }
 .icon-user {
-  width: 40px;
   padding: 2px;
-  width: 40px;
-	height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
 .img-fondo {
-  width: 100%;
-  height: auto;
+  width: 450px;
+  height: 150px;
+  padding-top: 20px;
 }
 /*
 .profile {
@@ -90,16 +89,15 @@ para bottom
   align-self:flex-end;
 }
 */
-.profile-bottom{
-  padding-top: 100px;
+.profile-bottom {
   position: fixed;
 }
-.img-back{
+.img-back {
   width: 70%;
-  height: 70%; 
+  height: 70%;
 }
-.nameuser{
-  padding: 10px 0px 0px 5px;
+.nameuser {
+  padding: 8px;
 }
 .container-buttonCreatePost {
   justify-content: flex-end;
@@ -120,15 +118,16 @@ para bottom
   margin: 18px;
 }
 
-.container-profileimg{
+.container-profileimg {
   display: flex;
   justify-content: center;
   margin: 17px 17px 0px 30px;
 }
 
-.container-profiledata{
+.container-profiledata {
   display: flex;
-  justify-content:center;
+  justify-content: center;
+  align-items: center;
   margin: 0px 17px 0px 30px;
   padding: 8px 4px;
 }
@@ -143,4 +142,4 @@ para bottom
   .profile {
     display: none;
   }
-} 
+}
