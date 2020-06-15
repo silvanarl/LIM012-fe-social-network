@@ -142,9 +142,6 @@ para bottom
   .profile {
     display: none;
   }
-<<<<<<< HEAD
-}
-=======
 } 
 
 @media screen and (min-width: 900px) and (max-width: 1200px) {
@@ -158,4 +155,3 @@ para bottom
     width: 100%;
   }
 }
->>>>>>> 6fbe82976c31d86afe635e26eb618e5654d93d53
