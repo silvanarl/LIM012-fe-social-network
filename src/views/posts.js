@@ -7,22 +7,15 @@ const post = data => `<div class="container-post">
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
-        <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
-        <div class="dropdown-content">
-        <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost hide" alt="icon delete">
-        <span class="letter-color"> Eliminar post </span>
-        <img src="img/icon-edit.png" class="icon-editPost hide" alt="icon edit">
-        <span class="letter-color"> Editar post </span>
-    </div>
-</div>
-<div class="content-post">
-        <input class="inputPost" placeholder="${data.content}"> </input>
-        <div class="likeAndCommentPost">
-            <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
-            <img src="img/save.png" class="icon-savePost" alt="icon save">
-        </div>
-    </div>
-  </div>    
+            <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
+            <div class="dropdown-content">
+                <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+                <span class="letter-color"> Eliminar post </span>
+                <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
+                <span class="letter-color"> Editar post </span>
+            </div>  
+        </div> 
+    </div> 
     <div class="content-post">
         <p class="data">${data.content}</p>
         <div class="likeAndCommentPost">
@@ -38,15 +31,13 @@ const post = data => `<div class="container-post">
             </div>
         </div>
     </div>
-    
 </div>
 `;
 
-const editingPost = data => `
+const editingPost = (data) => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
-        <span class="timeUserPost">${data.date}</span>
     </div>
     <div class="content-post">
         <input class="inputPost" placeholder="${data.content}"> </input>
@@ -58,7 +49,7 @@ const editingPost = data => `
 </div>
 `;
 
-const comment = dataComment => `
+const comment = (dataComment) => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="img/icon-color-user.svg" alt="image user comment">
