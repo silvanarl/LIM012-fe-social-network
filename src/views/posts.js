@@ -1,8 +1,8 @@
+import { user } from '../models/auth.js';
 
-const post = data => `
-<div class="container-post">
+const post = data => `<div class="container-post">
     <div class="user-post">
-        <img src="${data.userPhoto}" class="photoUser" alt="image user">
+        <img src="${user().photoURL}" class="photoUser" alt="${user().displayName}">
         <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
@@ -60,7 +60,7 @@ const editingPost = data => `
 
 const comment = dataComment => `
 <div class="containerComments">
-    <div class="user-photo">
+    <div class="user-photo-comment">
         <img src="img/icon-color-user.svg" alt="image user comment">
     </div>
     <div class="mainComment">

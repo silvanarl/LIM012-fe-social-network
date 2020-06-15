@@ -13,7 +13,7 @@ const initFirebase = () => {
   firebase.analytics();
 };
 
-// export const storage = firebase.storage();
+// export const storage = () => firebase.storage();
 /* storage
 service firebase.storage {
   match /b/{bucket}/o {

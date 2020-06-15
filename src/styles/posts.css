@@ -18,12 +18,17 @@
   background-color: #ffe9d4;
   display: grid;
   grid-template-columns: 50% 35% 10% 5%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 8px;
 }
 .content-post {
   width: 300px;
   padding: 8px;
+}
+.photoUser{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 .data {
   width: 90%;
@@ -95,7 +100,7 @@
   padding: 5px;
   display: flex;
 }
-.user-photo {
+.user-photo-comment {
   flex-direction: column;
 }
 .icon-createPost {
@@ -134,4 +139,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+@media (min-width: 900px) and (max-width: 1250px) {
+  .container-post { 
+    width: 100%; 
+  }
 }
