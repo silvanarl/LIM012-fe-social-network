@@ -1,32 +1,35 @@
 import { home } from '../views/home.js';
 import {
+  post,
+  editingPost,
+} from '../views/posts.js';
+
+import {
   userStatus,
   user,
   logOut,
 } from '../models/auth.js';
 import {
-  post,
-  editingPost,
-} from '../views/posts.js';
-
-
-import {
   getPosts,
   createPost,
   deletePost,
   updatePost,
+  updateLikes,
+  updateLikesUser,
 } from '../models/crud.js';
 
 export default async () => {
-  const userUid = user().uid;
+  // const userUid = user().uid;
   const userName = user().displayName;
-  const userEmail = user().email;
+  // const userEmail = user().email;
   const userPhoto = user().photoURL;
 
   const onDeleteClick = async (id) => {
     await deletePost(id);
     mapListToScreen();
   };
+
+  // Llenando div con la data de POSTS
   const buildPost = (postData) => {
     const child = document.createElement('div');
     child.innerHTML = post(postData);
@@ -36,6 +39,34 @@ export default async () => {
     const btnDelete = child.querySelector('.icon-deletePost');
     const btnEdit = child.querySelector('.icon-editPost');
     const id = btnDelete.getAttribute('data-value');
+
+    const buttonLikes = child.querySelector('.btnLikes');
+    const numberLikes = child.querySelector('.numberLikes');
+    console.log(numberLikes.innerHTML);
+    console.log(postData.likes);
+    let likeUser = postData.likesUser;
+    let total;
+    buttonLikes.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (likeUser === false) {
+        console.log('suma');
+        const dataL = postData.likes;
+        total = dataL + 1;
+        numberLikes.innerHTML = total;
+        console.log(total);
+        likeUser = true;
+      } else if (likeUser === true) {
+        console.log('resta');
+        const dataL = postData.likes;
+        total = dataL - 1;
+        numberLikes.innerHTML = total;
+        likeUser = false;
+      }
+      await updateLikes(id, total);
+      await updateLikesUser(id, likeUser);
+      mapListToScreen();
+    });
+
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
@@ -70,7 +101,24 @@ export default async () => {
 
     return child;
   };
+  /*
+  // const likesPost = (postData) => {
+  const child = document.createElement('div');
+  child.innerHTML = post(postData);
 
+  const buttonCounterLikes = child.querySelector('.btnLikes');
+  const numberLikes = child.querySelector('.numberLike');
+  console.log(buttonCounterLikes);
+  console.log(numberLikes);
+    buttonCounterLikes.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+    return child;
+  };
+  */
+  // FIN de div con la data de POSTS
+
+  // Llenando div con la data de HOME - seccion de publicar
   const divElement = document.createElement('div');
   await userStatus();
   divElement.innerHTML = home();
@@ -126,5 +174,7 @@ export default async () => {
     });
     mapListToScreen();
   });
+  // FIN de div con la data de HOME
+
   return divElement;
 };
