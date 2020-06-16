@@ -20,7 +20,7 @@ import {
 } from '../models/crud.js';
 
 export default async () => {
-  // const userUid = user().uid;
+  const currentUserUID = user().uid;
   const userName = user().displayName;
   // const userEmail = user().email;
   const userPhoto = user().photoURL;
@@ -43,14 +43,13 @@ export default async () => {
     // fx de likes
     const buttonLikes = child.querySelector('.btnLikes');
     const arrayLikesUsers = postData.likesUsers;
-    const userID = postData.userID;
     buttonLikes.addEventListener('click', async (e) => {
       e.preventDefault();
-      if (arrayLikesUsers.includes(userID)) {
-        const indUserArray = arrayLikesUsers.indexOf(userID);
+      if (arrayLikesUsers.includes(currentUserUID)) {
+        const indUserArray = arrayLikesUsers.indexOf(currentUserUID);
         arrayLikesUsers.splice(indUserArray, 1);
       } else {
-        arrayLikesUsers.push(userID);
+        arrayLikesUsers.push(currentUserUID);
       }
       await updateLikesUser(id, arrayLikesUsers);
       mapListToScreen();
