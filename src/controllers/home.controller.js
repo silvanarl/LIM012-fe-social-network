@@ -2,6 +2,7 @@ import { home } from '../views/home.js';
 import {
   post,
   editingPost,
+  comment,
 } from '../views/posts.js';
 
 import {
@@ -15,8 +16,8 @@ import {
   deletePost,
   updatePost,
   updateLikesUser,
-  // getComments,
-  // createComment,
+  getComments,
+  createComment,
 } from '../models/crud.js';
 
 export default async () => {
@@ -55,17 +56,27 @@ export default async () => {
       mapListToScreen();
     });
 
-    const buttonViewComment = child.querySelector('.')
-    const buttonComment = child.querySelector('.iconSend');
+    const buttonViewComment = child.querySelector('.btnComments');
     const createCommentDiv = child.querySelector('.createComment');
-    const inputComment = nodeChildComments.querySelector('.textComment');
-    buttonComment.addEventListener('click', (e) => {
+    const buttonComment = child.querySelector('.iconSend');
+    buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      createCommentDiv.classList.remove('hide');
-      createComment({
-        photo: userPhoto,
-        author: userName,
-        content: inputComment,
+      createCommentDiv.classList.toggle('hide');
+      console.log('comentario mostrado'); // funciona ok
+      const buildComment = (dataComment) => {
+        const createCommentDivChild = document.createElement('div');
+        createCommentDivChild.innerHTML = comment(dataComment);
+      };
+      buttonComment.addEventListener('click', (event) => {
+        event.preventDefault();
+        const inputComment = child.querySelector('.textComment').value;
+        console.log(inputComment);
+        createComment({
+          photo: userPhoto,
+          author: userName,
+          content: inputComment,
+        }); // devuelve undefined, revisa la funcion
+      });
     });
 
     btnDelete.addEventListener('click', (e) => {
@@ -79,7 +90,7 @@ export default async () => {
       child.innerHTML = post(postData, true);
     });
     return child;
-  });
+  };
 
   const buildEditingPost = (postData) => {
     const child = document.createElement('div');
@@ -146,10 +157,9 @@ export default async () => {
       listOfPosts.appendChild(child);
     });
   };
-
   mapListToScreen();
-  const buttonPost = divElement.querySelector('.button-createPost');
 
+  const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
     let inputPost = divElement.querySelector('.createPost').value;
@@ -166,5 +176,4 @@ export default async () => {
   // const buttonComment = divElement;
 
   return divElement;
-}
 };
