@@ -15,10 +15,7 @@ const getPosts = async () => {
           content: doc.data().content,
           likes: doc.data().likes,
           likesUser: doc.data().likesUser,
-          date:
-            doc.data().date != null
-              ? doc.data().date.toDate().toLocaleDateString()
-              : '',
+          date: doc.data().date.toDate().toLocaleString(),
         };
         posts.push(postData);
       });
