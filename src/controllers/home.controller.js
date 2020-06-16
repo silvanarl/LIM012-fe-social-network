@@ -36,6 +36,19 @@ export default async () => {
     const btnDelete = child.querySelector('.icon-deletePost');
     const btnEdit = child.querySelector('.icon-editPost');
     const id = btnDelete.getAttribute('data-value');
+
+    const buttonViewComment = child.querySelector('.')
+    const buttonComment = child.querySelector('.iconSend');
+    const createCommentDiv = child.querySelector('.createComment');
+    const inputComment = nodeChildComments.querySelector('.textComment');
+    buttonComment.addEventListener('click', (e) => {
+      e.preventDefault();
+      createCommentDiv.classList.remove('hide');
+      createComment({
+        photo: userPhoto,
+        author: userName,
+        content: inputComment,
+    });
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
@@ -127,7 +140,17 @@ export default async () => {
     inputPost = '';
   });
 
-  const buttonComment = divElement
+  // const nodeChildComments = document.createElement('div');
+  // const buttonComment = nodeChildComments.querySelector('.iconSend');
+  // const inputComment = nodeChildComments.querySelector('.textComment');
+  // buttonComment.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   createComment({
+  //     photo: userPhoto,
+  //     author: userName,
+  //     content: inputComment,
+  //   });
+  // });
 
   return divElement;
 };
