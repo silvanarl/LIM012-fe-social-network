@@ -1,3 +1,5 @@
+import { user } from './auth.js';
+
 const getPosts = async () => {
   const posts = [];
   await firebase
@@ -10,6 +12,7 @@ const getPosts = async () => {
       querySnapshot.forEach((doc) => {
         const postData = {
           id: doc.id,
+          photo: doc.data().photo,
           author: doc.data().author,
           content: doc.data().content,
           date:
@@ -23,12 +26,22 @@ const getPosts = async () => {
   return posts;
 };
 
-const createPost = ({ author, content }) => {
+const quantityLikes = () => {
+  
+};
+
+const createPost = ({ photo, author, content }) => {
+  console.log(photo);
+  const photoUser = user().photoURL;
+  console.log(photoUser);
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
+    photo: photoUser,
     author,
     content,
     date: time,
+    userID: user().uid,
+    likes: 3,
   });
 };
 
@@ -47,4 +60,5 @@ export {
   createPost,
   deletePost,
   updatePost,
+  quantityLikes,
 };
