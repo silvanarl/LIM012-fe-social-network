@@ -44,11 +44,8 @@
   width: 20px;
   justify-content: flex-end;
 }
-.createComment {
-
-}
 .textComment {
-  width: 450px;
+  width: 385px;
   height: 20px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
