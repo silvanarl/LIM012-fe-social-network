@@ -79,7 +79,7 @@ export default async () => {
       child.innerHTML = post(postData, true);
     });
     return child;
-  };
+  });
 
   const buildEditingPost = (postData) => {
     const child = document.createElement('div');
@@ -166,4 +166,5 @@ export default async () => {
   // const buttonComment = divElement;
 
   return divElement;
+}
 };
