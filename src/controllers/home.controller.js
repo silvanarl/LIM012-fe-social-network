@@ -55,6 +55,19 @@ export default async () => {
       mapListToScreen();
     });
 
+    const buttonViewComment = child.querySelector('.')
+    const buttonComment = child.querySelector('.iconSend');
+    const createCommentDiv = child.querySelector('.createComment');
+    const inputComment = nodeChildComments.querySelector('.textComment');
+    buttonComment.addEventListener('click', (e) => {
+      e.preventDefault();
+      createCommentDiv.classList.remove('hide');
+      createComment({
+        photo: userPhoto,
+        author: userName,
+        content: inputComment,
+    });
+
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
