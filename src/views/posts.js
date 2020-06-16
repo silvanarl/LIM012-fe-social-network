@@ -1,9 +1,9 @@
 const post = data => `<div class="container-post">
     <div class="user-post">
-        <div class="userPostData">
+
             <img src="${data.photo}" class="photoUser" alt="${data.author}">
             <span class="titleUserPost">${data.author}</span>
-        </div>
+
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
@@ -23,9 +23,9 @@ const post = data => `<div class="container-post">
             <span class="counterLikes">1</span>
             <img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
             <span class="counterComments">1</span>
-            <div class="createComment">
+            <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
-                <img src="img/iconSend.svg" class="iconSend" alt="icon send comment">
+                <button class="iconSend"><img src="img/iconSend.svg"  alt="icon send comment"></button>
             </div>
             <div class="contentComment">
             </div>
