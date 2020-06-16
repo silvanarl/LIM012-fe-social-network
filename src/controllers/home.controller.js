@@ -15,6 +15,8 @@ import {
   createPost,
   deletePost,
   updatePost,
+  getComments,
+  createComment,
 } from '../models/crud.js';
 
 export default async () => {
@@ -30,8 +32,6 @@ export default async () => {
   const buildPost = (postData) => {
     const child = document.createElement('div');
     child.innerHTML = post(postData);
-    // let userDocumentRef = firebase.firestore().collection('users').doc('id');
-
 
     const btnDelete = child.querySelector('.icon-deletePost');
     const btnEdit = child.querySelector('.icon-editPost');
@@ -117,13 +117,17 @@ export default async () => {
 
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
-    const inputPost = divElement.querySelector('.createPost').value;
+    let inputPost = divElement.querySelector('.createPost').value;
     createPost({
       photo: userPhoto,
       author: userName,
       content: inputPost,
     });
     mapListToScreen();
+    inputPost = '';
   });
+
+  const buttonComment = divElement
+
   return divElement;
 };
