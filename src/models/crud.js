@@ -1,3 +1,5 @@
+import { user } from './auth.js';
+
 const getPosts = async () => {
   const posts = [];
   await firebase
@@ -13,8 +15,8 @@ const getPosts = async () => {
           photo: doc.data().photo,
           author: doc.data().author,
           content: doc.data().content,
-          likes: doc.data().likes,
-          likesUser: doc.data().likesUser,
+          userID: doc.data().userID,
+          likesUsers: doc.data().likesUsers,
           date:
             doc.data().date != null
               ? doc.data().date.toDate().toLocaleDateString()
@@ -33,6 +35,8 @@ const createPost = ({ photo, author, content }) => {
     author,
     content,
     date: time,
+    userID: user().uid,
+    likesUsers: [],
   });
 };
 
@@ -65,9 +69,7 @@ const createComment = ({ photo, author, content }) => {
     author,
     content,
     date: time,
-    // userID: user().uid,
-    likes: 0,
-    likesUser: false,
+    userID: user().uid,
   });
 };
 
@@ -81,14 +83,9 @@ const updatePost = async (id, content) => {
   });
 };
 
-const updateLikes = async (id, likes) => {
+const updateLikesUser = async (id, likesUsers) => {
   await firebase.firestore().collection('posts').doc(id).update({
-    likes,
-  });
-};
-const updateLikesUser = async (id, likesUser) => {
-  await firebase.firestore().collection('posts').doc(id).update({
-    likesUser,
+    likesUsers,
   });
 };
 
@@ -98,7 +95,6 @@ export {
   createPost,
   deletePost,
   updatePost,
-  updateLikes,
   updateLikesUser,
   getComments,
   createComment,
