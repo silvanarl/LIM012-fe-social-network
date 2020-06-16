@@ -15,6 +15,8 @@ const getPosts = async () => {
           photo: doc.data().photo,
           author: doc.data().author,
           content: doc.data().content,
+          likes: doc.data().likes,
+          likesUser: doc.data().likesUser,
           date:
             doc.data().date != null
               ? doc.data().date.toDate().toLocaleDateString()
@@ -24,10 +26,6 @@ const getPosts = async () => {
       });
     });
   return posts;
-};
-
-const quantityLikes = () => {
-  
 };
 
 const createPost = ({ photo, author, content }) => {
@@ -41,7 +39,8 @@ const createPost = ({ photo, author, content }) => {
     content,
     date: time,
     userID: user().uid,
-    likes: 3,
+    likes: 0,
+    likesUser: false,
   });
 };
 
@@ -55,10 +54,23 @@ const updatePost = async (id, content) => {
   });
 };
 
+const updateLikes = async (id, likes) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    likes,
+  });
+};
+const updateLikesUser = async (id, likesUser) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    likesUser,
+  });
+};
+
+
 export {
   getPosts,
   createPost,
   deletePost,
   updatePost,
-  quantityLikes,
+  updateLikes,
+  updateLikesUser,
 };
