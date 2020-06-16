@@ -2,6 +2,7 @@ import { home } from '../views/home.js';
 import {
   post,
   editingPost,
+  comment,
 } from '../views/posts.js';
 
 import {
@@ -16,8 +17,8 @@ import {
   updatePost,
   updateLikes,
   updateLikesUser,
-  // getComments,
-  // createComment,
+  getComments,
+  createComment,
 } from '../models/crud.js';
 
 export default async () => {
@@ -42,8 +43,6 @@ export default async () => {
 
     const buttonLikes = child.querySelector('.btnLikes');
     const numberLikes = child.querySelector('.numberLikes');
-    console.log(numberLikes.innerHTML);
-    console.log(postData.likes);
     let likeUser = postData.likesUser;
     let total;
     buttonLikes.addEventListener('click', async (e) => {
@@ -67,17 +66,27 @@ export default async () => {
       mapListToScreen();
     });
 
-    const buttonViewComment = child.querySelector('.')
-    const buttonComment = child.querySelector('.iconSend');
+    const buttonViewComment = child.querySelector('.btnComments');
     const createCommentDiv = child.querySelector('.createComment');
-    const inputComment = nodeChildComments.querySelector('.textComment');
-    buttonComment.addEventListener('click', (e) => {
+    const buttonComment = child.querySelector('.iconSend');
+    buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      createCommentDiv.classList.remove('hide');
-      createComment({
-        photo: userPhoto,
-        author: userName,
-        content: inputComment,
+      createCommentDiv.classList.toggle('hide');
+      console.log('comentario mostrado'); // funciona ok
+      const buildComment = (dataComment) => {
+        const createCommentDivChild = document.createElement('div');
+        createCommentDivChild.innerHTML = comment(dataComment);
+      };
+      buttonComment.addEventListener('click', (event) => {
+        event.preventDefault();
+        const inputComment = child.querySelector('.textComment').value;
+        console.log(inputComment);
+        createComment({
+          photo: userPhoto,
+          author: userName,
+          content: inputComment,
+        }); // devuelve undefined, revisa la funcion
+      });
     });
 
     btnDelete.addEventListener('click', (e) => {
@@ -114,22 +123,7 @@ export default async () => {
 
     return child;
   };
-  /*
-  // const likesPost = (postData) => {
-  const child = document.createElement('div');
-  child.innerHTML = post(postData);
 
-  const buttonCounterLikes = child.querySelector('.btnLikes');
-  const numberLikes = child.querySelector('.numberLike');
-  console.log(buttonCounterLikes);
-  console.log(numberLikes);
-    buttonCounterLikes.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-    return child;
-  };
-  */
-  // FIN de div con la data de POSTS
 
   // Llenando div con la data de HOME - seccion de publicar
   const divElement = document.createElement('div');
@@ -173,10 +167,9 @@ export default async () => {
       listOfPosts.appendChild(child);
     });
   };
-
   mapListToScreen();
-  const buttonPost = divElement.querySelector('.button-createPost');
 
+  const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
     let inputPost = divElement.querySelector('.createPost').value;
