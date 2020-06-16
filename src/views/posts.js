@@ -17,8 +17,8 @@ const post = data => `<div class="container-post">
     <div class="content-post">
         <p class="data">${data.content}</p>
         <div class="likeAndCommentPost">
-            <img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like">
-            <span class="counterLikes">${data.likes}</span>
+            <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
+            <span class="numberLikes">${data.likes}</span>
             <img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
             <span class="counterComments">1</span>
             <div class="createComment">
@@ -32,7 +32,7 @@ const post = data => `<div class="container-post">
 </div>
 `;
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -47,7 +47,7 @@ const editingPost = (data) => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="img/icon-color-user.svg" alt="image user comment">
