@@ -14,7 +14,6 @@ import {
   createPost,
   deletePost,
   updatePost,
-  updateLikes,
   updateLikesUser,
   // getComments,
   // createComment,
@@ -31,6 +30,7 @@ export default async () => {
     mapListToScreen();
   };
 
+
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
     const child = document.createElement('div');
@@ -40,30 +40,19 @@ export default async () => {
     const btnEdit = child.querySelector('.icon-editPost');
     const id = btnDelete.getAttribute('data-value');
 
+    // fx de likes
     const buttonLikes = child.querySelector('.btnLikes');
-    const numberLikes = child.querySelector('.numberLikes');
-    console.log(numberLikes.innerHTML);
-    console.log(postData.likes);
-    let likeUser = postData.likesUser;
-    let total;
+    const arrayLikesUsers = postData.likesUsers;
+    const userID = postData.userID;
     buttonLikes.addEventListener('click', async (e) => {
       e.preventDefault();
-      if (likeUser === false) {
-        console.log('suma');
-        const dataL = postData.likes;
-        total = dataL + 1;
-        numberLikes.innerHTML = total;
-        console.log(total);
-        likeUser = true;
-      } else if (likeUser === true) {
-        console.log('resta');
-        const dataL = postData.likes;
-        total = dataL - 1;
-        numberLikes.innerHTML = total;
-        likeUser = false;
+      if (arrayLikesUsers.includes(userID)) {
+        const indUserArray = arrayLikesUsers.indexOf(userID);
+        arrayLikesUsers.splice(indUserArray, 1);
+      } else {
+        arrayLikesUsers.push(userID);
       }
-      await updateLikes(id, total);
-      await updateLikesUser(id, likeUser);
+      await updateLikesUser(id, arrayLikesUsers);
       mapListToScreen();
     });
 
@@ -101,21 +90,6 @@ export default async () => {
 
     return child;
   };
-  /*
-  // const likesPost = (postData) => {
-  const child = document.createElement('div');
-  child.innerHTML = post(postData);
-
-  const buttonCounterLikes = child.querySelector('.btnLikes');
-  const numberLikes = child.querySelector('.numberLike');
-  console.log(buttonCounterLikes);
-  console.log(numberLikes);
-    buttonCounterLikes.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-    return child;
-  };
-  */
   // FIN de div con la data de POSTS
 
   // Llenando div con la data de HOME - seccion de publicar
