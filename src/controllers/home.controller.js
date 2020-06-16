@@ -40,20 +40,6 @@ export default async () => {
     const btnEdit = child.querySelector('.icon-editPost');
     const id = btnDelete.getAttribute('data-value');
 
-<<<<<<< HEAD
-    const buttonViewComment = child.querySelector('.')
-    const buttonComment = child.querySelector('.iconSend');
-    const createCommentDiv = child.querySelector('.createComment');
-    const inputComment = nodeChildComments.querySelector('.textComment');
-    buttonComment.addEventListener('click', (e) => {
-      e.preventDefault();
-      createCommentDiv.classList.remove('hide');
-      createComment({
-        photo: userPhoto,
-        author: userName,
-        content: inputComment,
-    });
-=======
     const buttonLikes = child.querySelector('.btnLikes');
     const numberLikes = child.querySelector('.numberLikes');
     console.log(numberLikes.innerHTML);
@@ -81,7 +67,19 @@ export default async () => {
       mapListToScreen();
     });
 
->>>>>>> 2250d8d4c88a9bc61efa362644badde9f8822b1c
+    const buttonViewComment = child.querySelector('.')
+    const buttonComment = child.querySelector('.iconSend');
+    const createCommentDiv = child.querySelector('.createComment');
+    const inputComment = nodeChildComments.querySelector('.textComment');
+    buttonComment.addEventListener('click', (e) => {
+      e.preventDefault();
+      createCommentDiv.classList.remove('hide');
+      createComment({
+        photo: userPhoto,
+        author: userName,
+        content: inputComment,
+    });
+
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
@@ -192,21 +190,7 @@ export default async () => {
   });
   // FIN de div con la data de HOME
 
-<<<<<<< HEAD
-  // const nodeChildComments = document.createElement('div');
-  // const buttonComment = nodeChildComments.querySelector('.iconSend');
-  // const inputComment = nodeChildComments.querySelector('.textComment');
-  // buttonComment.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   createComment({
-  //     photo: userPhoto,
-  //     author: userName,
-  //     content: inputComment,
-  //   });
-  // });
-=======
   // const buttonComment = divElement;
->>>>>>> 2250d8d4c88a9bc61efa362644badde9f8822b1c
 
   return divElement;
 };
