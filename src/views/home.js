@@ -5,7 +5,7 @@ const home = () => `
   <div class="header">
     <div>
       <div class="hide">
-        <span class=""> Fulana Suarez </span>
+        <span class=""> ${user().displayName} </span>
         <img src="img/icon-triangleProfile.svg" class=""alt="icon-triangle-menu">
       </div>  
       <div class="menu-dropdown">
@@ -51,7 +51,7 @@ const home = () => `
             <div class="icons-createPost">
               <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
               <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
-              <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPriv
+              <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
             </div> 
             <div class="container-buttonCreatePost">  
               <button class="button-createPost">Publicar</button>
