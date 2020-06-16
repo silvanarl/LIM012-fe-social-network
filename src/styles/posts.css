@@ -133,8 +133,19 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 900px) and (max-width: 1250px) {
+@media screen and(min-width: 900px) and (max-width: 1400px) {
   .container-post {
     width: 100%;
+  }
+  .userPostData{
+    justify-content: flex-start;
+  }
+  .timeUserPost{
+    text-align: center;
+    font-size: 14px;
+  }
+  .titleUserPost{
+    font-size: 16px;
+    padding-bottom: 5px;
   }
 }

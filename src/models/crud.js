@@ -1,5 +1,3 @@
-import { user } from './auth.js';
-
 const getPosts = async () => {
   const posts = [];
   await firebase
@@ -29,16 +27,45 @@ const getPosts = async () => {
 };
 
 const createPost = ({ photo, author, content }) => {
-  console.log(photo);
-  const photoUser = user().photoURL;
-  console.log(photoUser);
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
-    photo: photoUser,
+    photo,
     author,
     content,
     date: time,
-    userID: user().uid,
+  });
+};
+
+const getComments = async () => {
+  const comments = [];
+  await firebase
+    .firestore()
+    .collection('comments')
+    .orderBy('date', 'desc')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const commentData = {
+          id: doc.id,
+          photo: doc.data().photo,
+          author: doc.data().author,
+          content: doc.data().content,
+          date: doc.data().date.toDate().toLocaleString(),
+        };
+        comments.push(commentData);
+      });
+    });
+  return comments;
+};
+
+const createComment = ({ photo, author, content }) => {
+  const time = firebase.firestore.Timestamp.fromDate(new Date());
+  firebase.firestore().collection('comments').add({
+    photo,
+    author,
+    content,
+    date: time,
+    // userID: user().uid,
     likes: 0,
     likesUser: false,
   });
@@ -73,4 +100,6 @@ export {
   updatePost,
   updateLikes,
   updateLikesUser,
+  getComments,
+  createComment,
 };
