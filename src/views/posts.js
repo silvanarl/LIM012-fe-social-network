@@ -1,9 +1,9 @@
-import { user } from '../models/auth.js';
-
 const post = data => `<div class="container-post">
     <div class="user-post">
-        <img src="${data.photo}" class="photoUser" alt="${data.author}">
-        <span class="titleUserPost">${data.author}</span>
+        <div class="userPostData">
+            <img src="${data.photo}" class="photoUser" alt="${data.author}">
+            <span class="titleUserPost">${data.author}</span>
+        </div>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
@@ -34,7 +34,7 @@ const post = data => `<div class="container-post">
 </div>
 `;
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -49,7 +49,7 @@ const editingPost = (data) => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="img/icon-color-user.svg" alt="image user comment">
