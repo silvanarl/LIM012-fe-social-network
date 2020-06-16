@@ -21,7 +21,7 @@ const post = data => `<div class="container-post">
         <div class="likeAndCommentPost">
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
             <span class="numberLikes">${data.likes}</span>
-            <img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
             <span class="counterComments">1</span>
             <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
