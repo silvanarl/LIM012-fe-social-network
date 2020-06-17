@@ -20,8 +20,8 @@ const post = data => `<div class="container-post">
         <p class="data">${data.content}</p>
         <div class="likeAndCommentPost">
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
-            <span class="numberLikes">${data.likesUsers.length}</span>
-            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
+            <span class="numberLikes">${data.likes}</span>
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
             <span class="counterComments">1</span>
             <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
@@ -52,7 +52,7 @@ const editingPost = data => `
 const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
-        <img src="img/icon-color-user.svg" alt="image user comment">
+        <img src="${dataComment.photo}" alt="${dataComment.photo}">
     </div>
     <div class="mainComment">
         <span class="userComment">${dataComment.author}</span>
