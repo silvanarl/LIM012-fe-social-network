@@ -39,9 +39,10 @@
   display: inline-block;
   min-width: 100px;
   width: 500px;
+  max-width: 500px;
 }
 .createPost {
-  width: 450px;
+  width: 85%;
   height: 55px;
   border: solid 1px;
   border-color: rgba(0, 0, 0, 0.308);
@@ -100,6 +101,9 @@ para bottom
 .container-buttonCreatePost {
   justify-content: flex-end;
 }
+.button-createPost:active {
+  outline: none;
+}
 .button-createPost {
   width: 80px;
   height: 27px;
@@ -109,10 +113,11 @@ para bottom
   border-radius: 15px;
   font-size: 12pt;
   margin: 7px;
+  outline: none;
 }
 /* Cerrar sesion de desktop */
 #logout {
-  text-decoration:none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   padding: 15px;
@@ -128,7 +133,6 @@ para bottom
   height: 150px;
   padding-top: 20px;
 }
-
 .container-profiledata {
   display: flex;
   justify-content: center;
@@ -136,8 +140,11 @@ para bottom
   margin: 0px 17px 0px 30px;
   padding: 8px 4px;
 }
-
-
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* menu dropdown de movil */
 .menu-dropdown {
   position: relative;
@@ -176,6 +183,16 @@ para bottom
   height: 20px;
   cursor: pointer;
 }
+.edit-profile {
+  margin-left: 25px;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: #5d9cec;
+}
 .menu-dropdown-content .icon-userbtn {
   width: 20px;
   height: 20px;
@@ -194,7 +211,7 @@ para bottom
 .letter {
   color: #5d9cec;
   cursor: pointer;
-  text-decoration:none;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -210,16 +227,13 @@ para bottom
   #logout {
     display: none;
   }
-} 
+}
 
 @media screen and (min-width: 900px) and (max-width: 1200px) {
-  .mainPost{
+  .mainPost {
     width: 100%;
   }
-  .container-createPost{
-    width: 100%;
-  }
-  .createPost{
+  .container-createPost {
     width: 100%;
   }
 }

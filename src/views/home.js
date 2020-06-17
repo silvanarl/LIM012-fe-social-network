@@ -32,11 +32,16 @@ const home = () => `
       <div class= "container-profileimg">
         <img src="img/fondo-amigos.png" class="img-fondo" alt="img-fondo">
       </div>
-      <div class= "container-profiledata">
-        <img src="${user().photoURL}" class="icon-user" alt="img-profile">
-        <span class="nameuser">${user().displayName}</span>
-        <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
-      </div>
+        <div class="profile-box">
+          <div class="container-profiledata">
+            <img src="${user().photoURL}" class="icon-user" alt="img-profile">
+            <span class="nameuser">${user().displayName}</span>
+            <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
+          </div>
+            <div class="edit-profile"> 
+            <button class="edit-profile"> Editar Perfil </button>
+          </div>
+        </div>  
       <div class="profile-bottom">
         <img src="img/moto.png" class="img-back" alt="img-back">
       </div>
@@ -45,7 +50,7 @@ const home = () => `
       <div class="post-createPost">
         <div class="container-createPost">
           <div class="text">
-           <textarea class="createPost" type="text" cols="40" rows="5" placeholder="¡Comparte tus tips aquí!"></textarea>
+           <textarea class="createPost" type="text" cols="0" rows="5" placeholder="¡Comparte tus tips aquí!"></textarea>
           </div>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">

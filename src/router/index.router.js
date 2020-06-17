@@ -7,7 +7,8 @@ const router = (route) => {
   switch (route) {
     case '':
     case '#':
-    case '#/': content.appendChild(pages.loginUserWithEmail());
+    case '#/':
+      content.appendChild(pages.loginUserWithEmail());
       break;
     case '#/home':
       firebase.auth().onAuthStateChanged(async (userX) => {
@@ -19,7 +20,19 @@ const router = (route) => {
         }
       });
       break;
-    case '#/register': content.appendChild(pages.register());
+    case '#/profile':
+      firebase.auth().onAuthStateChanged(async (userX) => {
+        if (!userX) {
+          window.location.hash = '#/';
+        } else {
+          console.log(userX);
+          content.appendChild(await pages.profile());
+        }
+      });
+      break;
+
+    case '#/register':
+      content.appendChild(pages.register());
       break;
     default:
       content.appendChild(pages.NoFound());

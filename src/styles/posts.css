@@ -1,6 +1,6 @@
 .container-post {
-  width: 500px;
   margin: 22px;
+  max-width: 500px;
   border: solid 1px;
   border-radius: 5px;
   border-color: rgba(107, 163, 236, 0.486);
@@ -24,6 +24,9 @@
   width: 30px;
   height: 30px;
 }
+.btnLikes {
+  border-style: none;
+}
 .data {
   width: 90%;
   padding: 3px;
@@ -39,6 +42,7 @@
   width: 25px;
   height: 30px;
   justify-content: flex-start;
+  border-style: none;
 }
 .icon-dropdown {
   width: 20px;
@@ -97,6 +101,9 @@
   width: 20px;
   height: 20px;
 }
+.btnComments {
+  border-style: none;
+}
 /*dropdown post */
 .dropbtn {
   display: flex;
@@ -131,18 +138,18 @@
 }
 
 @media screen and (min-width: 900px) and (max-width: 1400px) {
-  .container-post {
-    width: 100%;
-  }
-  .userPostData{
+  .userPostData {
     justify-content: flex-start;
   }
-  .timeUserPost{
+  .timeUserPost {
     text-align: center;
     font-size: 14px;
   }
-  .titleUserPost{
+  .titleUserPost {
     font-size: 16px;
     padding-bottom: 10px;
+  }
+  .container-post {
+    width: 79%;
   }
 }
