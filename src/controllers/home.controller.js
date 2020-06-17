@@ -1,15 +1,7 @@
 import { home } from '../views/home.js';
-import {
-  post,
-  editingPost,
-  comment,
-} from '../views/posts.js';
+import { post, editingPost, comment } from '../views/posts.js';
 
-import {
-  userStatus,
-  user,
-  logOut,
-} from '../models/auth.js';
+import { userStatus, user, logOut } from '../models/auth.js';
 import {
   getPosts,
   createPost,
@@ -29,7 +21,6 @@ export default async () => {
     await deletePost(id);
     mapListToScreen();
   };
-
 
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
@@ -171,14 +162,19 @@ export default async () => {
   const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
-    let inputPost = divElement.querySelector('.createPost').value;
+    let inputPost = divElement.querySelector('.createPost');
     createPost({
       photo: userPhoto,
       author: userName,
-      content: inputPost,
+      content: inputPost.value,
     });
+    inputPost.value = '';
     mapListToScreen();
-    inputPost = '';
+  });
+
+  const btnClickEditProfile = divElement.querySelector('.edit-profile');
+  btnClickEditProfile.addEventListener('click', () => {
+    window.location.hash = '/profile';
   });
   // FIN de div con la data de HOME
 
