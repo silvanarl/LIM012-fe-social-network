@@ -15,7 +15,6 @@ import {
 export default async () => {
   const currentUserUID = user().uid;
   const userName = user().displayName;
-  // const userEmail = user().email;
   const userPhoto = user().photoURL;
 
   const onDeleteClick = async (id) => {
@@ -48,16 +47,13 @@ export default async () => {
     });
 
     const buttonViewComment = child.querySelector('.btnComments');
-    const createCommentDiv = child.querySelector('.createComment');
+    let createCommentDiv = child.querySelector('.createComment');
     const buttonComment = child.querySelector('.iconSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
       createCommentDiv.classList.toggle('hide');
-      console.log('comentario mostrado'); // funciona ok
-      const buildComment = (dataComment) => {
-        const createCommentDivChild = document.createElement('div');
-        createCommentDivChild.innerHTML = comment(dataComment);
-      };
+      console.log('comentario mostrado');
+      showComments();
       buttonComment.addEventListener('click', (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
@@ -66,9 +62,22 @@ export default async () => {
           photo: userPhoto,
           author: userName,
           content: inputComment,
-        }); // devuelve undefined, revisa la funcion
+        });
       });
     });
+    const buildComment = (dataComment) => {
+      const createCommentDivChild = document.createElement('div');
+      createCommentDivChild.innerHTML = comment(dataComment);
+    };
+    const listOfComments = child.querySelector('.contentComment');
+    const showComments = async () => {
+      const commentList = await getComments();
+      commentList.forEach((dataComment) => {
+        createCommentDiv = buildComment(dataComment);
+        listOfComments.appendChild(createCommentDiv);
+      });
+    };
+
 
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
@@ -168,8 +177,6 @@ export default async () => {
     window.location.hash = '/profile';
   });
   // FIN de div con la data de HOME
-
-  // const buttonComment = divElement;
 
   return divElement;
 };
