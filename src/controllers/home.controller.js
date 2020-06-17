@@ -79,7 +79,6 @@ export default async () => {
       createCommentDivChild.innerHTML = comment(dataComment);
     };
     const listOfComments = child.querySelector('.contentComment');
-
     const showComments = async () => {
       const commentList = await getComments();
       commentList.forEach((dataComment) => {
