@@ -1,3 +1,5 @@
+import { user } from './auth.js';
+
 const getPosts = async () => {
   const posts = [];
   await firebase
@@ -10,12 +12,12 @@ const getPosts = async () => {
       querySnapshot.forEach((doc) => {
         const postData = {
           id: doc.id,
+          photo: doc.data().photo,
           author: doc.data().author,
           content: doc.data().content,
-          date:
-            doc.data().date != null
-              ? doc.data().date.toDate().toLocaleDateString()
-              : '',
+          userID: doc.data().userID,
+          likesUsers: doc.data().likesUsers,
+          date: doc.data().date.toDate().toLocaleString(),
         };
         posts.push(postData);
       });
@@ -23,12 +25,48 @@ const getPosts = async () => {
   return posts;
 };
 
-const createPost = ({ author, content }) => {
+const createPost = ({ photo, author, content }) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
+    photo,
     author,
     content,
     date: time,
+    userID: user().uid,
+    likesUsers: [],
+  });
+};
+
+const getComments = async () => {
+  const comments = [];
+  await firebase
+    .firestore()
+    .collection('comments')
+    .orderBy('date', 'desc')
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const commentData = {
+          id: doc.id,
+          photo: doc.data().photo,
+          author: doc.data().author,
+          content: doc.data().content,
+          date: doc.data().date.toDate().toLocaleString(),
+        };
+        comments.push(commentData);
+      });
+    });
+  return comments;
+};
+
+const createComment = ({ photo, author, content }) => {
+  const time = firebase.firestore.Timestamp.fromDate(new Date());
+  firebase.firestore().collection('comments').add({
+    photo,
+    author,
+    content,
+    date: time,
+    userID: user().uid,
   });
 };
 
@@ -42,4 +80,19 @@ const updatePost = async (id, content) => {
   });
 };
 
-export { getPosts, createPost, deletePost, updatePost };
+const updateLikesUser = async (id, likesUsers) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    likesUsers,
+  });
+};
+
+
+export {
+  getPosts,
+  createPost,
+  deletePost,
+  updatePost,
+  updateLikesUser,
+  getComments,
+  createComment,
+};

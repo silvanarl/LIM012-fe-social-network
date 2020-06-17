@@ -44,11 +44,8 @@
   width: 20px;
   justify-content: flex-end;
 }
-.createComment {
-  display: flex;
-}
 .textComment {
-  width: 450px;
+  width: 385px;
   height: 20px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
@@ -133,8 +130,19 @@
   flex-wrap: wrap;
 }
 
-@media (min-width: 900px) and (max-width: 1250px) {
+@media screen and (min-width: 900px) and (max-width: 1400px) {
   .container-post {
     width: 100%;
+  }
+  .userPostData{
+    justify-content: flex-start;
+  }
+  .timeUserPost{
+    text-align: center;
+    font-size: 14px;
+  }
+  .titleUserPost{
+    font-size: 16px;
+    padding-bottom: 10px;
   }
 }

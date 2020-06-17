@@ -1,9 +1,9 @@
-import { user } from '../models/auth.js';
-
 const post = data => `<div class="container-post">
     <div class="user-post">
-        <img src="${user().photoURL}" class="photoUser" alt="${user().displayName}">
-        <span class="titleUserPost">${data.author}</span>
+
+            <img src="${data.photo}" class="photoUser" alt="${data.author}">
+            <span class="titleUserPost">${data.author}</span>
+
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown">
@@ -19,13 +19,13 @@ const post = data => `<div class="container-post">
     <div class="content-post">
         <p class="data">${data.content}</p>
         <div class="likeAndCommentPost">
-            <img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like">
-            <span class="counterLikes">1</span>
-            <img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
+            <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
+            <span class="numberLikes">${data.likesUsers.length}</span>
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
             <span class="counterComments">1</span>
-            <div class="createComment">
+            <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
-                <img src="img/iconSend.svg" class="iconSend" alt="icon send comment">
+                <button class="iconSend"><img src="img/iconSend.svg"  alt="icon send comment"></button>
             </div>
             <div class="contentComment">
             </div>
@@ -34,7 +34,7 @@ const post = data => `<div class="container-post">
 </div>
 `;
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -49,7 +49,7 @@ const editingPost = (data) => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="img/icon-color-user.svg" alt="image user comment">
