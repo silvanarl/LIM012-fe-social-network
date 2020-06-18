@@ -23,7 +23,7 @@ const post = (data) => {
 
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
-        <div class="dropdown">
+        <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
                 <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
@@ -31,6 +31,8 @@ const post = (data) => {
                 <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
                 <span class="letter-color"> Editar post </span>
             </div>  
+        </div> 
+        <div class="${data.userID === data.currentUser ? 'hide' : 'space'}">
         </div> 
     </div> 
     <div class="content-post">
@@ -52,7 +54,7 @@ const post = (data) => {
 `;
 };
 
-const editingPost = (data) => `
+const editingPost = data => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -67,16 +69,18 @@ const editingPost = (data) => `
 </div>
 `;
 
-const comment = (dataComment) => `
+const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
-        <img src="${dataComment.photo}" alt="${dataComment.photo}">
+        <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
     </div>
     <div class="mainComment">
-        <span class="userComment">${dataComment.author}</span>
-        <span class="contentComment">${dataComment.content}</span>
+        <p class="userComment">${dataComment.author}</p>
+        <p class="contentComment">${dataComment.content}</p>
     </div>
-    <span class="timeComment">${dataComment.date}</span>
+    <div class="divTimeComment">
+        <span class="timeComment">${dataComment.date}</span>
+    </div>
 </div>
 `;
 

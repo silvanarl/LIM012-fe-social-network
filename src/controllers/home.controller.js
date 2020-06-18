@@ -24,7 +24,9 @@ export default async () => {
 
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
+    const userPostID = postData.userID;
     const child = document.createElement('div');
+    child.setAttribute('class', 'containerToContainerPost');
     child.innerHTML = post(postData);
 
     const btnDelete = child.querySelector('.icon-deletePost');
@@ -47,17 +49,15 @@ export default async () => {
     });
 
     const buttonViewComment = child.querySelector('.btnComments');
-    let createCommentDiv = child.querySelector('.createComment');
+    const listOfComments = child.querySelector('.contentComment');
     const buttonComment = child.querySelector('.iconSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      createCommentDiv.classList.toggle('hide');
-      console.log('comentario mostrado');
       showComments();
+      listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
-        console.log(inputComment);
         createComment({
           photo: userPhoto,
           author: userName,
@@ -67,27 +67,35 @@ export default async () => {
     });
     const buildComment = (dataComment) => {
       const createCommentDivChild = document.createElement('div');
+      createCommentDivChild.setAttribute('class', 'containerToContainerComments');
       createCommentDivChild.innerHTML = comment(dataComment);
+      return createCommentDivChild;
     };
-    const listOfComments = child.querySelector('.contentComment');
     const showComments = async () => {
       const commentList = await getComments();
+      listOfComments.innerHTML = '';
       commentList.forEach((dataComment) => {
-        createCommentDiv = buildComment(dataComment);
-        listOfComments.appendChild(createCommentDiv);
+        listOfComments.appendChild(buildComment(dataComment));
       });
     };
 
+
+    // INICIO botones de editar y eliminar post
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
-      onDeleteClick(id);
+      if (userPostID === currentUserUID) {
+        onDeleteClick(id);
+      }
     });
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
-      mapEditingList(id);
-      child.innerHTML = '';
-      child.innerHTML = post(postData, true);
+      if (userPostID === currentUserUID) {
+        mapEditingList(id);
+        child.innerHTML = '';
+        child.innerHTML = post(postData, true);
+      }
     });
+    // FIN botones de editar y eliminar post
     return child;
   };
 
@@ -139,8 +147,15 @@ export default async () => {
     listOfPosts.innerHTML = '';
     postList = await getPosts();
     postList.forEach((postData) => {
-      const child = buildPost(postData);
-      listOfPosts.appendChild(child);
+      const userPostID = postData.userID;
+      if (postData.postPrivate === false) {
+        const child = buildPost(postData);
+        listOfPosts.appendChild(child);
+      }
+      if (userPostID === currentUserUID && postData.postPrivate === true) {
+        const child = buildPost(postData);
+        listOfPosts.appendChild(child);
+      }
     });
   };
   const mapEditingList = async (id) => {
