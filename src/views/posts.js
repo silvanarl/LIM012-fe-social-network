@@ -5,7 +5,10 @@ const post = data => `<div class="container-post">
             <span class="titleUserPost">${data.author[0].toUpperCase()}${data.author.substring(1)}</span>
 
         <span class="timeUserPost">${data.date}</span>
-        <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
+        <div class="${data.userID === data.currentUser ? '' : 'hide'}">
+            <img src="img/icon-world.svg" class="icon-createPost publicPosted ${data.postPrivate ? 'hide' : ''}" alt="createPostPublic">
+            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${data.postPrivate ? '' : 'hide'}" alt="createPostPrivate">
+        </div>     
         <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
