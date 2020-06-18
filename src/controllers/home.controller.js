@@ -78,7 +78,6 @@ export default async () => {
       });
     };
 
-
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       onDeleteClick(id);
@@ -162,7 +161,7 @@ export default async () => {
   const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
-    let inputPost = divElement.querySelector('.createPost');
+    const inputPost = divElement.querySelector('.createPost');
     createPost({
       photo: userPhoto,
       author: userName,
