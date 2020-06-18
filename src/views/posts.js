@@ -2,7 +2,7 @@ const post = data => `<div class="container-post">
     <div class="user-post">
 
             <img src="${data.photo}" class="photoUser" alt="${data.author}">
-            <span class="titleUserPost">${data.author}</span>
+            <span class="titleUserPost">${data.author[0].toUpperCase()}${data.author.substring(1)}</span>
 
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
@@ -52,13 +52,15 @@ const editingPost = data => `
 const comment = dataComment => `
 <div class="containerComments">
     <div class="user-photo-comment">
-        <img src="img/icon-color-user.svg" alt="image user comment">
+        <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
     </div>
     <div class="mainComment">
-        <span class="userComment">${dataComment.author}</span>
-        <span class="contentComment">${dataComment.content}</span>
+        <p class="userComment">${dataComment.author}</p>
+        <p class="contentComment">${dataComment.content}</p>
     </div>
-    <span class="timeComment">${dataComment.date}</span>
+    <div class="divTimeComment">
+        <span class="timeComment">${dataComment.date}</span>
+    </div>
 </div>
 `;
 
