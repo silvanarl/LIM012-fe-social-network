@@ -6,7 +6,7 @@ const post = data => `<div class="container-post">
 
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
-        <div class="dropdown">
+        <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
                 <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
@@ -14,6 +14,8 @@ const post = data => `<div class="container-post">
                 <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
                 <span class="letter-color"> Editar post </span>
             </div>  
+        </div> 
+        <div class="${data.userID === data.currentUser ? 'hide' : 'space'}">
         </div> 
     </div> 
     <div class="content-post">

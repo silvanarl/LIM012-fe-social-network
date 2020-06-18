@@ -33,6 +33,7 @@ export default async () => {
 
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
+    const userPostID = postData.userID;
     const child = document.createElement('div');
     child.setAttribute('class', 'containerToContainerPost');
     child.innerHTML = post(postData);
@@ -94,16 +95,22 @@ export default async () => {
     };
 
 
+    // INICIO botones de editar y eliminar post
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
-      onDeleteClick(id);
+      if (userPostID === currentUserUID) {
+        onDeleteClick(id);
+      }
     });
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
-      mapEditingList(id);
-      child.innerHTML = '';
-      child.innerHTML = post(postData);
+      if (userPostID === currentUserUID) {
+        mapEditingList(id);
+        child.innerHTML = '';
+        child.innerHTML = post(postData, true);
+      }
     });
+    // FIN botones de editar y eliminar post
     return child;
   };
 
@@ -155,8 +162,15 @@ export default async () => {
     listOfPosts.innerHTML = '';
     postList = await getPosts();
     postList.forEach((postData) => {
-      const child = buildPost(postData);
-      listOfPosts.appendChild(child);
+      const userPostID = postData.userID;
+      if (postData.postPrivate === false) {
+        const child = buildPost(postData);
+        listOfPosts.appendChild(child);
+      }
+      if (userPostID === currentUserUID && postData.postPrivate === true) {
+        const child = buildPost(postData);
+        listOfPosts.appendChild(child);
+      }
     });
   };
   const mapEditingList = async (id) => {
