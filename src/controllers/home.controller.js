@@ -59,15 +59,17 @@ export default async () => {
     const buttonViewComment = child.querySelector('.btnComments');
     let createCommentDiv = child.querySelector('.createComment');
     const buttonComment = child.querySelector('.iconSend');
+    let buttonCommentPress = 0;
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
       createCommentDiv.classList.toggle('hide');
-      console.log('comentario mostrado');
-      showComments();
+      if (buttonCommentPress === 0) {
+        showComments();
+        buttonCommentPress = 1;
+      }
       buttonComment.addEventListener('click', (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
-        console.log(inputComment);
         createComment({
           photo: userPhoto,
           author: userName,
