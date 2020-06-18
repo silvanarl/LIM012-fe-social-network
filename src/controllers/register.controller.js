@@ -1,4 +1,5 @@
 import { registerForm } from '../views/register.js';
+import { createUser } from '../models/auth.js';
 
 export default () => {
   const divRegister = document.createElement('div');
@@ -23,21 +24,8 @@ export default () => {
     const validationEmail = email.match(regexpEmail);
     const validationPassword = password.match(regexpPassword);
 
-    const createUser = (inputUser, inputEmail, inputPassword) => {
-      console.log('creando usuario con nombre:', inputUser);
-
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(inputEmail, inputPassword)
-        .then(() => {
-          console.log('usuario creado');
-          window.location.hash = '/home';
-        })
-        .catch(error => console.error(error));
-    };
-
     if (user && email && password) {
-      if ((validationEmail === null) && (validationPassword === null)) {
+      if (validationEmail === null && validationPassword === null) {
         return 'hubo un error';
       }
     }

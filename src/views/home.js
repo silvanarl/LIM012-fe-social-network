@@ -1,5 +1,12 @@
 import { user } from '../models/auth.js';
 
+const photo = () => {
+  return user().photoUrl !== undefined
+    ? `<img src="${user().photoUrl}" class="photoUserProfile" alt="${
+      user().displayName
+    }" />`
+    : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
+};
 const home = () => `
 <header>
   <div class="header">
@@ -34,7 +41,7 @@ const home = () => `
       </div>
         <div class="profile-box">
           <div class="container-profiledata">
-            <img src="${user().photoURL}" class="icon-user" alt="img-profile">
+          ${photo()}
             <span class="nameuser">${user().displayName}</span>
             <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
           </div>

@@ -1,7 +1,25 @@
-const post = data => `<div class="container-post">
-    <div class="user-post">
+const post = (data) => {
+  // eslint-disable-next-line operator-linebreak
 
-            <img src="${data.photo}" class="photoUser" alt="${data.author}">
+  console.log('=============');
+  console.log(data);
+  const photo =
+    data.photo !== null
+      ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
+      : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
+
+  console.log('=============');
+
+  console.log(data.userPhoto === null);
+  console.log(photo);
+
+  return `
+<div class="profile">
+  <div class="photo-edit-profile">
+ 
+<div class="container-post">
+    <div class="user-post">
+            ${photo}
             <span class="titleUserPost">${data.author}</span>
 
         <span class="timeUserPost">${data.date}</span>
@@ -33,8 +51,9 @@ const post = data => `<div class="container-post">
     </div>
 </div>
 `;
+};
 
-const editingPost = data => `
+const editingPost = (data) => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -49,7 +68,7 @@ const editingPost = data => `
 </div>
 `;
 
-const comment = dataComment => `
+const comment = (dataComment) => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="${dataComment.photo}" alt="${dataComment.photo}">
