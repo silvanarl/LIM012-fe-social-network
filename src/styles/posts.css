@@ -40,9 +40,6 @@
 .content-post[data-visible='false'] {
   visibility: hidden;
 }
-.hide {
-  display: none;
-}
 .icon-contentPost {
   width: 25px;
   height: 30px;

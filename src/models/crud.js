@@ -20,6 +20,7 @@ const getPosts = async () => {
           likesUsers: doc.data().likesUsers,
           date: doc.data().date.toDate().toLocaleString(),
           postPrivate: doc.data().postPrivate,
+          commentsID: doc.data().commentsID,
         };
         posts.push(postData);
       });
@@ -42,6 +43,7 @@ const createPost = ({
     userID: user().uid,
     likesUsers: [],
     postPrivate,
+    commentsID: [],
   });
 };
 
