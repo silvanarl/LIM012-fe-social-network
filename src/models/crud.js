@@ -52,6 +52,7 @@ const getComments = async () => {
           author: doc.data().author,
           content: doc.data().content,
           date: doc.data().date.toDate().toLocaleString(),
+          userID: doc.data().userID,
         };
         comments.push(commentData);
       });
