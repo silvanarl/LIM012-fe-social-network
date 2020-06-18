@@ -58,16 +58,12 @@ export default async () => {
     });
 
     const buttonViewComment = child.querySelector('.btnComments');
-    let createCommentDiv = child.querySelector('.createComment');
+    const listOfComments = child.querySelector('.contentComment');
     const buttonComment = child.querySelector('.iconSend');
-    let buttonCommentPress = 0;
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      createCommentDiv.classList.toggle('hide');
-      if (buttonCommentPress === 0) {
-        showComments();
-        buttonCommentPress = 1;
-      }
+      showComments();
+      listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
@@ -84,13 +80,12 @@ export default async () => {
       createCommentDivChild.innerHTML = comment(dataComment);
       return createCommentDivChild;
     };
-    const listOfComments = child.querySelector('.contentComment');
 
     const showComments = async () => {
       const commentList = await getComments();
+      listOfComments.innerHTML = '';
       commentList.forEach((dataComment) => {
-        createCommentDiv = buildComment(dataComment);
-        listOfComments.appendChild(createCommentDiv);
+        listOfComments.appendChild(buildComment(dataComment));
       });
     };
 
