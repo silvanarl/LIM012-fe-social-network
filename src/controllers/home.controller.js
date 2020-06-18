@@ -34,6 +34,7 @@ export default async () => {
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
     const child = document.createElement('div');
+    child.setAttribute('class', 'containerToContainerPost');
     child.innerHTML = post(postData);
 
     const btnDelete = child.querySelector('.icon-deletePost');
@@ -76,7 +77,9 @@ export default async () => {
     });
     const buildComment = (dataComment) => {
       const createCommentDivChild = document.createElement('div');
+      createCommentDivChild.setAttribute('class', 'containerToContainerComments');
       createCommentDivChild.innerHTML = comment(dataComment);
+      return createCommentDivChild;
     };
     const listOfComments = child.querySelector('.contentComment');
 
@@ -97,7 +100,7 @@ export default async () => {
       e.preventDefault();
       mapEditingList(id);
       child.innerHTML = '';
-      child.innerHTML = post(postData, true);
+      child.innerHTML = post(postData);
     });
     return child;
   };
