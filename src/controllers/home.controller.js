@@ -48,6 +48,7 @@ export default async () => {
       mapListToScreen();
     });
 
+    // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
     const listOfComments = child.querySelector('.contentComment');
     const buttonComment = child.querySelector('.iconSend');
@@ -63,6 +64,7 @@ export default async () => {
           author: userName,
           content: inputComment,
         });
+        inputComment.innerHTML = '';
       });
     });
     const buildComment = (dataComment) => {
@@ -78,7 +80,6 @@ export default async () => {
         listOfComments.appendChild(buildComment(dataComment));
       });
     };
-
 
     // INICIO botones de editar y eliminar post
     btnDelete.addEventListener('click', (e) => {
@@ -161,6 +162,7 @@ export default async () => {
   const mapEditingList = async (id) => {
     listOfPosts.innerHTML = '';
     postList = await getPosts();
+    console.log(postList);
     postList.forEach((postData) => {
       let child;
       if (id === postData.id) {
