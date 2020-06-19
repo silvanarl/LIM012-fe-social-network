@@ -1,8 +1,8 @@
 import { user } from '../models/auth.js';
 
 const photo = () => {
-  return user().photoUrl !== undefined
-    ? `<img src="${user().photoUrl}" class="photoUserProfile" alt="${
+  return user().photoURL !== undefined
+    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${
       user().displayName
     }" />`
     : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;

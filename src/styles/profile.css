@@ -19,6 +19,69 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 2rem;
 }
-
-
+.photoUserEdit{
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 5px;
+}
+.photo-edit-profile{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+.photoUserProfile{
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+.title-user-edit{
+  font-size: 25px;
+}
+.button-change-img{
+  outline: none;
+  border: 1px solid #5d9cec;
+  border-radius: 20px;
+  background-color: #75abf3;
+  padding: 3px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+.password-profile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+.input-edit{
+  margin: 2px;
+  border: 2px solid #75abf3;
+  overflow-wrap: break-word;
+}
+.btn-save{
+  margin: 10px;
+  outline: none;
+  border: 1px solid #5d9cec;
+  border-radius: 20px;
+  background-color: #75abf3;
+  padding: 3px;
+  color: white;
+  cursor: pointer;
+}
+.btn-save-password{
+  margin: 10px;
+  outline: none;
+  border: 1px solid #5d9cec;
+  border-radius: 20px;
+  background-color: #75abf3;
+  padding: 3px;
+  color: white;
+  cursor: pointer;
+}
