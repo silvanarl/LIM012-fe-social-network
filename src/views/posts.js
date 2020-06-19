@@ -3,15 +3,14 @@ const post = (data) => {
 
   console.log('=============');
   console.log(data);
-  const photo =
-    data.photo !== null
-      ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
-      : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
+  const photo = data.photo !== null
+    ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
+    : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
 
   console.log('=============');
 
-  console.log(data.userPhoto === null);
-  console.log(photo);
+  console.log(data.photo !== null);
+  console.log(data.photo);
 
   return `
 <div class="profile">

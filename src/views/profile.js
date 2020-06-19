@@ -1,7 +1,7 @@
-function profile(data) {
+const profile = (data) => {
   // eslint-disable-next-line operator-linebreak
   const photo =
-    data.userPhoto === undefined
+    data.userPhoto !== null
       ? `<img src="${data.userPhoto}" class="photoUser" alt="${data.userName}" />`
       : `<div class="no-photo-edit"> <span>${data.userName[0]}</span></div>`;
   return `
@@ -29,6 +29,6 @@ function profile(data) {
       </div>
     </div>
 `;
-}
+};
 
 export { profile };
