@@ -28,9 +28,9 @@ const post = (data) => {
         <div class="likeAndCommentPost">
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
             <span class="numberLikes">${data.likes}</span>
-            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
             <span class="counterComments">1</span>
-            <div class="createComment hide">
+            <div class="createComment">
                 <input class="textComment" type="text" placeholder="Comentar...">
                 <button class="iconSend"><img src="img/iconSend.svg"  alt="icon send comment"></button>
             </div>
@@ -42,20 +42,6 @@ const post = (data) => {
 </div>
 `;
 };
-
-const editingPost = data => `
-<div class="container-post">
-    <div class="user-post">
-        <span class="titleUserPost">EDITANDO</span>
-    </div>
-    <div class="content-post">
-        <input class="inputPost" placeholder="${data.content}"> </input>
-        <div class="likeAndCommentPost">
-            <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
-            <img src="img/save.png" class="icon-savePost" alt="icon save">
-        </div>
-    </div>
-`;
 
 const comment = dataComment => `
 <div class="containerComments">
@@ -70,6 +56,20 @@ const comment = dataComment => `
         <span class="timeComment">${dataComment.date}</span>
     </div>
 </div>
+`;
+
+const editingPost = data => `
+<div class="container-post">
+    <div class="user-post">
+        <span class="titleUserPost">EDITANDO</span>
+    </div>
+    <div class="content-post">
+        <input class="inputPost" placeholder="${data.content}"> </input>
+        <div class="likeAndCommentPost">
+            <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+            <img src="img/save.png" class="icon-savePost" alt="icon save">
+        </div>
+    </div>
 `;
 
 export { post, comment, editingPost };
