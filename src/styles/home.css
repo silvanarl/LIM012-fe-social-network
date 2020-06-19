@@ -68,7 +68,10 @@
 .icon-addImage {
   width: 28px;
 }
-
+.icon-privacy {
+  width: 20px;
+  padding-left: 4px;
+}
 .icon-world {
   width: 28px;
   padding-left: 4px;
