@@ -37,6 +37,7 @@
   width: 90%;
   padding: 3px;
   overflow-wrap: break-word;
+  margin-bottom: 15px;
 }
 .content-post[data-visible='true'] {
   visibility: visible;
@@ -174,7 +175,7 @@
     font-size: 14px;
   }
   .titleUserPost {
-    font-size: 16px;
+    font-size: 18px;
     padding-bottom: 10px;
   }
   .containerToContainerComments{

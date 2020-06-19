@@ -12,18 +12,16 @@ const createUser = async (inputUser, inputEmail, inputPassword) => {
       });
       window.location.hash = '/home';
     })
-    .catch((error) => console.error(error));
+    .catch(error => console.error(error));
 };
 
-const loginUser = (inputEmail, InputPassword) =>
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(inputEmail, InputPassword)
-    .then((user) => {
-      window.location.hash = '/home';
-      return user;
-    })
-    .catch((error) => console.error(error));
+const loginUser = (inputEmail, InputPassword) => firebase.auth()
+  .signInWithEmailAndPassword(inputEmail, InputPassword)
+  .then((user) => {
+    window.location.hash = '/home';
+    return user;
+  })
+  .catch(error => console.error(error));
 
 const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -54,4 +52,20 @@ const logOut = () => {
     .then(() => console.log('funcion logOut en auth'));
 };
 
-export { loginUser, loginWithGoogle, userStatus, user, logOut, createUser };
+const changePassword = (password) => {
+  const userF = user();
+  userF.updatePassword(password).then((result) => {
+    console.log('result', result);
+  }).catch((error) => {
+    console.error(error);
+  });
+};
+export {
+  loginUser,
+  loginWithGoogle,
+  userStatus,
+  user,
+  logOut,
+  createUser,
+  changePassword,
+};

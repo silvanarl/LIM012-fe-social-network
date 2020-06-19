@@ -1,26 +1,14 @@
 const post = (data) => {
   // eslint-disable-next-line operator-linebreak
-
-  console.log('=============');
-  console.log(data);
   const photo = data.photo !== null
     ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
     : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
-
-  console.log('=============');
-
-  console.log(data.photo !== null);
-  console.log(data.photo);
-
   return `
 <div class="profile">
-  <div class="photo-edit-profile">
- 
 <div class="container-post">
     <div class="user-post">
-            ${photo}
-            <span class="titleUserPost">${data.author}</span>
-
+        ${photo}
+        <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
         <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
@@ -49,7 +37,8 @@ const post = (data) => {
             <div class="contentComment">
             </div>
         </div>
-    </div>
+     </div>
+   </div>
 </div>
 `;
 };
@@ -66,7 +55,6 @@ const editingPost = data => `
             <img src="img/save.png" class="icon-savePost" alt="icon save">
         </div>
     </div>
-</div>
 `;
 
 const comment = dataComment => `
