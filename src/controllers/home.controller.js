@@ -229,28 +229,16 @@ export default async () => {
     createPost({
       photo: userPhoto,
       author: userName,
-<<<<<<< HEAD
-      content: inputPost.value,
-=======
       content: inputPost,
       postPrivate: postIsPrivate,
->>>>>>> 29cbdcbef452566e24cf368eccf10abb68a13276
     });
     inputPost.value = '';
     mapListToScreen();
-<<<<<<< HEAD
-  });
-
-  const btnClickEditProfile = divElement.querySelector('.edit-profile');
-  btnClickEditProfile.addEventListener('click', () => {
-    window.location.hash = '/profile';
-=======
     inputPost = '';
     if (postIsPrivate) {
       buttonPublicPost.classList.toggle('hide');
       buttonPrivatePost.classList.toggle('hide');
     }
->>>>>>> 29cbdcbef452566e24cf368eccf10abb68a13276
   });
   // FIN de div con la data de HOME
 
