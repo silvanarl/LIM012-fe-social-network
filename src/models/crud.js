@@ -11,6 +11,7 @@ const getPosts = async () => {
       console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
         const postData = {
+          currentUser: user().uid,
           id: doc.id,
           photo: doc.data().photo,
           author: doc.data().author,
@@ -18,6 +19,8 @@ const getPosts = async () => {
           userID: doc.data().userID,
           likesUsers: doc.data().likesUsers,
           date: doc.data().date.toDate().toLocaleString(),
+          postPrivate: doc.data().postPrivate,
+          commentsID: doc.data().commentsID,
         };
         posts.push(postData);
       });
@@ -34,6 +37,8 @@ const createPost = ({ photo, author, content }) => {
     date: time,
     userID: user().uid,
     likesUsers: [],
+    postPrivate: false,
+    commentsID: [],
   });
 };
 
@@ -52,6 +57,7 @@ const getComments = async () => {
           author: doc.data().author,
           content: doc.data().content,
           date: doc.data().date.toDate().toLocaleString(),
+          userID: doc.data().userID,
         };
         comments.push(commentData);
       });

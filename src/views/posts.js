@@ -11,7 +11,7 @@ const post = (data) => {
         <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
-        <div class="dropdown">
+        <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
                 <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
@@ -20,15 +20,17 @@ const post = (data) => {
                 <span class="letter-color"> Editar post </span>
             </div>  
         </div> 
+        <div class="${data.userID === data.currentUser ? 'hide' : 'space'}">
+        </div> 
     </div> 
     <div class="content-post">
         <p class="data">${data.content}</p>
         <div class="likeAndCommentPost">
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
             <span class="numberLikes">${data.likes}</span>
-            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments">
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
             <span class="counterComments">1</span>
-            <div class="createComment hide">
+            <div class="createComment">
                 <input class="textComment" type="text" placeholder="Comentar...">
                 <button class="iconSend"><img src="img/iconSend.svg"  alt="icon send comment"></button>
             </div>
@@ -40,6 +42,21 @@ const post = (data) => {
 </div>
 `;
 };
+
+const comment = dataComment => `
+<div class="containerComments">
+    <div class="user-photo-comment">
+        <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
+    </div>
+    <div class="mainComment">
+        <p class="userComment">${dataComment.author}</p>
+        <p class="contentComment">${dataComment.content}</p>
+    </div>
+    <div class="divTimeComment">
+        <span class="timeComment">${dataComment.date}</span>
+    </div>
+</div>
+`;
 
 const editingPost = data => `
 <div class="container-post">
@@ -53,19 +70,6 @@ const editingPost = data => `
             <img src="img/save.png" class="icon-savePost" alt="icon save">
         </div>
     </div>
-`;
-
-const comment = dataComment => `
-<div class="containerComments">
-    <div class="user-photo-comment">
-        <img src="${dataComment.photo}" alt="${dataComment.photo}">
-    </div>
-    <div class="mainComment">
-        <span class="userComment">${dataComment.author}</span>
-        <span class="contentComment">${dataComment.content}</span>
-    </div>
-    <span class="timeComment">${dataComment.date}</span>
-</div>
 `;
 
 export { post, comment, editingPost };
