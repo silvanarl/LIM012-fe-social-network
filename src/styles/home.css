@@ -37,13 +37,11 @@
   border: solid 1px;
   border-radius: 5px;
   border-color: rgba(107, 163, 236, 0.486);
-  margin: 17px;
+  margin: 10px;
   padding: 8px 4px;
   justify-content: space-between;
   display: inline-block;
-  min-width: 100px;
-  width: 500px;
-  max-width: 500px;
+  width: 320px;
 }
 .createPost {
   width: 85%;
@@ -65,8 +63,14 @@
   display: flex;
   padding-left: 20px;
 }
-.icon-addImage {
-  width: 28px;
+.buttonAddImagePost{
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.iconAddImage{
+  width: 27px;
+  height: 28px;
 }
 
 .icon-world {
