@@ -30,11 +30,11 @@ const post = (data) => {
             <span class="numberLikes">${data.likes}</span>
             <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
             <span class="counterComments">1</span>
-            <div class="createComment">
+            <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
-                <button class="iconSend"><img src="img/iconSend.svg"  alt="icon send comment"></button>
+                <button class="buttonSend"><img src="img/iconSend.svg" class="iconSend" alt="icon send comment"></button>
             </div>
-            <div class="contentComment">
+            <div class="contentComment hide">
             </div>
         </div>
      </div>
