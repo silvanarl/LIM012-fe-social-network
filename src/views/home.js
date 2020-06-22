@@ -61,9 +61,9 @@ const home = () => `
           </div>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
-              <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
-              <img src="img/icon-world.svg" class="icon-world publicPost" alt="createPostPublic">
-              <img src="img/icon-privacy.svg" class="icon-privacy privatePost hide" alt="createPostPrivate">
+              <button class="buttonAddImagePost"><img src="img/icon-addImage.svg" class="iconAddImage" alt="createPostAddImage"></button>
+              <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
+              <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
             </div> 
             <div class="container-buttonCreatePost">  
               <button class="button-createPost">Publicar</button>
