@@ -10,6 +10,7 @@ import {
   updateLikesUser,
   getComments,
   createComment,
+  updateArrComments,
 } from '../models/crud.js';
 
 export default async () => {
@@ -58,18 +59,22 @@ export default async () => {
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
+      console.log('idpost', postData.id);
       showComments();
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
-      buttonComment.addEventListener('click', (event) => {
+      buttonComment.addEventListener('click', async (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
+        const postID = postData.id;
         createComment({
           photo: userPhoto,
           author: userName,
           content: inputComment,
+          postID,
         });
-        inputComment.innerHTML = '';
+        mapListToScreen();
+        // inputComment.innerHTML = '';
       });
     });
     const buildComment = (dataComment) => {
@@ -79,10 +84,17 @@ export default async () => {
       return createCommentDivChild;
     };
     const showComments = async () => {
-      const commentList = await getComments();
+      const postDataID = postData.id;
+      console.log(postDataID);
+      const commentList = await getComments(postDataID);
+      console.log(commentList);
       listOfComments.innerHTML = '';
+      console.log(listOfComments);
+      const dataIdComment = listOfComments.getAttribute('data-id');
       commentList.forEach((dataComment) => {
-        listOfComments.appendChild(buildComment(dataComment));
+        if (dataComment.postID === dataIdComment) {
+          listOfComments.appendChild(buildComment(dataComment));
+        }
       });
     };
 
