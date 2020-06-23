@@ -1,11 +1,8 @@
 import { user } from '../models/auth.js';
 
-const photo = () => {
-  return user().photoURL !== undefined
-    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${
-      user().displayName
-    }" />`
-    : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
+const photo = () => { return user().photoURL !== undefined
+  ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${user().displayName}" />`
+  : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
 };
 const home = () => `
 <header>
@@ -61,7 +58,7 @@ const home = () => `
           </div>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
-              <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
+              <button class="buttonAddImagePost"><img src="img/icon-addImage.svg" class="iconAddImage" alt="createPostAddImage"></button>
               <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
               <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
             </div> 

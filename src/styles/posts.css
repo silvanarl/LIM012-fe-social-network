@@ -1,6 +1,11 @@
+.posts{
+  display: flex;
+  width: 320px;
+}
+
 .containerToContainerPost{
   display: flex;
-  width: 360px;
+  
 }
 
 .container-post {
@@ -32,6 +37,7 @@
 }
 .btnLikes {
   border-style: none;
+  background-color: transparent;
 }
 .data {
   width: 90%;
@@ -90,7 +96,11 @@
   width: 23px;
   height: 25px;
   margin: 4px;
+}
+.buttonSend{
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 .containerComments {
   width: 280px;
@@ -112,6 +122,7 @@
 }
 .btnComments {
   border-style: none;
+  background-color: transparent;
 }
 /*dropdown post */
 .dropbtn {

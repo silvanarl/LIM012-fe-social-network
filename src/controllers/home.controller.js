@@ -48,13 +48,18 @@ export default async () => {
       mapListToScreen();
     });
 
+    // const arrCommentsUserByPost = postData.commentsID;
+
+
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
     const listOfComments = child.querySelector('.contentComment');
-    const buttonComment = child.querySelector('.iconSend');
+    const divCreateComment = child.querySelector('.createComment');
+    const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
       showComments();
+      divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', (event) => {
         event.preventDefault();

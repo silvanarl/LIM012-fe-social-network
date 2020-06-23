@@ -47,9 +47,11 @@ const getComments = async () => {
   await firebase
     .firestore()
     .collection('comments')
+    // .where('postID', '==', id)
     .orderBy('date', 'desc')
     .get()
     .then((querySnapshot) => {
+      console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
         const commentData = {
           id: doc.id,
@@ -65,7 +67,9 @@ const getComments = async () => {
   return comments;
 };
 
-const createComment = ({ photo, author, content }) => {
+const createComment = ({
+  photo, author, content, postID,
+}) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('comments').add({
     photo,
@@ -73,6 +77,7 @@ const createComment = ({ photo, author, content }) => {
     content,
     date: time,
     userID: user().uid,
+    postID,
   });
 };
 

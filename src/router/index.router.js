@@ -27,7 +27,6 @@ const router = (route) => {
         } else {
           console.log(userX);
           content.appendChild(await pages.profile());
-          x;
         }
       });
       break;
