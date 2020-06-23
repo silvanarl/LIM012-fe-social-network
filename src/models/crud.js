@@ -47,12 +47,13 @@ const getComments = async () => {
   await firebase
     .firestore()
     .collection('comments')
-    // .where('postID', '==', id)
+    // .where(id, '==', 'postID')
     .orderBy('date', 'desc')
     .get()
     .then((querySnapshot) => {
       console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
+        console.log(doc);
         const commentData = {
           id: doc.id,
           photo: doc.data().photo,
@@ -60,6 +61,7 @@ const getComments = async () => {
           content: doc.data().content,
           date: doc.data().date.toDate().toLocaleString(),
           userID: doc.data().userID,
+          postID: doc.data().postID,
         };
         comments.push(commentData);
       });
@@ -91,6 +93,12 @@ const updatePost = async (id, content) => {
   });
 };
 
+const updateArrComments = async (id, commentsID) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    commentsID,
+  });
+};
+
 const updateLikesUser = async (id, likesUsers) => {
   await firebase.firestore().collection('posts').doc(id).update({
     likesUsers,
@@ -112,4 +120,5 @@ export {
   getComments,
   createComment,
   updateProfileInfo,
+  updateArrComments,
 };
