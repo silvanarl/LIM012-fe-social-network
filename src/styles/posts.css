@@ -169,7 +169,6 @@
   .containerToContainerPost{
     display: flex;
     width: 545px;
-    justify-content: space-evenly;
   }
   .container-post {
     width: 100%;
