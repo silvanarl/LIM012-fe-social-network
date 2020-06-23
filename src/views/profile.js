@@ -1,26 +1,33 @@
+import { user } from '../models/auth.js';
+
 const profile = (data) => {
   // eslint-disable-next-line operator-linebreak
-  const photo =
-    data.userPhoto !== null
-      ? `<img src="${data.userPhoto}" class="photoUserEdit" alt="${data.userName}" />`
-      : `<div class="no-photo-edit"> <span>${data.userName[0]}</span></div>`;
+  const photo = () => (user().photoURL !== undefined
+    ? `<img src="${user().photoURL}" class="photoUserEdit" alt="${
+      data.userName
+    }" />`
+    : `<div class="no-photo-edit"> <span>${user().displayName}</span></div>`);
+
   return `
-  <div class="header">
+  <div class="header-profile">
     <img id ="logoImage" src="img/logo-roadtips.svg" alt="logo-road-tips">
     <a href="#" id ="logout"><span>Cerrar Sesión</span></a>
   </div>
   <div class="container-profile">
       <div class="photo-edit-profile">
-        ${photo} 
-        <button class="button-change-img">Cambiar foto</button> 
+        ${photo()} 
+        <input type="file" id="fileSelection" value=""></input>
+        <progress id="uploader" value="0" max="100">0%</progress>
+        <button class="button-change-img">Subir imagen</button> 
         <span class="title-user-edit">${data.userName}</span>
         <span>${data.email}</span>
       </div>
+      <div class="horizontal-line"> </div>
       <div class="info-edit-profile">
         <p>Editar perfil</p>
-        <input class="input-edit" type="text" placeholder="País" />
-        <input class="input-edit"type="text" placeholder="Sobre tí" />
-        <button class="btn-save">Guardar</button>
+        <input class="input-edit" id="editCountry" type="text" placeholder="País" />
+        <input class="input-edit" type="text" id="editAboutYou" placeholder="Sobre tí" />
+        <button class="btn-save-info">Guardar</button>
         <div class="password-profile">
           <p>Cambiar contraseña</p>
           <input class="input-edit" id="mainPassword" type="password" placeholder="Cambiar contraseña" />

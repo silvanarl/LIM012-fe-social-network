@@ -1,12 +1,15 @@
 import { profile } from '../views/profile.js';
-import { user, changePassword } from '../models/auth.js';
+import { user, changePassword, changeProfileImg } from '../models/auth.js';
+import { updateProfileInfo } from '../models/crud.js';
 
-const validatePassword = (password, confirmPassword) => password === confirmPassword;
-const validatePasswordLength = (password, confirmPassword) => password.length >= 6
-&& confirmPassword.length >= 6;
+const validatePassword = (password, confirmPassword) =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  password === confirmPassword;
+const validatePasswordLength = (password, confirmPassword) =>
+// eslint-disable-next-line implicit-arrow-linebreak
+  password.length >= 6 && confirmPassword.length >= 6;
 
 export default async () => {
-  /* const currentUserUID = user().uid; */
   const userName = user().displayName;
   const userPhoto = user().photoURL;
   const email = user().email;
@@ -40,6 +43,38 @@ export default async () => {
     } else {
       messageError.innerHTML = 'La contraseña fue cambiada exitosamente';
     }
+  });
+  const uploader = divEdit.querySelector('#uploader');
+  const fileButton = divEdit.querySelector('#fileSelection');
+  const uploadButton = divEdit.querySelector('.button-change-img');
+
+  uploadButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (fileButton.files.length !== 0) {
+      const file = fileButton.files[0];
+      const storageRef = firebase.storage().ref(`img/${file.name}`);
+      const task = storageRef.put(file);
+      task.on('state_changed', (snapshot) => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        uploader.value = percentage;
+        console.log(percentage);
+        if (percentage === 100) {
+          snapshot.ref.getDownloadURL().then((url) => {
+            console.log(url);
+            changeProfileImg(url);
+            // divEdit.querySelector('.photoUserEdit').src = url;
+          });
+        }
+      });
+    }
+  });
+  const buttonSave = divEdit.querySelector('.btn-save-info');
+  buttonSave.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const inputCountry = divEdit.querySelector('#editCountry');
+    const inputAboutYou = divEdit.querySelector('#editAboutYou');
+    console.log(inputAboutYou, inputCountry);
+    await updateProfileInfo(inputCountry.value, inputAboutYou.value);
   });
   return divEdit;
 };
