@@ -97,7 +97,12 @@ const updateLikesUser = async (id, likesUsers) => {
   });
 };
 
-
+const updateProfileInfo = async (country, aboutMe) => {
+  const id = user().uid;
+  firebase.firestore().collection('users').doc(id).set({
+    country, aboutMe,
+  }, { merge: true });
+};
 export {
   getPosts,
   createPost,
@@ -106,4 +111,5 @@ export {
   updateLikesUser,
   getComments,
   createComment,
+  updateProfileInfo,
 };
