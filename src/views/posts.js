@@ -34,7 +34,7 @@ const post = (data) => {
                 <input class="textComment" type="text" placeholder="Comentar...">
                 <button class="buttonSend"><img src="img/iconSend.svg" class="iconSend" alt="icon send comment"></button>
             </div>
-            <div class="contentComment hide">
+            <div class="contentComment hide" data-id="${data.id}">
             </div>
         </div>
      </div>
