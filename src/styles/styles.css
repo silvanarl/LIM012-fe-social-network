@@ -8,6 +8,7 @@
 .container-general {
   display: grid;
   grid-template-columns: 60% 40%;
+  background-color: #ffe9d4;
 }
 
 .container-backgroundImage {
@@ -35,6 +36,7 @@
   padding: 3px 13px 3px 13px;
   margin-top: 30px;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 .option {
   display: flex;
@@ -71,6 +73,7 @@
   padding: 3px 20px 3px 15px;
   margin-top: 30px;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .link {
@@ -85,6 +88,7 @@
   opacity: 0.8;
   border-bottom: 2px solid #393a3a;
   background-color: #ffe9d4;
+  overflow-wrap: break-word;
 }
 
 .input:focus {
@@ -119,6 +123,7 @@
   border: 1px solid #f58f8f;
   color: #ffffff;
   padding: 0px 50px 0px 30px;
+  cursor: pointer;
 }
 
 #button-google:focus {

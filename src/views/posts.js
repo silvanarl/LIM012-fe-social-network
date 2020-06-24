@@ -4,7 +4,7 @@ const post = (data) => {
     ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
     : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
   return `
-<div class="profile">
+<div class="profile-post">
 <div class="container-post">
     <div class="user-post">
         ${photo}
@@ -28,7 +28,7 @@ const post = (data) => {
         <div class="likeAndCommentPost">
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
             <span class="numberLikes">${data.likesUsers.length}</span>
-            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
+            <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" id="icon-comments" alt="icon comments"></button>
             <span class="counterComments"></span>
             <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">

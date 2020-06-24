@@ -9,9 +9,9 @@
 }
 
 .container-post {
-  width: 100%;
   margin: 22px;
-  max-width: 500px;
+  min-width: 400px;
+  max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
   border-color: rgba(107, 163, 236, 0.486);
@@ -24,6 +24,7 @@
   background-color: #ffe9d4;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 8px;
 }
 .content-post {
@@ -40,7 +41,6 @@
   background-color: transparent;
 }
 .data {
-  width: 90%;
   padding: 3px;
   overflow-wrap: break-word;
   margin-bottom: 15px;
@@ -54,7 +54,6 @@
 .icon-contentPost {
   width: 25px;
   height: 30px;
-  justify-content: flex-start;
   border-style: none;
 }
 .icon-dropdown {
@@ -64,7 +63,6 @@
 
 .icon-deletePost {
   width: 20px;
-  height: 20px;
   cursor: pointer;
 }
 .dropdown-content .icon-deletePost {
@@ -80,6 +78,8 @@
 .icon-savePost {
   width: 25px;
   height: 25px;
+  padding-top: 8px;
+  cursor: pointer;
 }
 /*Comments*/
 
@@ -91,6 +91,7 @@
   border-radius: 4px;
   padding: 5px;
   margin: 5px;
+  overflow-wrap: break-word;
 }
 .iconSend {
   width: 23px;
@@ -171,7 +172,8 @@
     width: 545px;
   }
   .container-post {
-    width: 100%;
+    min-width: 450px;
+    max-width: 450px;
     margin: 22px;
     border: solid 1px;
     border-radius: 5px;
@@ -186,7 +188,6 @@
   }
   .titleUserPost {
     font-size: 18px;
-    padding-bottom: 10px;
   }
   .containerToContainerComments{
     width: 440px;
@@ -216,5 +217,11 @@
   }
   .timeComment{
     font-size: 10px;
+  }
+  .likeAndCommentPost {
+    align-items: center;
+  }
+  .numberLikes{
+    padding-bottom: 20px;
   }
 }
