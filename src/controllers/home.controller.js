@@ -10,7 +10,6 @@ import {
   updateLikesUser,
   getComments,
   createComment,
-  updateArrComments,
 } from '../models/crud.js';
 
 export default async () => {
@@ -49,8 +48,6 @@ export default async () => {
       mapListToScreen();
     });
 
-    // const arrCommentsUserByPost = postData.commentsID;
-
 
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
@@ -59,7 +56,6 @@ export default async () => {
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      console.log('idpost', postData.id);
       showComments();
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
@@ -85,15 +81,19 @@ export default async () => {
     };
     const showComments = async () => {
       const postDataID = postData.id;
-      console.log(postDataID);
+      const postDataComments = postData.commentsID;
+      console.log(postDataComments);
       const commentList = await getComments(postDataID);
-      console.log(commentList);
       listOfComments.innerHTML = '';
-      console.log(listOfComments);
       const dataIdComment = listOfComments.getAttribute('data-id');
       commentList.forEach((dataComment) => {
         if (dataComment.postID === dataIdComment) {
+          postDataComments.push(dataIdComment);
           listOfComments.appendChild(buildComment(dataComment));
+
+          const spanCounterComments = child.querySelector('.counterComments');
+          spanCounterComments.textContent = postDataComments.length;
+          console.log(postDataComments);
         }
       });
     };
