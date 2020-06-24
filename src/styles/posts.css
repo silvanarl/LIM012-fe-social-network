@@ -40,6 +40,12 @@
   border-style: none;
   background-color: transparent;
 }
+.btnLikes:focus{
+  border-style: none;
+  outline: none;
+  border-radius: 30%;
+  background-color: rgb(241, 93, 93);
+}
 .data {
   padding: 3px;
   overflow-wrap: break-word;
@@ -84,7 +90,7 @@
 /*Comments*/
 
 .textComment {
-  width: 385px;
+  width: 350px;
   height: 20px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
@@ -96,7 +102,7 @@
 .iconSend {
   width: 23px;
   height: 25px;
-  margin: 4px;
+  padding-top: 2px;
 }
 .buttonSend{
   cursor: pointer;
@@ -124,6 +130,10 @@
 .btnComments {
   border-style: none;
   background-color: transparent;
+}
+.btnComments:focus { 
+  outline-color: transparent; 
+  outline-style: none;
 }
 /*dropdown post */
 .dropbtn {
@@ -195,7 +205,7 @@
     margin: 6px;
   }
   .containerComments{
-    width: 100%;
+    width: 400px;
     height: 100%;
     box-sizing: border-box;
   }
