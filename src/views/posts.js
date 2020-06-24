@@ -29,12 +29,12 @@ const post = (data) => {
             <button class="btnLikes"><img src="img/icon-bagLike.svg" class="icon-contentPost" alt="icon like"></button>
             <span class="numberLikes">${data.likesUsers.length}</span>
             <button class="btnComments"><img src="img/icon-comments.svg" class="icon-contentPost" alt="icon comments"></button>
-            <span class="counterComments">1</span>
+            <span class="counterComments"></span>
             <div class="createComment hide">
                 <input class="textComment" type="text" placeholder="Comentar...">
                 <button class="buttonSend"><img src="img/iconSend.svg" class="iconSend" alt="icon send comment"></button>
             </div>
-            <div class="contentComment hide">
+            <div class="contentComment hide" data-id="${data.id}">
             </div>
         </div>
      </div>

@@ -48,8 +48,6 @@ export default async () => {
       mapListToScreen();
     });
 
-    // const arrCommentsUserByPost = postData.commentsID;
-
 
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
@@ -61,15 +59,18 @@ export default async () => {
       showComments();
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
-      buttonComment.addEventListener('click', (event) => {
+      buttonComment.addEventListener('click', async (event) => {
         event.preventDefault();
         const inputComment = child.querySelector('.textComment').value;
+        const postID = postData.id;
         createComment({
           photo: userPhoto,
           author: userName,
           content: inputComment,
+          postID,
         });
-        inputComment.innerHTML = '';
+        mapListToScreen();
+        // inputComment.innerHTML = '';
       });
     });
     const buildComment = (dataComment) => {
@@ -79,10 +80,21 @@ export default async () => {
       return createCommentDivChild;
     };
     const showComments = async () => {
-      const commentList = await getComments();
+      const postDataID = postData.id;
+      const postDataComments = postData.commentsID;
+      console.log(postDataComments);
+      const commentList = await getComments(postDataID);
       listOfComments.innerHTML = '';
+      const dataIdComment = listOfComments.getAttribute('data-id');
       commentList.forEach((dataComment) => {
-        listOfComments.appendChild(buildComment(dataComment));
+        if (dataComment.postID === dataIdComment) {
+          postDataComments.push(dataIdComment);
+          listOfComments.appendChild(buildComment(dataComment));
+
+          const spanCounterComments = child.querySelector('.counterComments');
+          spanCounterComments.textContent = postDataComments.length;
+          console.log(postDataComments);
+        }
       });
     };
 
