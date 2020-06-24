@@ -10,8 +10,8 @@ const profile = (data) => {
 
   return `
   <div class="header-profile">
-    <img id ="logoImage" src="img/logo-roadtips.svg" alt="logo-road-tips">
-    <a href="#" id ="logout"><span>Cerrar Sesión</span></a>
+    <img id ="logoImageProfile" src="img/logo-roadtips.svg" alt="logo-road-tips">
+    <a href="#"<span id ="logout-profile">Cerrar Sesión</span></a>
   </div>
   <div class="container-profile">
       <div class="photo-edit-profile">

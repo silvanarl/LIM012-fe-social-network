@@ -4,8 +4,11 @@
   background-color: #ffe9d4;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
+}
+#logout-profile{
+  display: none;
 }
 .container-profile {
   display: grid;
@@ -45,8 +48,7 @@
 }
 .photoUserProfile {
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 100px;
 }
 .title-user-edit {
   font-size: 25px;
@@ -105,4 +107,22 @@
 }
 #uploader{
  margin: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .container-profile{
+    display: flex;
+    flex-flow: column;
+  }
+  .horizontal-line {
+    display: none;
+  }
+  .header-profile {
+    width: 100%;
+    height: 60px;
+    background-color: #ffe9d4;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 }

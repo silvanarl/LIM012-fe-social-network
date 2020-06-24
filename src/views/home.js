@@ -21,7 +21,7 @@ const home = () => `
               <img src="img/icon-user.svg" data-value="" class="icon-userbtn" alt="icon delete">
               <span class="letter"> Perfil </span>
             </div>
-            <div>
+            <div id="logout-dropdown">
               <img src="img/icon-logout.svg" data-value="" class="icon-outbtn" alt="icon delete">
               <a href="#" class="letter" id ="logout"><span>Cerrar Sesión</span></a>
             </div>

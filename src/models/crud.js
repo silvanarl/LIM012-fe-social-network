@@ -67,9 +67,7 @@ const getComments = async () => {
   return comments;
 };
 
-const createComment = ({
-  photo, author, content, postID,
-}) => {
+const createComment = ({ photo, author, content, postID }) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('comments').add({
     photo,
@@ -99,9 +97,13 @@ const updateLikesUser = async (id, likesUsers) => {
 
 const updateProfileInfo = async (country, aboutMe) => {
   const id = user().uid;
-  firebase.firestore().collection('users').doc(id).set({
-    country, aboutMe,
-  }, { merge: true });
+  firebase.firestore().collection('users').doc(id).set(
+    {
+      country,
+      aboutMe,
+    },
+    { merge: true },
+  );
 };
 export {
   getPosts,
@@ -112,5 +114,5 @@ export {
   getComments,
   createComment,
   updateProfileInfo,
-  updateArrComments,
+  // updateArrComments,
 };
