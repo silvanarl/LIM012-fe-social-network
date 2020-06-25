@@ -81,19 +81,18 @@ export default async () => {
     };
     const showComments = async () => {
       const postDataID = postData.id;
-      const postDataComments = postData.commentsID;
-      console.log(postDataComments);
+      const postDataComments = [];
       const commentList = await getComments(postDataID);
       listOfComments.innerHTML = '';
       const dataIdComment = listOfComments.getAttribute('data-id');
       commentList.forEach((dataComment) => {
         if (dataComment.postID === dataIdComment) {
-          postDataComments.push(dataIdComment);
           listOfComments.appendChild(buildComment(dataComment));
-
+          const idComment = dataComment.id;
+          postDataComments.push(idComment);
+          const newArrCommentsCounter = [...new Set(postDataComments)];
           const spanCounterComments = child.querySelector('.counterComments');
-          spanCounterComments.textContent = postDataComments.length;
-          console.log(postDataComments);
+          spanCounterComments.textContent = newArrCommentsCounter.length;
         }
       });
     };

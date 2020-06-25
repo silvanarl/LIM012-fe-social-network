@@ -74,13 +74,13 @@ const getComments = async () => {
           postID: doc.data().postID,
         };
         comments.push(commentData);
-        console.log(comments);
       });
     });
   return comments;
 };
 
 const createComment = ({
+ develop
   photo, author, content, postID,
 }) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
