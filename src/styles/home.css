@@ -33,15 +33,15 @@
   padding-top: 20px;
 }
 .container-createPost {
-    height: 130px;
-    border: solid 1px;
-    border-radius: 13px;
-    border-color: rgba(107, 163, 236, 0.486);
-    margin: 22px;
-    padding: 8px 4px;
-    justify-content: space-between;
-    display: inline-block;
-    width: 450px;
+  height: 130px;
+  border: solid 1px;
+  border-radius: 13px;
+  border-color: rgba(107, 163, 236, 0.486);
+  margin: 22px;
+  padding: 8px 4px;
+  justify-content: space-between;
+  display: inline-block;
+  width: 450px;
 }
 .createPost {
   width: 85%;
