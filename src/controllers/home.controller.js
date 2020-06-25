@@ -1,6 +1,5 @@
 import { home } from '../views/home.js';
 import { post, editingPost, comment } from '../views/posts.js';
-
 import { userStatus, user, logOut } from '../models/auth.js';
 import {
   getPosts,
@@ -10,6 +9,7 @@ import {
   updateLikesUser,
   getComments,
   createComment,
+  getUserData,
 } from '../models/crud.js';
 
 export default async () => {
@@ -143,7 +143,22 @@ export default async () => {
   // Llenando div con la data de HOME - seccion de publicar
   const divElement = document.createElement('div');
   await userStatus();
-  divElement.innerHTML = home();
+  const userData = getUserData();
+  const userId = user().uid;
+  firebase.firestore().collection('users').doc(userId).onSnapshot((querySnapshot) => {
+    const data = querySnapshot.data();
+    const arrayOfUserNameDivs = divElement.querySelectorAll('.name-f');
+    [].forEach.call(arrayOfUserNameDivs, (div) => {
+      // eslint-disable-next-line no-param-reassign
+      div.innerHTML = data.name;
+    });
+    const country = divElement.querySelector('.Country');
+    const aboutMe = divElement.querySelector('.aboutMe');
+    country.innerHTML = data.country;
+    aboutMe.innerHTML = data.aboutMe;
+  });
+
+  divElement.innerHTML = home(userData);
 
   let postList = await getPosts();
   const listOfPosts = divElement.querySelector('#publicPost');
@@ -196,20 +211,33 @@ export default async () => {
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
     const inputPost = divElement.querySelector('.createPost');
-    createPost({
-      photo: userPhoto,
-      author: userName,
-      content: inputPost.value,
+    const fileButton = divElement.querySelector('#postSelection');
+    if (fileButton.files.length !== 0) {
+      const file = fileButton.files[0];
+      const storageRef = firebase.storage().ref(`img/${file.name}`);
+      const task = storageRef.put(file);
+      task.on('state_changed', (snapshot) => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        if (percentage === 100) {
+          snapshot.ref.getDownloadURL().then((url) => {
+            createPost({
+              photo: userPhoto,
+              author: userName,
+              content: inputPost.value,
+              photoURL: url,
+            });
+            console.log("post'created");
+          });
+        }
+        inputPost.value = '';
+        mapListToScreen();
+      });
+    }
+    const btnClickEditProfile = divElement.querySelector('.edit-profile');
+    btnClickEditProfile.addEventListener('click', () => {
+      window.location.hash = '/profile';
     });
-    inputPost.value = '';
-    mapListToScreen();
+    // FIN de div con la data de HOME
   });
-
-  const btnClickEditProfile = divElement.querySelector('.edit-profile');
-  btnClickEditProfile.addEventListener('click', () => {
-    window.location.hash = '/profile';
-  });
-  // FIN de div con la data de HOME
-
   return divElement;
 };

@@ -25,9 +25,11 @@ const profile = (data) => {
       <div class="horizontal-line"> </div>
       <div class="info-edit-profile">
         <p>Editar perfil</p>
+        <input class="input-edit" id="editName" type="text" placeholder="Cambiar nombre" />
         <input class="input-edit" id="editCountry" type="text" placeholder="País" />
         <input class="input-edit" type="text" id="editAboutYou" placeholder="Sobre tí" />
         <button class="btn-save-info">Guardar</button>
+        <span class="infoError"></span>
         <div class="password-profile">
           <p>Cambiar contraseña</p>
           <input class="input-edit" id="mainPassword" type="password" placeholder="Cambiar contraseña" />

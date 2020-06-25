@@ -11,7 +11,7 @@ const home = () => `
   <div class="header">
     <div>
       <div class="hide">
-        <span class=""> ${user().displayName} </span>
+        <span class="name-f"></span>
         <img src="img/icon-triangleProfile.svg" class=""alt="icon-triangle-menu">
       </div>  
       <div class="menu-dropdown">
@@ -41,9 +41,11 @@ const home = () => `
         <div class="profile-box">
           <div class="container-profiledata">
           ${photo()}
-            <span class="nameuser">${user().displayName}</span>
+            <span class="nameuser name-f"></span>
             <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
           </div>
+          <span class="Country"> </span>
+          <span class="aboutMe"> </span>
             <div class="edit-profile"> 
             <button class="edit-profile"> Editar Perfil </button>
           </div>
@@ -60,7 +62,8 @@ const home = () => `
           </div>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
-              <button class="buttonAddImagePost"><img src="img/icon-addImage.svg" class="iconAddImage" alt="createPostAddImage"></button>
+              <input type="file" id="postSelection" value=""></input>
+              <button class="buttonAddImagePost" id="iconAddImage"><img class="buttonAddImagePost" src="img/icon-addImage.svg" alt="createPostAddImage"></button>
               <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
               <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
             </div> 
