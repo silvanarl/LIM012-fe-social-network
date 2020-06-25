@@ -1,5 +1,10 @@
 import { user } from './auth.js';
 
+const getUserData = async () => {
+  const id = user().uid;
+  return firebase.firestore().collection('users').doc(id);
+};
+
 const getPosts = async () => {
   const posts = [];
   await firebase
@@ -27,7 +32,9 @@ const getPosts = async () => {
   return posts;
 };
 
-const createPost = ({ photo, author, content }) => {
+const createPost = ({
+  photo, author, content, photoURL,
+}) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
     photo,
@@ -38,6 +45,12 @@ const createPost = ({ photo, author, content }) => {
     likesUsers: [],
     postPrivate: false,
     commentsID: [],
+    photoURL,
+  });
+};
+const addImage = async (id, photo) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    photo,
   });
 };
 
@@ -67,10 +80,8 @@ const getComments = async () => {
 };
 
 const createComment = ({
-  photo,
-  author,
-  content,
-  postID,
+ develop
+  photo, author, content, postID,
 }) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('comments').add({
@@ -99,10 +110,11 @@ const updateLikesUser = async (id, likesUsers) => {
   });
 };
 
-const updateProfileInfo = async (country, aboutMe) => {
+const updateProfileInfo = async (name, country, aboutMe) => {
   const id = user().uid;
   firebase.firestore().collection('users').doc(id).set(
     {
+      name,
       country,
       aboutMe,
     },
@@ -118,5 +130,6 @@ export {
   getComments,
   createComment,
   updateProfileInfo,
-  // updateArrComments,
+  getUserData,
+  addImage,
 };

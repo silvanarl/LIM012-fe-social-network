@@ -71,10 +71,16 @@ export default async () => {
   const buttonSave = divEdit.querySelector('.btn-save-info');
   buttonSave.addEventListener('click', async (event) => {
     event.preventDefault();
+    const inputName = divEdit.querySelector('#editName');
     const inputCountry = divEdit.querySelector('#editCountry');
     const inputAboutYou = divEdit.querySelector('#editAboutYou');
-    console.log(inputAboutYou, inputCountry);
-    await updateProfileInfo(inputCountry.value, inputAboutYou.value);
+    const messageError = divEdit.querySelector('.infoError');
+    await updateProfileInfo(inputName.value, inputCountry.value, inputAboutYou.value);
+    if (inputName.value === '' || inputCountry.value === '' || inputAboutYou.value === '') {
+      messageError.innerHTML = 'Por favor completa todos los campos';
+    } else {
+      messageError.innerHTML = 'Los datos fueron guardados exitosamente';
+    }
   });
   return divEdit;
 };
