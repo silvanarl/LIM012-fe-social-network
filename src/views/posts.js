@@ -2,9 +2,8 @@ const post = (data) => {
   // eslint-disable-next-line operator-linebreak
   const photo = data.photo !== null
     ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
-    : `<div class="no-photoPost"> <span>${data.author[0]}</span></div>`;
+    : `<div class="no-photoPost"> <span>${data.author}</span></div>`;
   return `
-<div class="profile-post">
 <div class="container-post">
     <div class="user-post">
         ${photo}
@@ -37,8 +36,7 @@ const post = (data) => {
             <div class="contentComment hide" data-id="${data.id}">
             </div>
         </div>
-     </div>
-   </div>
+    </div>
 </div>
 `;
 };
