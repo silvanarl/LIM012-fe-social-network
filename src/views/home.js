@@ -46,7 +46,7 @@ const home = () => `
           </div>
           <span class="Country"> </span>
           <span class="aboutMe"> </span>
-            <div class="edit-profile"> 
+          <div class="edit-profile"> 
             <button class="edit-profile"> Editar Perfil </button>
           </div>
         </div>  
@@ -62,8 +62,10 @@ const home = () => `
           </div>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
-              <input type="file" id="postSelection" value=""></input>
-              <button class="buttonAddImagePost" id="iconAddImage"><img class="buttonAddImagePost" src="img/icon-addImage.svg" alt="createPostAddImage"></button>
+            <label for="selectImage">
+              <input type="file" id="selectImage" class="upload hide" accept="image/jpeg, image/png, image/gif">
+              <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
+            </label>
               <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
               <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
             </div> 
