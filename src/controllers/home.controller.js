@@ -163,8 +163,9 @@ export default async () => {
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
-  logoutBtn.addEventListener('click', logOut);
-  // para verificar si hay usuario loggueado
+  logoutBtn.addEventListener('click', () => console.log('salida'));
+  // para verificar si hay usuario loggueado´
+  /*
   firebase.auth().onAuthStateChanged((userExist) => {
     if (userExist) {
       console.log(userExist.displayName);
@@ -174,6 +175,7 @@ export default async () => {
       console.log('no hay usuario signed in');
     }
   });
+  */
 
   const mapListToScreen = async () => {
     listOfPosts.innerHTML = '';
@@ -210,7 +212,7 @@ export default async () => {
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
     const inputPost = divElement.querySelector('.createPost');
-    const fileButton = divElement.querySelector('#postSelection');
+    const fileButton = divElement.querySelector('#selectImage');
     if (fileButton.files.length !== 0) {
       const file = fileButton.files[0];
       const storageRef = firebase.storage().ref(`img/${file.name}`);
@@ -232,11 +234,12 @@ export default async () => {
         mapListToScreen();
       });
     }
-    const btnClickEditProfile = divElement.querySelector('.edit-profile');
-    btnClickEditProfile.addEventListener('click', () => {
-      window.location.hash = '/profile';
-    });
     // FIN de div con la data de HOME
+  });
+  const btnClickEditProfile = divElement.querySelector('.edit-profile');
+  btnClickEditProfile.addEventListener('click', () => {
+    console.log('a profile');
+    window.location.hash = '/profile';
   });
   return divElement;
 };

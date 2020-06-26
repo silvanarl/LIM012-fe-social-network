@@ -1,6 +1,6 @@
 .posts{
   display: flex;
-  width: 320px;
+  width: 380px;
 }
 
 .containerToContainerPost{
@@ -10,7 +10,7 @@
 
 .container-post {
   margin: 22px;
-  min-width: 400px;
+  min-width: 330px;
   max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
@@ -45,6 +45,10 @@
   outline: none;
   border-radius: 30%;
   background-color: rgb(241, 93, 93);
+}
+.timeUserPost {
+  text-align: center;
+  font-size: 12px;
 }
 .data {
   padding: 3px;
@@ -87,20 +91,22 @@
   padding-top: 8px;
   cursor: pointer;
 }
+.likeAndCommentPost{
+  width: 285px;
+}
 /*Comments*/
 
 .textComment {
-  width: 350px;
+  width: 250px;
   height: 20px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
   border-radius: 4px;
   padding: 5px;
-  margin: 5px;
   overflow-wrap: break-word;
 }
 .iconSend {
-  width: 23px;
+  width: 20px;
   height: 25px;
   padding-top: 2px;
 }
@@ -109,20 +115,45 @@
   border: none;
   background-color: transparent;
 }
+.containerToContainerComments{
+  width: 290px;
+  padding-bottom: 6px;
+}
 .containerComments {
-  width: 280px;
-  height: 30px;
+  width: 100%;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
   border-radius: 4px;
   display: flex;
+  box-sizing: border-box;
+}
+.createComment{
+  width: 300px;
+  height: 40px;
 }
 .userPhotoComment {
   width: 25px;
   height: 25px;
   border-radius: 50%;
 }
-
+.user-photo-comment{
+  margin: auto 6px;  
+}
+.userComment{
+  font-size: 13px;
+  color: #5d9becdc;
+}
+.contentComment{
+  padding-top: 5px;
+  font-size: 12px;
+}
+.divTimeComment{
+  align-content: flex-end;
+  padding: 3px;
+}
+.timeComment{
+  font-size: 10px;
+}
 .icon-createPost {
   width: 20px;
   height: 20px;
@@ -201,32 +232,32 @@
   }
   .containerToContainerComments{
     width: 440px;
-    height: 50px;
     margin: 6px;
   }
   .containerComments{
     width: 400px;
-    height: 100%;
     box-sizing: border-box;
+  }
+  .createComment{
+    width: 400px;
+    height: 50px;
   }
   .mainComment{
     flex-direction: column;
   }
+  .textComment {
+    width: 350px;
+    height: 20px;
+  }
   .user-photo-comment{
-  margin: auto 6px;  
+    margin: auto 6px;  
   }
   .userComment{
-    font-size: 13px;
+    font-size: 14px;
     color: #5d9becdc;
   }
   .contentComment{
-    font-size: 12px;
-  }
-  .divTimeComment{
-    align-content: flex-end;
-  }
-  .timeComment{
-    font-size: 10px;
+    font-size: 13px;
   }
   .likeAndCommentPost {
     align-items: center;
