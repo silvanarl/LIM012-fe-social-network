@@ -25,6 +25,7 @@ const getPosts = async () => {
           date: doc.data().date.toDate().toLocaleString(),
           postPrivate: doc.data().postPrivate,
           commentsID: doc.data().commentsID,
+          photoURL: doc.data().photoURL,
         };
         posts.push(postData);
       });
@@ -80,7 +81,6 @@ const getComments = async () => {
 };
 
 const createComment = ({
- develop
   photo, author, content, postID,
 }) => {
   const time = firebase.firestore.Timestamp.fromDate(new Date());
