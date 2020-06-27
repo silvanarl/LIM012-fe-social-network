@@ -82,5 +82,10 @@ export default async () => {
       messageError.innerHTML = 'Los datos fueron guardados exitosamente';
     }
   });
+  const returnToHome = divEdit.querySelector('#logoImageProfile');
+  returnToHome.addEventListener('click', async (evt) => {
+    evt.preventDefault();
+    window.location.hash = '#/home';
+  })
   return divEdit;
 };

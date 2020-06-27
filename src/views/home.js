@@ -19,12 +19,12 @@ const home = () => `
           <div class="menu-dropdown-content">
             <div>
               <img src="img/icon-user.svg" data-value="" class="icon-userbtn" alt="icon delete">
-              <span class="letter"> Perfil </span>
+              <span class="profile-dropdown"> Perfil </span>
             </div>
-            <div id="logout-dropdown">
-              <img src="img/icon-logout.svg" data-value="" class="icon-outbtn" alt="icon delete">
-              <a href="#" class="letter" id ="logout"><span>Cerrar Sesión</span></a>
-            </div>
+            <div> 
+            <img src="img/icon-logout.svg" class="icon-outbtn" alt="icon delete">
+              <span class="profile-dropdown"> Cerrar sesión </span>
+              </div>
           </div> 
       </div>      
     </div>

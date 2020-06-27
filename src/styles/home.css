@@ -150,11 +150,12 @@
   z-index: 1;
 }
 .menu-dropdown:hover .menu-dropdown-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 40px;
 }
 .menu-dropdown-content :hover {
-  background-color: #ddd;
+  background-color: rgb(236, 234, 234);
 }
 .menu-dropdown-content img {
   cursor: pointer;
@@ -191,19 +192,16 @@
 .menu-dropdown-content .icon-userbtn {
   width: 20px;
   height: 20px;
-  padding: 6px;
-}
-.icon-outbtn {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+  padding-top: 6px;
+  padding-left: 3px;
 }
 .menu-dropdown-content .icon-outbtn {
   width: 20px;
   height: 20px;
-  padding: 6px;
+  padding-top: 6px;
+  cursor: pointer;
 }
-.letter {
+.profile-dropdown {
   color: #5d9cec;
   cursor: pointer;
   text-decoration: none;

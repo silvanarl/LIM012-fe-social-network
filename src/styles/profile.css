@@ -76,6 +76,10 @@
   border: 1px solid #75abf3;
   overflow-wrap: break-word;
 }
+.input-edit:focus{
+  outline-style: none;
+  padding-left: 2px;
+}
 .btn-save-info {
   margin: 10px;
   outline: none;
@@ -108,6 +112,9 @@
 }
 #uploader{
  margin: 10px;
+}
+#logoImageProfile{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {

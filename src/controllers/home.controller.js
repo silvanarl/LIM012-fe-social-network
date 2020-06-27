@@ -233,6 +233,15 @@ export default async () => {
         inputPost.value = '';
         mapListToScreen();
       });
+    } else {
+      createPost({
+        photo: userPhoto,
+        author: userName,
+        content: inputPost.value,
+        photoURL: '',
+      });
+      inputPost.value = '';
+      mapListToScreen();
     }
     // FIN de div con la data de HOME
   });

@@ -151,6 +151,11 @@
   align-content: flex-end;
   padding: 3px;
 }
+.commentEdit{
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .timeComment{
   font-size: 10px;
 }
@@ -188,6 +193,7 @@
 .letter-color {
   color: #5d9cec;
   cursor: pointer;
+  display: flex;
 }
 .dropdown-content img:hover {
   background-color: #ddd;
