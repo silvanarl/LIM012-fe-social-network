@@ -1,12 +1,14 @@
 const post = (data) => {
   // eslint-disable-next-line operator-linebreak
-  const photo = data.photo !== null
-    ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
-    : `<div class="no-photoPost"> <span>${data.author}</span></div>`;
-  const postPhoto = data.photoURL !== null
-    ? `<img src="${data.photoURL}" class="" alt="${data.author}" />`
-    : ``;
-    console.log("data", data);
+  const photo =
+    data.photo !== null
+      ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
+      : `<div class="no-photoPost"> <span>${data.author}</span></div>`;
+  const postPhoto =
+    data.photoURL !== null
+      ? `<img src="${data.photoURL}" class="img-post" alt="${data.author}" />`
+      : ``;
+  console.log("data", data);
   return `
 <div class="container-post">
     <div class="user-post">
@@ -14,16 +16,18 @@ const post = (data) => {
         <span class="titleUserPost">${data.author}</span>
         <span class="timeUserPost">${data.date}</span>
         <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
-        <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
+        <div class="dropdown ${data.userID === data.currentUser ? "" : "hide"}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
-                <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+                <img src="img/delete.png" data-value="${
+                  data.id
+                }" class="icon-deletePost" alt="icon delete">
                 <span class="letter-color"> Eliminar post </span> <br>
                 <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
                 <span class="letter-color"> Editar post </span>
             </div>  
         </div> 
-        <div class="${data.userID === data.currentUser ? 'hide' : 'space'}">
+        <div class="${data.userID === data.currentUser ? "hide" : "space"}">
         </div> 
     </div> 
     <div class="content-post">
@@ -46,7 +50,7 @@ const post = (data) => {
 `;
 };
 
-const comment = dataComment => `
+const comment = (dataComment) => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
@@ -62,7 +66,7 @@ const comment = dataComment => `
     </div>
 </div>
 `;
-const editComment = dataComment => `
+const editComment = (dataComment) => `
 <div class="containerComments">
     <div class="user-photo-comment">
         <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
@@ -79,7 +83,7 @@ const editComment = dataComment => `
 </div>
 `;
 
-const editingPost = data => `
+const editingPost = (data) => `
 <div class="container-post">
     <div class="user-post">
         <span class="titleUserPost">EDITANDO</span>
@@ -94,27 +98,32 @@ const editingPost = data => `
 `;
 
 const postWithImage = (data) => {
-    // eslint-disable-next-line operator-linebreak
-    const photo = data.photo !== null
+  // eslint-disable-next-line operator-linebreak
+  const photo =
+    data.photo !== null
       ? `<img src="${data.photo}" class="photoUser" alt="${data.author}" />`
       : `<div class="no-photoPost"> <span>${data.author}</span></div>`;
-    return `
+  return `
   <div class="container-post">
       <div class="user-post">
           ${photo}
           <span class="titleUserPost">${data.author}</span>
           <span class="timeUserPost">${data.date}</span>
           <img src="img/icon-world.svg" class="icon-createPost" alt="createPostPublic">
-          <div class="dropdown ${data.userID === data.currentUser ? '' : 'hide'}">
+          <div class="dropdown ${
+            data.userID === data.currentUser ? "" : "hide"
+          }">
               <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
               <div class="dropdown-content">
-                  <img src="img/delete.png" data-value="${data.id}" class="icon-deletePost" alt="icon delete">
+                  <img src="img/delete.png" data-value="${
+                    data.id
+                  }" class="icon-deletePost" alt="icon delete">
                   <span class="letter-color"> Eliminar post </span> <br>
                   <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
                   <span class="letter-color"> Editar post </span>
               </div>  
           </div> 
-          <div class="${data.userID === data.currentUser ? 'hide' : 'space'}">
+          <div class="${data.userID === data.currentUser ? "hide" : "space"}">
           </div> 
       </div> 
       <div class="content-post">
@@ -135,9 +144,9 @@ const postWithImage = (data) => {
       </div>
   </div>
   `;
-  };
-  
-  /*const comment = dataComment => `
+};
+
+/*const comment = dataComment => `
   <div class="containerComments">
       <div class="user-photo-comment">
           <img src="${dataComment.photo}" class="userPhotoComment" alt="${dataComment.author}">
@@ -184,6 +193,4 @@ const postWithImage = (data) => {
       </div>
   `;
   */
-  export { post, comment, editingPost, postWithImage };
-  
-
+export { post, comment, editingPost, postWithImage };
