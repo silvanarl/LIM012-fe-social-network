@@ -1,11 +1,10 @@
-.posts{
+.posts {
   display: flex;
   width: 380px;
 }
 
-.containerToContainerPost{
+.containerToContainerPost {
   display: flex;
-  
 }
 
 .container-post {
@@ -40,7 +39,7 @@
   border-style: none;
   background-color: transparent;
 }
-.btnLikes:focus{
+.btnLikes:focus {
   border-style: none;
   outline: none;
   border-radius: 30%;
@@ -55,10 +54,10 @@
   overflow-wrap: break-word;
   margin-bottom: 15px;
 }
-.content-post[data-visible='true'] {
+.content-post[data-visible="true"] {
   visibility: visible;
 }
-.content-post[data-visible='false'] {
+.content-post[data-visible="false"] {
   visibility: hidden;
 }
 .icon-contentPost {
@@ -70,7 +69,6 @@
   width: 20px;
   justify-content: flex-end;
 }
-
 .icon-deletePost {
   width: 20px;
   cursor: pointer;
@@ -91,7 +89,7 @@
   padding-top: 8px;
   cursor: pointer;
 }
-.likeAndCommentPost{
+.likeAndCommentPost {
   width: 285px;
 }
 /*Comments*/
@@ -110,12 +108,12 @@
   height: 25px;
   padding-top: 2px;
 }
-.buttonSend{
+.buttonSend {
   cursor: pointer;
   border: none;
   background-color: transparent;
 }
-.containerToContainerComments{
+.containerToContainerComments {
   width: 290px;
   padding-bottom: 6px;
 }
@@ -127,7 +125,7 @@
   display: flex;
   box-sizing: border-box;
 }
-.createComment{
+.createComment {
   width: 300px;
   height: 40px;
 }
@@ -136,22 +134,27 @@
   height: 25px;
   border-radius: 50%;
 }
-.user-photo-comment{
-  margin: auto 6px;  
+.user-photo-comment {
+  margin: auto 6px;
 }
-.userComment{
+.userComment {
   font-size: 13px;
   color: #5d9becdc;
 }
-.contentComment{
+.contentComment {
   padding-top: 5px;
   font-size: 12px;
 }
-.divTimeComment{
+.divTimeComment {
   align-content: flex-end;
   padding: 3px;
 }
-.timeComment{
+.commentEdit {
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.timeComment {
   font-size: 10px;
 }
 .icon-createPost {
@@ -162,8 +165,8 @@
   border-style: none;
   background-color: transparent;
 }
-.btnComments:focus { 
-  outline-color: transparent; 
+.btnComments:focus {
+  outline-color: transparent;
   outline-style: none;
 }
 /*dropdown post */
@@ -185,18 +188,28 @@
 .dropdown-content img {
   cursor: pointer;
 }
-.letter-color {
-  color: #5d9cec;
-  cursor: pointer;
-}
 .dropdown-content img:hover {
   background-color: #ddd;
 }
-
+.iconTextDelete {
+  display: flex;
+  cursor: pointer;
+}
+.iconTextEdit {
+  display: flex;
+  cursor: pointer;
+}
 .dropdown:hover .dropdown-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+}
+.img-post {
+  width: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 900px) {
@@ -208,7 +221,7 @@
     background-color: #fff;
     text-align: center;
   }
-  .containerToContainerPost{
+  .containerToContainerPost {
     display: flex;
     width: 545px;
   }
@@ -230,39 +243,39 @@
   .titleUserPost {
     font-size: 18px;
   }
-  .containerToContainerComments{
+  .containerToContainerComments {
     width: 440px;
     margin: 6px;
   }
-  .containerComments{
+  .containerComments {
     width: 400px;
     box-sizing: border-box;
   }
-  .createComment{
+  .createComment {
     width: 400px;
     height: 50px;
   }
-  .mainComment{
+  .mainComment {
     flex-direction: column;
   }
   .textComment {
     width: 350px;
     height: 20px;
   }
-  .user-photo-comment{
-    margin: auto 6px;  
+  .user-photo-comment {
+    margin: auto 6px;
   }
-  .userComment{
+  .userComment {
     font-size: 14px;
     color: #5d9becdc;
   }
-  .contentComment{
+  .contentComment {
     font-size: 13px;
   }
   .likeAndCommentPost {
     align-items: center;
   }
-  .numberLikes{
+  .numberLikes {
     padding-bottom: 20px;
   }
 }

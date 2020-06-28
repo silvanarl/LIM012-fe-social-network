@@ -16,7 +16,9 @@ const router = (route) => {
           window.location.hash = '#/';
         } else {
           console.log(userX);
-          content.appendChild(await pages.home());
+          const homeDiv = await pages.home();
+          console.log(homeDiv);
+          content.appendChild(homeDiv);
         }
       });
       break;
@@ -26,7 +28,8 @@ const router = (route) => {
           window.location.hash = '#/';
         } else {
           console.log(userX);
-          content.appendChild(await pages.profile());
+          const profileDiv = await pages.profile();
+          content.appendChild(profileDiv);
         }
       });
       break;

@@ -58,7 +58,7 @@
 .icons-createPost {
   padding-left: 20px;
 }
-.buttonAddImagePost{
+.buttonAddImagePost {
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -128,12 +128,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px 17px 0px 30px;
-  padding: 8px 4px;
+  padding-top: 8px;
 }
 .profile-box {
-  display: flex;
-  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
 }
 /* menu dropdown de movil */
@@ -150,11 +149,12 @@
   z-index: 1;
 }
 .menu-dropdown:hover .menu-dropdown-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 40px;
 }
 .menu-dropdown-content :hover {
-  background-color: #ddd;
+  background-color: rgb(236, 234, 234);
 }
 .menu-dropdown-content img {
   cursor: pointer;
@@ -168,14 +168,14 @@
   cursor: pointer;
 }
 .edit-profile {
-  margin-left: 25px;
+  display: grid;
   background: none;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
   color: #5d9cec;
+  padding-left: 30px;
 }
 .no-photoProfile {
   padding: 2px;
@@ -191,22 +191,26 @@
 .menu-dropdown-content .icon-userbtn {
   width: 20px;
   height: 20px;
-  padding: 6px;
-}
-.icon-outbtn {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
+  padding-top: 6px;
+  padding-left: 3px;
 }
 .menu-dropdown-content .icon-outbtn {
   width: 20px;
   height: 20px;
-  padding: 6px;
+  padding-top: 6px;
+  cursor: pointer;
 }
-.letter {
+.profile-dropdown {
   color: #5d9cec;
   cursor: pointer;
   text-decoration: none;
+}
+.profile-info {
+  color: #2e62a5;
+  font-size: 15px;
+  display: grid;
+  justify-content: center;
+  padding-left: 40px;
 }
 
 @media screen and (max-width: 900px) {
@@ -220,30 +224,30 @@
   #logout {
     display: none;
   }
-  .profile-post{
+  .profile-post {
     max-width: 300px;
   }
-  .menu-dropdown{
-   display: grid;
-   padding-left: 15px;
+  .menu-dropdown {
+    display: grid;
+    padding-left: 15px;
   }
   /* .container-createPost{
     width: 400px;
   } */
-  #logoImage{
+  #logoImage {
     position: static;
   }
-  .menubtn{
+  .menubtn {
     display: grid;
     margin-top: 18px;
   }
-  .logout-dropdown{
+  .logout-dropdown {
     flex-direction: column;
   }
 }
 
 @media screen and (min-width: 900px) {
-  *{
+  * {
     font-size: 18px;
   }
   .mainPost {
@@ -253,7 +257,7 @@
     height: 150px;
     width: 443px;
   }
-  .createPost{
+  .createPost {
     height: 70px;
   }
 }
