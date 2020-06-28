@@ -19,12 +19,16 @@ const post = (data) => {
         <div class="dropdown ${data.userID === data.currentUser ? "" : "hide"}">
             <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
             <div class="dropdown-content">
+            <div class="iconTextDelete" data-value="${data.id}">
                 <img src="img/delete.png" data-value="${
                   data.id
                 }" class="icon-deletePost" alt="icon delete">
-                <span class="letter-color"> Eliminar post </span> <br>
-                <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
-                <span class="letter-color"> Editar post </span>
+                <span class="letter-color"> Eliminar post </span>
+            </div> 
+                <div class="iconTextEdit" data-value="${data.id}">
+                    <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
+                    <span class="letter-color"> Editar post </span>
+                </div>     
             </div>  
         </div> 
         <div class="${data.userID === data.currentUser ? "hide" : "space"}">
@@ -115,12 +119,16 @@ const postWithImage = (data) => {
           }">
               <img src="img/icon-threeDots.svg" class="icon-dropdown dropbtn" alt="icon dropdown">
               <div class="dropdown-content">
+                <div class="iconText">
                   <img src="img/delete.png" data-value="${
                     data.id
                   }" class="icon-deletePost" alt="icon delete">
-                  <span class="letter-color"> Eliminar post </span> <br>
+                  <span class="letter-color icon-deletePost"> Eliminar post </span>
+                  </div> 
+                  <div class="iconText">
                   <img src="img/icon-edit.png" class="icon-editPost" alt="icon edit">
-                  <span class="letter-color"> Editar post </span>
+                  <span class="letter-color icon-editPost"> Editar post </span>
+                  </div> 
               </div>  
           </div> 
           <div class="${data.userID === data.currentUser ? "hide" : "space"}">

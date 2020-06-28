@@ -69,7 +69,6 @@
   width: 20px;
   justify-content: flex-end;
 }
-
 .icon-deletePost {
   width: 20px;
   cursor: pointer;
@@ -189,18 +188,20 @@
 .dropdown-content img {
   cursor: pointer;
 }
-.letter-color {
-  color: #5d9cec;
-  cursor: pointer;
-  display: flex;
-}
 .dropdown-content img:hover {
   background-color: #ddd;
 }
-
+.iconTextDelete {
+  display: flex;
+  cursor: pointer;
+}
+.iconTextEdit {
+  display: flex;
+  cursor: pointer;
+}
 .dropdown:hover .dropdown-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 .img-post {

@@ -1,9 +1,11 @@
-import { user } from '../models/auth.js';
+import { user } from "../models/auth.js";
 
 // eslint-disable-next-line arrow-body-style
 const photo = () => {
   return user().photoURL !== undefined
-    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${user().displayName}" />`
+    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${
+        user().displayName
+      }" />`
     : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
 };
 const home = () => `
@@ -17,12 +19,12 @@ const home = () => `
       <div class="menu-dropdown">
         <img src="img/icon-menu.svg" class="icon-menu-dropdown menubtn" alt="icon-menu">
           <div class="menu-dropdown-content">
-            <div>
-              <img src="img/icon-user.svg" data-value="" class="icon-userbtn" alt="icon delete">
+            <div id="profileHamburguer">
+              <img src="img/icon-user.svg" class="icon-userbtn" alt="icon user">
               <span class="profile-dropdown"> Perfil </span>
             </div>
-            <div> 
-            <img src="img/icon-logout.svg" class="icon-outbtn" alt="icon delete">
+            <div class="logout"> 
+            <img src="img/icon-logout.svg" class="icon-outbtn" alt="logout">
               <span class="profile-dropdown"> Cerrar sesión </span>
               </div>
           </div> 
@@ -44,8 +46,8 @@ const home = () => `
             <span class="nameuser name-f"></span>
             <img src="img/icon-mochila.svg" class="icon-mochila" alt="icon-mochila">
           </div>
-          <span class="Country"> </span>
-          <span class="aboutMe"> </span>
+            <span class="profile-info Country"> </span>
+            <span class="profile-info aboutMe"> </span>
           <div class="edit-profile"> 
             <button class="edit-profile"> Editar Perfil </button>
           </div>
