@@ -5,7 +5,6 @@ const createUser = async (inputUser, inputEmail, inputPassword) => {
     .auth()
     .createUserWithEmailAndPassword(inputEmail, inputPassword)
     .then(async () => {
-      console.log('usuario creado');
       const userF = user();
       await userF.updateProfile({
         displayName: inputUser,
@@ -36,7 +35,6 @@ const loginWithGoogle = () => {
     .auth()
     .signInWithPopup(provider)
     .then((user) => {
-      console.log('logeado con google');
       window.location.hash = '/home';
       return user;
     });

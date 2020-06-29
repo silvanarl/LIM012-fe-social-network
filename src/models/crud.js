@@ -5,33 +5,7 @@ const getUserData = async () => {
   return firebase.firestore().collection('users').doc(id);
 };
 
-const getPosts = async () => {
-  const posts = [];
-  await firebase
-    .firestore()
-    .collection('posts')
-    .orderBy('date', 'desc')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const postData = {
-          currentUser: user().uid,
-          id: doc.id,
-          photo: doc.data().photo,
-          author: doc.data().author,
-          content: doc.data().content,
-          userID: doc.data().userID,
-          likesUsers: doc.data().likesUsers,
-          date: doc.data().date.toDate().toLocaleString(),
-          postPrivate: doc.data().postPrivate,
-          commentsID: doc.data().commentsID,
-          photoURL: doc.data().photoURL,
-        };
-        posts.push(postData);
-      });
-    });
-  return posts;
-};
+const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
 
 const createPost = ({
   photo, author, content, photoURL,

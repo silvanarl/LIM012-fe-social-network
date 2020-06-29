@@ -19,7 +19,6 @@ export default async () => {
 
   const onDeleteClick = async (id) => {
     await deletePost(id);
-    mapListToScreen();
   };
 
   // Llenando div con la data de POSTS
@@ -45,7 +44,6 @@ export default async () => {
         arrayLikesUsers.push(currentUserUID);
       }
       await updateLikesUser(id, arrayLikesUsers);
-      mapListToScreen();
     });
 
     // Control de crear y ver comentarios
@@ -68,16 +66,12 @@ export default async () => {
           content: inputComment,
           postID,
         });
-        mapListToScreen();
         // inputComment.innerHTML = '';
       });
     });
     const buildComment = (dataComment) => {
       const createCommentDivChild = document.createElement('div');
-      createCommentDivChild.setAttribute(
-        'class',
-        'containerToContainerComments'
-      );
+      createCommentDivChild.setAttribute('class', 'containerToContainerComments');
       createCommentDivChild.innerHTML = comment(dataComment);
       return createCommentDivChild;
     };
@@ -102,7 +96,6 @@ export default async () => {
     // INICIO botones de editar y eliminar post
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('asdfadsfadsfasfasdfasf');
       if (userPostID === currentUserUID) {
         onDeleteClick(id);
       }
@@ -110,9 +103,22 @@ export default async () => {
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
       if (userPostID === currentUserUID) {
-        mapEditingList(id);
         child.innerHTML = '';
-        child.innerHTML = post(postData, true);
+        child.innerHTML = editingPost(postData);
+
+        const btnDelete = child.querySelector('.icon-deletePost');
+        const btnSave = child.querySelector('.icon-savePost');
+        const id = btnDelete.getAttribute('data-value');
+
+        btnDelete.addEventListener('click', async (e) => {
+          e.preventDefault();
+          onDeleteClick(id);
+        });
+        btnSave.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const inputPost = child.querySelector('.inputPost').value;
+          await updatePost(id, inputPost);
+        });
       }
     });
     // FIN botones de editar y eliminar post
@@ -135,7 +141,6 @@ export default async () => {
       e.preventDefault();
       const inputPost = child.querySelector('.inputPost').value;
       await updatePost(id, inputPost);
-      mapListToScreen();
     });
 
     return child;
@@ -166,7 +171,7 @@ export default async () => {
 
   divElement.innerHTML = home(userData);
 
-  let postList = await getPosts();
+  let postList;
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
@@ -175,10 +180,25 @@ export default async () => {
     logOut();
   });
 
-  const mapListToScreen = async () => {
+  getPosts((querySnapshot) => {
     listOfPosts.innerHTML = '';
-    postList = await getPosts();
-    postList.forEach((postData) => {
+    querySnapshot.docs.forEach((document) => {
+      const id = document.id;
+      const doc = document.data();
+      const postData = {
+        currentUser: user().uid,
+        id,
+        photo: doc.photo,
+        author: doc.author,
+        content: doc.content,
+        userID: doc.userID,
+        likesUsers: doc.likesUsers,
+        date: doc.date.toDate().toLocaleString(),
+        postPrivate: doc.postPrivate,
+        commentsID: doc.commentsID,
+        photoURL: doc.photoURL,
+      };
+
       const userPostID = postData.userID;
       if (postData.postPrivate === false) {
         const child = buildPost(postData);
@@ -189,11 +209,11 @@ export default async () => {
         listOfPosts.appendChild(child);
       }
     });
-  };
+  });
+
   const mapEditingList = async (id) => {
     listOfPosts.innerHTML = '';
     postList = await getPosts();
-    console.log(postList);
     postList.forEach((postData) => {
       let child;
       if (id === postData.id) {
@@ -204,49 +224,46 @@ export default async () => {
       listOfPosts.appendChild(child);
     });
   };
-  mapListToScreen();
 
   const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
-    const inputPost = divElement.querySelector('.createPost');
+    const inputPost = divElement.querySelector('.createPost').value;
     const fileButton = divElement.querySelector('#selectImage');
     if (fileButton.files.length !== 0) {
       const file = fileButton.files[0];
       const storageRef = firebase.storage().ref(`img/${file.name}`);
       const task = storageRef.put(file);
       task.on('state_changed', (snapshot) => {
-        const percentage =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         if (percentage === 100) {
           snapshot.ref.getDownloadURL().then((url) => {
+            console.log('input', inputPost);
             createPost({
               photo: userPhoto,
               author: userName,
-              content: inputPost.value,
+              content: inputPost,
               photoURL: url,
             });
-            console.log('post created');
           });
         }
-        inputPost.value = '';
-        mapListToScreen();
+        const newInput = divElement.querySelector('.createPost');
+        newInput.value = '';
       });
     } else {
       createPost({
         photo: userPhoto,
         author: userName,
-        content: inputPost.value,
+        content: inputPost,
         photoURL: '',
       });
-      inputPost.value = '';
-      mapListToScreen();
+      const newInput = divElement.querySelector('.createPost');
+      newInput.value = '';
     }
     // FIN de div con la data de HOME
   });
   const btnClickEditProfile = divElement.querySelector('.edit-profile');
   btnClickEditProfile.addEventListener('click', () => {
-    console.log('a profile');
     window.location.hash = '/profile';
   });
   const hamburguerMenuProfile = divElement.querySelector('#profileHamburguer');

@@ -15,7 +15,6 @@ export const loginUserWithEmail = () => {
 
     const email = loginRegister.email.value;
     const password = loginRegister.password.value;
-    console.log(email);
 
     if (!email && !password) {
       return 'hubo un error';
