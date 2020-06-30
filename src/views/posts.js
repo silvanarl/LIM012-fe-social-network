@@ -18,9 +18,7 @@ const post = (data) => {
             <img src='img/icon-threeDots.svg' class='icon-dropdown dropbtn' alt='icon dropdown'>
             <div class='dropdown-content'>
             <div class='iconTextDelete' data-value='${data.id}'>
-                <img src='img/delete.png' data-value='${
-  data.id
-}' class='icon-deletePost' alt='icon delete'>
+                <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
                 <span class='letter-color'> Eliminar post </span>
             </div> 
                 <div class='iconTextEdit' data-value='${data.id}'>
