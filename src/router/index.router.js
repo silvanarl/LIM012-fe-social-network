@@ -15,9 +15,7 @@ const router = (route) => {
         if (!userX) {
           window.location.hash = '#/';
         } else {
-          console.log(userX);
           const homeDiv = await pages.home();
-          console.log(homeDiv);
           content.appendChild(homeDiv);
         }
       });
@@ -27,7 +25,6 @@ const router = (route) => {
         if (!userX) {
           window.location.hash = '#/';
         } else {
-          console.log(userX);
           const profileDiv = await pages.profile();
           content.appendChild(profileDiv);
         }

@@ -6,7 +6,7 @@ const validatePassword = (password, confirmPassword) =>
   // eslint-disable-next-line implicit-arrow-linebreak
   password === confirmPassword;
 const validatePasswordLength = (password, confirmPassword) =>
-// eslint-disable-next-line implicit-arrow-linebreak
+  // eslint-disable-next-line implicit-arrow-linebreak
   password.length >= 6 && confirmPassword.length >= 6;
 
 export default async () => {
@@ -16,7 +16,6 @@ export default async () => {
   const divEdit = document.createElement('div');
   const data = { userName, userPhoto, email };
   divEdit.innerHTML = profile(data);
-  console.log('div', divEdit);
 
   const buttonSaveNewpassword = divEdit.querySelector('.btn-save-password');
   buttonSaveNewpassword.addEventListener('click', (e) => {
@@ -24,10 +23,7 @@ export default async () => {
     const inputMainPassword = divEdit.querySelector('#mainPassword');
     const inputConfirmPassword = divEdit.querySelector('#confirmPassword');
     const messageError = divEdit.querySelector('.passwordError');
-    const isValid = validatePassword(
-      inputMainPassword.value,
-      inputConfirmPassword.value,
-    );
+    const isValid = validatePassword(inputMainPassword.value, inputConfirmPassword.value);
     const isLengthValid = validatePasswordLength(
       inputMainPassword.value,
       inputConfirmPassword.value,
@@ -57,12 +53,9 @@ export default async () => {
       task.on('state_changed', (snapshot) => {
         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         uploader.value = percentage;
-        console.log(percentage);
         if (percentage === 100) {
           snapshot.ref.getDownloadURL().then((url) => {
-            console.log(url);
             changeProfileImg(url);
-            // divEdit.querySelector('.photoUserEdit').src = url;
           });
         }
       });
@@ -86,6 +79,6 @@ export default async () => {
   returnToHome.addEventListener('click', async (evt) => {
     evt.preventDefault();
     window.location.hash = '#/home';
-  })
+  });
   return divEdit;
 };
