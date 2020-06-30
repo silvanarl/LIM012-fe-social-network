@@ -10,6 +10,7 @@
 }
 #logoImage {
   margin: 0 auto;
+  padding: 5px;
 }
 .hide {
   display: none;
@@ -259,5 +260,12 @@
   }
   .createPost {
     height: 70px;
+  }
+  #logoImage {
+    margin: 0 auto;
+    padding: 8px;
+  }
+  .header{
+    height: 75px;
   }
 }

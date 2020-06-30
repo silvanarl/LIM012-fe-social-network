@@ -53,7 +53,6 @@ export default async () => {
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
-      showComments();
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', async (event) => {
@@ -75,23 +74,37 @@ export default async () => {
       createCommentDivChild.innerHTML = comment(dataComment);
       return createCommentDivChild;
     };
-    const showComments = async () => {
-      const postDataID = postData.id;
-      const postDataComments = [];
-      const commentList = await getComments(postDataID);
+
+    getComments((querySnapshot) => {
       listOfComments.innerHTML = '';
-      const dataIdComment = listOfComments.getAttribute('data-id');
-      commentList.forEach((dataComment) => {
-        if (dataComment.postID === dataIdComment) {
-          listOfComments.appendChild(buildComment(dataComment));
-          const idComment = dataComment.id;
-          postDataComments.push(idComment);
-          const newArrCommentsCounter = [...new Set(postDataComments)];
-          const spanCounterComments = child.querySelector('.counterComments');
-          spanCounterComments.textContent = newArrCommentsCounter.length;
+      querySnapshot.docs.forEach((document) => {
+        const idC = document.id;
+        const doc = document.data();
+        const commentData = {
+          id: idC,
+          photo: doc.photo,
+          author: doc.author,
+          content: doc.content,
+          date: doc.date.toDate().toLocaleString(),
+          userID: doc.userID,
+          postID: doc.postID,
+        };
+        const dataIdComment = listOfComments.getAttribute('data-id');
+        const postDataComments = [];
+        if (commentData.postID === dataIdComment) {
+          listOfComments.appendChild(buildComment(commentData));
+          console.log(listOfComments);
         }
+        const idComment = commentData.id;
+        console.log(idComment);
+        postDataComments.push(idComment);
+        console.log(postDataComments);
+        const newArrCommentsCounter = [...new Set(postDataComments)];
+        const spanCounterComments = child.querySelector('.counterComments');
+        console.log(newArrCommentsCounter);
+        spanCounterComments.textContent = newArrCommentsCounter.length;
       });
-    };
+    });
 
     // INICIO botones de editar y eliminar post
     btnDelete.addEventListener('click', (e) => {
@@ -179,6 +192,7 @@ export default async () => {
     e.preventDefault();
     logOut();
   });
+
 
   getPosts((querySnapshot) => {
     listOfPosts.innerHTML = '';
