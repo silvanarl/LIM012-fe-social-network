@@ -1,6 +1,6 @@
 .posts {
   display: flex;
-  width: 380px;
+  width: 375px;
 }
 
 .containerToContainerPost {
@@ -9,7 +9,6 @@
 
 .container-post {
   margin: 22px;
-  min-width: 330px;
   max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
