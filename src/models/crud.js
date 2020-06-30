@@ -5,7 +5,10 @@ const getUserData = async () => {
   return firebase.firestore().collection('users').doc(id);
 };
 
-const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
+const getPosts = onSnapshot => firebase.firestore()
+  .collection('posts')
+  .orderBy('date', 'desc')
+  .onSnapshot(onSnapshot);
 
 const createPost = ({
   photo, author, content, photoURL,
@@ -29,30 +32,35 @@ const addImage = async (id, photo) => {
   });
 };
 
-const getComments = async () => {
-  const comments = [];
-  await firebase
-    .firestore()
-    .collection('comments')
-    .orderBy('date', 'desc')
-    .get()
-    .then((querySnapshot) => {
-      console.log(querySnapshot);
-      querySnapshot.forEach((doc) => {
-        const commentData = {
-          id: doc.id,
-          photo: doc.data().photo,
-          author: doc.data().author,
-          content: doc.data().content,
-          date: doc.data().date.toDate().toLocaleString(),
-          userID: doc.data().userID,
-          postID: doc.data().postID,
-        };
-        comments.push(commentData);
-      });
-    });
-  return comments;
-};
+const getComments = onSnapshot => firebase.firestore()
+  .collection('comments')
+  .orderBy('date', 'desc')
+  .onSnapshot(onSnapshot);
+
+// const getComments = async () => {
+//   const comments = [];
+//   await firebase
+//     .firestore()
+//     .collection('comments')
+//     .orderBy('date', 'desc')
+//     .get()
+//     .then((querySnapshot) => {
+//       console.log(querySnapshot);
+//       querySnapshot.forEach((doc) => {
+//         const commentData = {
+//           id: doc.id,
+//           photo: doc.data().photo,
+//           author: doc.data().author,
+//           content: doc.data().content,
+//           date: doc.data().date.toDate().toLocaleString(),
+//           userID: doc.data().userID,
+//           postID: doc.data().postID,
+//         };
+//         comments.push(commentData);
+//       });
+//     });
+//   return comments;
+// };
 
 const createComment = ({
   photo, author, content, postID,
