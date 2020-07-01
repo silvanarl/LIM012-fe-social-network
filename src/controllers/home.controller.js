@@ -9,6 +9,7 @@ import {
   updateLikesUser,
   getComments,
   createComment,
+  updatePostPrivate,
   getUserData,
 } from '../models/crud.js';
 
@@ -139,22 +140,47 @@ export default async () => {
         child.innerHTML = '';
         child.innerHTML = editingPost(postData);
 
-        const btnDelete = child.querySelector('.icon-deletePost');
+        // const btnDelete = child.querySelector('.icon-deletePost');
         const btnSave = child.querySelector('.icon-savePost');
-        const id = btnDelete.getAttribute('data-value');
+        // const id = btnDelete.getAttribute('data-value');
 
-        btnDelete.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnDelete.addEventListener('click', async (ev1) => {
+          ev1.preventDefault();
           onDeleteClick(id);
         });
-        btnSave.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnSave.addEventListener('click', async (ev) => {
+          ev.preventDefault();
           const inputPost = child.querySelector('.inputPost').value;
           await updatePost(id, inputPost);
         });
       }
     });
     // FIN botones de editar y eliminar post
+
+    // pasando de private a public viceversa en post publicado
+    const buttonPublicPosted = child.querySelector('.publicPosted');
+    const buttonPrivatePosted = child.querySelector('.privatePosted');
+    console.log('public posted', buttonPublicPosted);
+    console.log('private posted', buttonPrivatePosted);
+    buttonPublicPosted.addEventListener('click', async (e) => {
+      e.preventDefault();
+      console.log('clic mundo');
+      buttonPublicPosted.classList.toggle('hide');
+      buttonPrivatePosted.classList.toggle('hide');
+      console.log('de publico a privado');
+      postIsPrivate = true;
+      await updatePostPrivate(id, postIsPrivate);
+    });
+    buttonPrivatePosted.addEventListener('click', async (e) => {
+      e.preventDefault();
+      buttonPrivatePosted.classList.toggle('hide');
+      buttonPublicPosted.classList.toggle('hide');
+      console.log('de privado a publico');
+      postIsPrivate = false;
+      await updatePostPrivate(id, postIsPrivate);
+    });
+    // FIN pasando de private a public viceversa en post publicado
+
     return child;
   };
 
@@ -259,6 +285,26 @@ export default async () => {
     });
   };
 
+  // INICIO privacidad de post por publicar
+  const buttonPublicPost = divElement.querySelector('.publicPost');
+  const buttonPrivatePost = divElement.querySelector('.privatePost');
+  let postIsPrivate = false;
+  buttonPublicPost.addEventListener('click', async (e) => {
+    e.preventDefault();
+    buttonPublicPost.classList.toggle('hide');
+    buttonPrivatePost.classList.toggle('hide');
+    console.log('de publico a privado');
+    postIsPrivate = true;
+  });
+  buttonPrivatePost.addEventListener('click', (e) => {
+    e.preventDefault();
+    buttonPrivatePost.classList.toggle('hide');
+    buttonPublicPost.classList.toggle('hide');
+    console.log('de privado a publico');
+    postIsPrivate = false;
+  });
+  // FIN privacidad de post por publicar
+
   const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
     e.preventDefault();
@@ -277,6 +323,7 @@ export default async () => {
               photo: userPhoto,
               author: userName,
               content: inputPost,
+              postPrivate: postIsPrivate,
               photoURL: url,
             });
           });
@@ -289,6 +336,7 @@ export default async () => {
         photo: userPhoto,
         author: userName,
         content: inputPost,
+        postPrivate: postIsPrivate,
         photoURL: '',
       });
       const newInput = divElement.querySelector('.createPost');
