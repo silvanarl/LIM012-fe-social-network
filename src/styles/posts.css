@@ -3,10 +3,6 @@
   width: 375px;
 }
 
-.containerToContainerPost {
-  display: flex;
-}
-
 .container-post {
   margin: 22px;
   max-width: 400px;
@@ -53,10 +49,10 @@
   overflow-wrap: break-word;
   margin-bottom: 15px;
 }
-.content-post[data-visible="true"] {
+.content-post[data-visible='true'] {
   visibility: visible;
 }
-.content-post[data-visible="false"] {
+.content-post[data-visible='false'] {
   visibility: hidden;
 }
 .icon-contentPost {

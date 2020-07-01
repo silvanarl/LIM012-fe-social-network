@@ -29,12 +29,11 @@
     "firebase-mock": "^2.3.2",
     "htmlhint": "^0.11.0",
     "jest": "^24.8.0",
+    "mock-cloud-firestore": "^0.12.0",
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.3.2",
     "stylelint": "^13.6.0",
     "stylelint-config-recommended": "^2.2.0"
   },
-  "dependencies": {
-    "mock-cloud-firestore": "^0.12.0"
-  }
+  "dependencies": {}
 }
