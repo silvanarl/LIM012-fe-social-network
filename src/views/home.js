@@ -65,6 +65,7 @@ const home = () => `
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
             <label for="selectImage">
+              <p></p>
               <input type="file" id="selectImage" class="upload hide" accept="image/jpeg, image/png, image/gif">
               <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
             </label>
