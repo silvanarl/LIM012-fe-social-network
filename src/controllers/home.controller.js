@@ -53,6 +53,9 @@ export default async () => {
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
+      const elementsListOfComment = child.querySelectorAll('.containerComments');
+      const spanCounterComments = child.querySelector('.counterComments');
+      spanCounterComments.textContent = elementsListOfComment.length;
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', async (event) => {
@@ -65,13 +68,14 @@ export default async () => {
           content: inputComment,
           postID,
         });
-        // inputComment.innerHTML = '';
+        const newInputComment = child.querySelector('.textComment');
+        newInputComment.value = '';
       });
     });
-    const buildComment = (dataComment) => {
+    const buildComment = (commentData) => {
       const createCommentDivChild = document.createElement('div');
       createCommentDivChild.setAttribute('class', 'containerToContainerComments');
-      createCommentDivChild.innerHTML = comment(dataComment);
+      createCommentDivChild.innerHTML = comment(commentData);
       return createCommentDivChild;
     };
 
@@ -89,20 +93,10 @@ export default async () => {
           userID: doc.userID,
           postID: doc.postID,
         };
-        const dataIdComment = listOfComments.getAttribute('data-id');
-        const postDataComments = [];
-        if (commentData.postID === dataIdComment) {
+        const dataIdPostByComment = listOfComments.getAttribute('data-id');
+        if (commentData.postID === dataIdPostByComment) {
           listOfComments.appendChild(buildComment(commentData));
-          console.log(listOfComments);
         }
-        const idComment = commentData.id;
-        console.log(idComment);
-        postDataComments.push(idComment);
-        console.log(postDataComments);
-        const newArrCommentsCounter = [...new Set(postDataComments)];
-        const spanCounterComments = child.querySelector('.counterComments');
-        console.log(newArrCommentsCounter);
-        spanCounterComments.textContent = newArrCommentsCounter.length;
       });
     });
 
@@ -123,12 +117,12 @@ export default async () => {
         const btnSave = child.querySelector('.icon-savePost');
         const id = btnDelete.getAttribute('data-value');
 
-        btnDelete.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnDelete.addEventListener('click', async (event) => {
+          event.preventDefault();
           onDeleteClick(id);
         });
-        btnSave.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnSave.addEventListener('click', async (event) => {
+          event.preventDefault();
           const inputPost = child.querySelector('.inputPost').value;
           await updatePost(id, inputPost);
         });

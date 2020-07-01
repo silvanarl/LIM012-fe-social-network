@@ -1,11 +1,11 @@
-import { user } from "../models/auth.js";
+import { user } from '../models/auth.js';
 
 // eslint-disable-next-line arrow-body-style
 const photo = () => {
   return user().photoURL !== undefined
     ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${
-        user().displayName
-      }" />`
+      user().displayName
+    }" />`
     : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
 };
 const home = () => `
@@ -65,11 +65,12 @@ const home = () => `
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
             <label for="selectImage">
+              <p></p>
               <input type="file" id="selectImage" class="upload hide" accept="image/jpeg, image/png, image/gif">
               <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
             </label>
-              <img src="img/icon-world.svg" class="icon-world" alt="createPostPublic">
-              <img src="img/icon-privacy.svg" class="hide icon-privacy" alt="createPostPrivate">
+              <img src="img/icon-world.svg" class="icon-world publicPost" alt="createPostPublic">
+              <img src="img/icon-privacy.svg" class="icon-privacy privatePost hide " alt="createPostPrivate">
             </div> 
             <div class="container-buttonCreatePost">  
               <button class="button-createPost">Publicar</button>
