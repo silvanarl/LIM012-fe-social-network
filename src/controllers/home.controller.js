@@ -318,6 +318,13 @@ export default async () => {
             });
           });
         }
+        // Inicio quitar img de la pre visualizacion
+        localStorage.removeItem('image');
+        showPicture.src = '';
+        btnCancelImg.classList.add('hide');
+        // Fin quitar img de la pre visualizacion
+        const newfileButton = divElement.querySelector('#selectImage');
+        newfileButton.value = '';
         const newInput = divElement.querySelector('.createPost');
         newInput.value = '';
       });
