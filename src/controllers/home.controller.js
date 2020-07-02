@@ -160,8 +160,6 @@ export default async () => {
     // pasando de private a public viceversa en post publicado
     const buttonPublicPosted = child.querySelector('.publicPosted');
     const buttonPrivatePosted = child.querySelector('.privatePosted');
-    console.log('public posted', buttonPublicPosted);
-    console.log('private posted', buttonPrivatePosted);
     buttonPublicPosted.addEventListener('click', async (e) => {
       e.preventDefault();
       console.log('clic mundo');
@@ -229,6 +227,39 @@ export default async () => {
     });
 
   divElement.innerHTML = home(userData);
+
+  // Inicio mostrar img cargada antes de publicar
+  const selectImage = divElement.querySelector('#selectImage');
+  const showPicture = divElement.querySelector('#showPicture');
+  const btnCancelImg = divElement.querySelector('#btnCancelImg');
+  let imgFile = '';
+  selectImage.addEventListener('change', (e) => {
+    // Vista previa de imagen cargada
+    console.log(e);
+    const input = e.target;
+    console.log(input);
+    const reader = new FileReader();
+    console.log(reader);
+    reader.onload = () => {
+      const dataURL = reader.result;
+      console.log(dataURL);
+      showPicture.src = dataURL;
+      // Almacena url en localStorage
+      localStorage.setItem('image', dataURL);
+    };
+    reader.readAsDataURL(input.files[0]);
+    imgFile = e.target.files[0];
+    console.log(imgFile);
+    // Aparece botón para cancelar imagen
+    btnCancelImg.classList.remove('hide');
+  });
+  // Cancela imagen antes de publicar
+  btnCancelImg.addEventListener('click', () => {
+    localStorage.removeItem('image');
+    showPicture.src = '';
+    btnCancelImg.classList.add('hide');
+  });
+  // Fin mostrar img cargada antes de publicar
 
   let postList;
   const listOfPosts = divElement.querySelector('#publicPost');
