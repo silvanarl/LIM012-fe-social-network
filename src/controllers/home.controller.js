@@ -11,6 +11,7 @@ import {
   createComment,
   updatePostPrivate,
   getUserData,
+  deleteComment,
   updateComment,
 } from '../models/crud.js';
 
@@ -22,7 +23,6 @@ export default async () => {
   const onDeleteClick = async (id) => {
     await deletePost(id);
   };
-
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
     const userPostID = postData.userID;
@@ -109,6 +109,17 @@ export default async () => {
       const createCommentDivChild = document.createElement('div');
       createCommentDivChild.setAttribute('class', 'containerToContainerComments');
       createCommentDivChild.innerHTML = comment(commentData);
+      const btnDeleteComment = createCommentDivChild.querySelector('.commentDelete');
+
+      const onDeleteClickComment = async (idComment) => {
+        await deleteComment(idComment);
+      };
+      btnDeleteComment.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('eliminando comentario');
+        const idDeleteComment = btnDeleteComment.getAttribute('data-value');
+        onDeleteClickComment(idDeleteComment);
+      });
       return createCommentDivChild;
     };
 
@@ -191,28 +202,6 @@ export default async () => {
     return child;
   };
 
-  // const buildEditingPost = (postData) => {
-  //   const child = document.createElement('div');
-  //   child.innerHTML = editingPost(postData);
-
-  //   const btnDelete = child.querySelector('.icon-deletePost');
-  //   const btnSave = child.querySelector('.icon-savePost');
-  //   const id = btnDelete.getAttribute('data-value');
-
-  //   btnDelete.addEventListener('click', async (e) => {
-  //     e.preventDefault();
-  //     onDeleteClick(id);
-  //   });
-  //   btnSave.addEventListener('click', async (e) => {
-  //     e.preventDefault();
-  //     const inputPost = child.querySelector('.inputPost').value;
-  //     await updatePost(id, inputPost);
-  //   });
-
-  //   return child;
-  // };
-  // FIN de div con la data de POSTS
-
   // Llenando div con la data de HOME - seccion de publicar
   const divElement = document.createElement('div');
   await userStatus();
@@ -272,7 +261,6 @@ export default async () => {
     e.preventDefault();
     logOut();
   });
-
 
   getPosts((querySnapshot) => {
     listOfPosts.innerHTML = '';

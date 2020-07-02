@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.containerToContainerPost {
-  display: flex;
-}
-
 .container-post {
   margin: 10px 22px;
   width: 100%;
@@ -30,16 +26,16 @@
   padding: 12px;
   padding-bottom: 0px;
 }
-.saveAndCancelEditPost{
+.saveAndCancelEditPost {
   width: 100%;
   margin: 8px;
   justify-content: space-evenly;
 }
-.inputEditPost{
+.inputEditPost {
   width: 290px;
   padding: 5px;
 }
-.cancelEditPost{
+.cancelEditPost {
   background-color: #5d9becdc;
   border-radius: 15px;
   border: 0;
@@ -48,7 +44,7 @@
   font-size: 13px;
   color: white;
 }
-.saveEditPost{
+.saveEditPost {
   background-color: #5d9becdc;
   border-radius: 15px;
   border: 0;
@@ -84,10 +80,10 @@
   overflow-wrap: break-word;
   margin-bottom: 15px;
 }
-.content-post[data-visible="true"] {
+.content-post[data-visible='true'] {
   visibility: visible;
 }
-.content-post[data-visible="false"] {
+.content-post[data-visible='false'] {
   visibility: hidden;
 }
 .icon-contentPost {
@@ -103,7 +99,7 @@
   width: 20px;
   cursor: pointer;
 }
-.letter-color{
+.letter-color {
   font-size: 12px;
 }
 .dropdown-content .icon-deletePost {
@@ -173,6 +169,11 @@
   padding: 3px;
 }
 .commentEdit {
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.commentDelete {
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
