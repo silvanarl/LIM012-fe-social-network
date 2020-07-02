@@ -8,19 +8,29 @@ const post = (data) => {
     ? `<img src='${data.photoURL}' class='img-post' alt='${data.author}' />`
     : '';
   return `
-<div class='container-post ${data.postPrivate === false || (data.userID === data.currentUser && data.postPrivate === true) ? '' : 'hide'}'>
+<div class='container-post ${
+  data.postPrivate === false || (data.userID === data.currentUser && data.postPrivate === true)
+    ? ''
+    : 'hide'
+}'>
     <div class='user-post'>
         ${photo}
         <span class='titleUserPost'>${data.author}</span>
         <span class='timeUserPost'>${data.date}</span>
         <div class='${data.userID === data.currentUser ? '' : 'hide'}'>
-            <img src='img/icon-world.svg' class='icon-createPost publicPosted ${data.postPrivate ? 'hide' : ''}' alt='createPostPublic'>
-            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${data.postPrivate ? '' : 'hide'}" alt='createPostPrivate'>
+            <img src='img/icon-world.svg' class='icon-createPost publicPosted ${
+  data.postPrivate ? 'hide' : ''
+}' alt='createPostPublic'>
+            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${
+  data.postPrivate ? '' : 'hide'
+}" alt='createPostPrivate'>
             <div class='dropdown'>
                 <img src='img/icon-threeDots.svg' class='icon-dropdown dropbtn' alt='icon dropdown'>
                 <div class='dropdown-content'>
                     <div class='iconTextDelete' data-value='${data.id}'>
-                        <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
+                        <img src='img/delete.png' data-value='${
+  data.id
+}' class='icon-deletePost' alt='icon delete'>
                         <span class='letter-color'> Eliminar post </span>
                     </div> 
                     <div class='iconTextEdit' data-value='${data.id}'>
@@ -71,18 +81,12 @@ const comment = dataComment => `
 `;
 const editComment = dataComment => `
 <div class='containerComments'>
-    <div class='user-photo-comment'>
-        <img src='${dataComment.photo}' class='userPhotoComment' alt='${dataComment.author}'>
-    </div>
-    <div class='mainComment'>
-        <p class='editing'>Editando comentario</p>
-        <p class='userComment'>${dataComment.author}</p>
-        <p class='contentComment'>${dataComment.content}</p>
-    </div>
-    <div class='divTimeComment'>
-        <img src='img/delete.png' data-value='${dataComment.id}' class='icon-deletePost' alt='icon delete'>
+    <div class='user-post'>
+        <span class='titleUserPost'>EDITANDO</span>
+</div>
+    <div class='content-post'>
+        <input class='inputPost' placeholder='${dataComment.content}'> </input>
         <img src='img/save.png' class='icon-savePost' alt='icon save'>
-    </div>
 </div>
 `;
 
@@ -100,53 +104,6 @@ const editingPost = data => `
     </div>
 `;
 
-/* const comment = dataComment => `
-  <div class='containerComments'>
-      <div class='user-photo-comment'>
-          <img src='${dataComment.photo}' class='userPhotoComment' alt='${dataComment.author}'>
-      </div>
-      <div class='mainComment'>
-          <p class='userComment'>${dataComment.author}</p>
-          <p class='contentComment'>${dataComment.content}</p>
-      </div>
-      <div class='divTimeComment'>
-          <span class='timeComment'>${dataComment.date}</span>
-          <span class='commentEdit' id='edit'> editar </span>
-          <span class='commentEdit' id='delete'> eliminar </span>
-      </div>
-  </div>
-  `;
-  const editComment = dataComment => `
-  <div class='containerComments'>
-      <div class='user-photo-comment'>
-          <img src='${dataComment.photo}' class='userPhotoComment' alt='${dataComment.author}'>
-      </div>
-      <div class='mainComment'>
-          <p class='editing'>Editando comentario</p>
-          <p class='userComment'>${dataComment.author}</p>
-          <p class='contentComment'>${dataComment.content}</p>
-      </div>
-      <div class='divTimeComment'>
-          <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost'
-          alt='icon delete'>
-          <img src='img/save.png' class='icon-savePost' alt='icon save'>
-      </div>
-  </div>
-  `;
-
-  const editingPost = data => `
-  <div class='container-post'>
-      <div class='user-post'>
-          <span class='titleUserPost'>EDITANDO</span>
-      </div>
-      <div class='content-post'>
-          <input class='inputPost' placeholder='${data.content}'> </input>
-          <div class='likeAndCommentPost'>
-              <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost'
-              alt='icon delete'>
-              <img src='img/save.png' class='icon-savePost' alt='icon save'>
-          </div>
-      </div>
-  `;
-  */
-export { post, comment, editingPost };
+export {
+  post, comment, editingPost, editComment,
+};

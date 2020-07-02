@@ -201,7 +201,7 @@ export default async () => {
         userID: doc.userID,
         likesUsers: doc.likesUsers,
         date: doc.date.toDate().toLocaleString(),
-        postPrivate: doc.postPrivate,
+        postPrivate: doc.postPrivate != null ? doc.postPrivate : false,
         commentsID: doc.commentsID,
         photoURL: doc.photoURL,
       };

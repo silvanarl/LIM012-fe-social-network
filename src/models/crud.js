@@ -7,12 +7,12 @@ const getUserData = async () => {
 
 const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
 
-const createPost = ({
-  photo, author, content, postPrivate, photoURL,
+const createPost = async ({
+  photo, author, content, photoURL,
 }) => {
   console.log(photo, author, content);
   const time = firebase.firestore.Timestamp.fromDate(new Date());
-  firebase.firestore().collection('posts').add({
+  const result = await firebase.firestore().collection('posts').add({
     photo,
     author,
     content,
@@ -22,6 +22,7 @@ const createPost = ({
     commentsID: [],
     photoURL,
   });
+  console.log(result);
 };
 const addImage = async (id, photo) => {
   await firebase.firestore().collection('posts').doc(id).update({
@@ -48,6 +49,11 @@ const createComment = ({
 const deletePost = async (id) => {
   await firebase.firestore().collection('posts').doc(id).delete();
 };
+
+const deleteComment = async (idComment) => {
+  await firebase.firestore().collection('comments').doc(idComment).delete();
+};
+
 
 const updatePost = async (id, content) => {
   await firebase.firestore().collection('posts').doc(id).update({
@@ -90,4 +96,5 @@ export {
   updateProfileInfo,
   getUserData,
   addImage,
+  deleteComment,
 };
