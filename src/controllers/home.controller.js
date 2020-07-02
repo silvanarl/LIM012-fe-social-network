@@ -1,5 +1,5 @@
 import { home } from '../views/home.js';
-import { post, editingPost, comment } from '../views/posts.js';
+import { post, comment } from '../views/posts.js';
 import { userStatus, user, logOut } from '../models/auth.js';
 import {
   getPosts,
@@ -101,47 +101,50 @@ export default async () => {
       });
     });
 
-    // INICIO botones de editar y eliminar post
+    // Eliminar posts
     btnDelete.addEventListener('click', (e) => {
       e.preventDefault();
       if (userPostID === currentUserUID) {
         onDeleteClick(id);
       }
     });
+
+    // Editar Posts
+    const contentToEdit = child.querySelector('.data');
+    const inputEditPost = child.querySelector('.inputEditPost');
+    const buttonsSaveAndCancelEdit = child.querySelector('.saveAndCancelEditPost');
+    const saveEditPost = child.querySelector('.saveEditPost');
+    const buttonCancelEdit = child.querySelector('.cancelEditPost');
+    const idPostEdit = saveEditPost.getAttribute('data-value');
+
     btnEdit.addEventListener('click', (e) => {
       e.preventDefault();
+      contentToEdit.classList.add('hide');
+      inputEditPost.classList.remove('hide');
+      buttonsSaveAndCancelEdit.classList.remove('hide');
       if (userPostID === currentUserUID) {
-        child.innerHTML = '';
-        child.innerHTML = editingPost(postData);
-
-        const btnDelete = child.querySelector('.icon-deletePost');
-        const btnSave = child.querySelector('.icon-savePost');
-        const id = btnDelete.getAttribute('data-value');
-
-        btnDelete.addEventListener('click', async (event) => {
+        saveEditPost.addEventListener('click', async (event) => {
           event.preventDefault();
-          onDeleteClick(id);
+          const inputPostEdited = inputEditPost.value;
+          await updatePost(idPostEdit, inputPostEdited);
         });
-        btnSave.addEventListener('click', async (event) => {
+        // cancelar editarPost
+        buttonCancelEdit.addEventListener('click', (event) => {
           event.preventDefault();
-          const inputPost = child.querySelector('.inputPost').value;
-          await updatePost(id, inputPost);
+          contentToEdit.classList.remove('hide');
+          inputEditPost.classList.add('hide');
+          buttonsSaveAndCancelEdit.classList.add('hide');
         });
       }
     });
-    // FIN botones de editar y eliminar post
 
     // pasando de private a public viceversa en post publicado
     const buttonPublicPosted = child.querySelector('.publicPosted');
     const buttonPrivatePosted = child.querySelector('.privatePosted');
-    console.log('public posted', buttonPublicPosted);
-    console.log('private posted', buttonPrivatePosted);
     buttonPublicPosted.addEventListener('click', async (e) => {
       e.preventDefault();
-      console.log('clic mundo');
       buttonPublicPosted.classList.toggle('hide');
       buttonPrivatePosted.classList.toggle('hide');
-      console.log('de publico a privado');
       postIsPrivate = true;
       await updatePostPrivate(id, postIsPrivate);
     });
@@ -149,7 +152,6 @@ export default async () => {
       e.preventDefault();
       buttonPrivatePosted.classList.toggle('hide');
       buttonPublicPosted.classList.toggle('hide');
-      console.log('de privado a publico');
       postIsPrivate = false;
       await updatePostPrivate(id, postIsPrivate);
     });
@@ -157,26 +159,26 @@ export default async () => {
     return child;
   };
 
-  const buildEditingPost = (postData) => {
-    const child = document.createElement('div');
-    child.innerHTML = editingPost(postData);
+  // const buildEditingPost = (postData) => {
+  //   const child = document.createElement('div');
+  //   child.innerHTML = editingPost(postData);
 
-    const btnDelete = child.querySelector('.icon-deletePost');
-    const btnSave = child.querySelector('.icon-savePost');
-    const id = btnDelete.getAttribute('data-value');
+  //   const btnDelete = child.querySelector('.icon-deletePost');
+  //   const btnSave = child.querySelector('.icon-savePost');
+  //   const id = btnDelete.getAttribute('data-value');
 
-    btnDelete.addEventListener('click', async (e) => {
-      e.preventDefault();
-      onDeleteClick(id);
-    });
-    btnSave.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const inputPost = child.querySelector('.inputPost').value;
-      await updatePost(id, inputPost);
-    });
+  //   btnDelete.addEventListener('click', async (e) => {
+  //     e.preventDefault();
+  //     onDeleteClick(id);
+  //   });
+  //   btnSave.addEventListener('click', async (e) => {
+  //     e.preventDefault();
+  //     const inputPost = child.querySelector('.inputPost').value;
+  //     await updatePost(id, inputPost);
+  //   });
 
-    return child;
-  };
+  //   return child;
+  // };
   // FIN de div con la data de POSTS
 
   // Llenando div con la data de HOME - seccion de publicar
@@ -203,7 +205,6 @@ export default async () => {
 
   divElement.innerHTML = home(userData);
 
-  let postList;
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
