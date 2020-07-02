@@ -12,6 +12,7 @@ import {
   updatePostPrivate,
   getUserData,
   deleteComment,
+  updateComment,
 } from '../models/crud.js';
 
 export default async () => {
@@ -50,6 +51,8 @@ export default async () => {
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
     const listOfComments = child.querySelector('.contentComment');
+    // const contentCommentToEdit = listOfComments.querySelector('.dataContentComment');
+    // console.log(contentCommentToEdit);
     const divCreateComment = child.querySelector('.createComment');
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
@@ -71,6 +74,35 @@ export default async () => {
         });
         const newInputComment = child.querySelector('.textComment');
         newInputComment.value = '';
+      });
+      // Editar comentarios
+      const contentCommentToEdit = child.querySelector('.dataContentComment');
+      const userCommentID = contentCommentToEdit.getAttribute('data-value');
+      const inputEditComment = child.querySelector('.inputEditComment');
+      const commentEdit = child.querySelector('#editComment');
+      const saveAndCancelEditComment = child.querySelector('.saveAndCancelEditComment');
+      const cancelEditComment = child.querySelector('.cancelEditComment');
+      const saveEditComment = child.querySelector('.saveEditComment');
+      const idCommentEdit = saveEditComment.getAttribute('data-value');
+      commentEdit.addEventListener('click', (event) => {
+        event.preventDefault();
+        contentCommentToEdit.classList.add('hide');
+        inputEditComment.classList.remove('hide');
+        saveAndCancelEditComment.classList.remove('hide');
+        if (userCommentID === currentUserUID) {
+          console.log('id del usuario que comenta', userCommentID);
+          saveEditComment.addEventListener('click', async (ev) => {
+            ev.preventDefault();
+            const inputCommentEdited = inputEditComment.value;
+            await updateComment(idCommentEdit, inputCommentEdited);
+          });
+          cancelEditComment.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            contentCommentToEdit.classList.remove('hide');
+            inputEditComment.classList.add('hide');
+            saveAndCancelEditComment.classList.add('hide');
+          });
+        }
       });
     });
     const buildComment = (commentData) => {
@@ -201,21 +233,16 @@ export default async () => {
   let imgFile = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
-    console.log(e);
     const input = e.target;
-    console.log(input);
     const reader = new FileReader();
-    console.log(reader);
     reader.onload = () => {
       const dataURL = reader.result;
-      console.log(dataURL);
       showPicture.src = dataURL;
       // Almacena url en localStorage
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     imgFile = e.target.files[0];
-    console.log(imgFile);
     // Aparece botón para cancelar imagen
     btnCancelImg.classList.remove('hide');
   });
@@ -225,6 +252,7 @@ export default async () => {
     showPicture.src = '';
     btnCancelImg.classList.add('hide');
   });
+  // Fin mostrar img cargada antes de publicar
 
   const listOfPosts = divElement.querySelector('#publicPost');
 
@@ -273,14 +301,12 @@ export default async () => {
     e.preventDefault();
     buttonPublicPost.classList.toggle('hide');
     buttonPrivatePost.classList.toggle('hide');
-    console.log('de publico a privado');
     postIsPrivate = true;
   });
   buttonPrivatePost.addEventListener('click', (e) => {
     e.preventDefault();
     buttonPrivatePost.classList.toggle('hide');
     buttonPublicPost.classList.toggle('hide');
-    console.log('de privado a publico');
     postIsPrivate = false;
   });
   // FIN privacidad de post por publicar
@@ -298,7 +324,6 @@ export default async () => {
         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         if (percentage === 100) {
           snapshot.ref.getDownloadURL().then((url) => {
-            console.log('input', inputPost);
             createPost({
               photo: userPhoto,
               author: userName,

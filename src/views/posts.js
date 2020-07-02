@@ -75,13 +75,19 @@ const comment = dataComment => `
     </div>
     <div class='mainComment'>
         <p class='userComment'>${dataComment.author}</p>
-        <p class='contentComment'>${dataComment.content}</p>
+        <p data-value='${dataComment.userID}' class='dataContentComment'>${dataComment.content}</p>
+        <textarea class='inputEditComment hide' placeholder='${dataComment.content}'></textarea>
+        <div class='saveAndCancelEditComment hide'>
+            <button class='cancelEditComment' alt='Cancelar'>Cancelar</button>
+            <button data-value='${dataComment.id}' class='saveEditComment' alt='Guardar'>Guardar</button>
+        </div>
     </div>
     <div class='divTimeComment'>
         <span class='timeComment'>${dataComment.date}</span>
-        <span class='commentEdit' id='edit'> editar </span>
+        <span class='commentEdit' id='editComment'> editar </span>
         <span class='commentDelete' id='delete' data-value='${dataComment.id}'> eliminar </span>
     </div>
 </div>
 `;
+
 export { post, comment };

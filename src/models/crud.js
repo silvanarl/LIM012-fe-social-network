@@ -61,6 +61,12 @@ const updatePost = async (id, content) => {
   });
 };
 
+const updateComment = async (id, content) => {
+  await firebase.firestore().collection('comments').doc(id).update({
+    content,
+  });
+};
+
 const updatePostPrivate = async (id, postPrivate) => {
   await firebase.firestore().collection('posts').doc(id).update({
     postPrivate,
@@ -97,4 +103,5 @@ export {
   getUserData,
   addImage,
   deleteComment,
+  updateComment,
 };
