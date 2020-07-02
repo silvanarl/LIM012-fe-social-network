@@ -5,14 +5,12 @@ const getUserData = async () => {
   return firebase.firestore().collection('users').doc(id);
 };
 
-const getPosts = onSnapshot => firebase.firestore()
-  .collection('posts')
-  .orderBy('date', 'desc')
-  .onSnapshot(onSnapshot);
+const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
 
 const createPost = ({
-  photo, author, content, photoURL,
+  photo, author, content, postPrivate, photoURL,
 }) => {
+  console.log(photo, author, content);
   const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('posts').add({
     photo,
@@ -21,7 +19,6 @@ const createPost = ({
     date: time,
     userID: user().uid,
     likesUsers: [],
-    postPrivate: false,
     commentsID: [],
     photoURL,
   });
@@ -32,10 +29,7 @@ const addImage = async (id, photo) => {
   });
 };
 
-const getComments = onSnapshot => firebase.firestore()
-  .collection('comments')
-  .orderBy('date', 'desc')
-  .onSnapshot(onSnapshot);
+const getComments = callback => firebase.firestore().collection('comments').orderBy('date', 'desc').onSnapshot(callback);
 
 const createComment = ({
   photo, author, content, postID,
@@ -58,6 +52,12 @@ const deletePost = async (id) => {
 const updatePost = async (id, content) => {
   await firebase.firestore().collection('posts').doc(id).update({
     content,
+  });
+};
+
+const updatePostPrivate = async (id, postPrivate) => {
+  await firebase.firestore().collection('posts').doc(id).update({
+    postPrivate,
   });
 };
 
@@ -86,6 +86,7 @@ export {
   updateLikesUser,
   getComments,
   createComment,
+  updatePostPrivate,
   updateProfileInfo,
   getUserData,
   addImage,

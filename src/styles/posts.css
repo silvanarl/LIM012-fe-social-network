@@ -1,10 +1,10 @@
 .posts {
   display: flex;
-  width: 375px;
 }
 
 .container-post {
-  margin: 22px;
+  margin: 10px 22px;
+  width: 100%;
   max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
@@ -42,7 +42,10 @@
 }
 .timeUserPost {
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
+  width: 50px;
+  margin-left: 25px;
+  margin-right: 5px;
 }
 .data {
   padding: 3px;
@@ -68,6 +71,9 @@
   width: 20px;
   cursor: pointer;
 }
+.letter-color{
+  font-size: 12px;
+}
 .dropdown-content .icon-deletePost {
   width: 20px;
   height: 20px;
@@ -86,6 +92,7 @@
 }
 .likeAndCommentPost {
   width: 285px;
+  margin: 5px;
 }
 /*Comments*/
 
@@ -97,11 +104,6 @@
   border-radius: 4px;
   padding: 5px;
   overflow-wrap: break-word;
-}
-.iconSend {
-  width: 20px;
-  height: 25px;
-  padding-top: 2px;
 }
 .buttonSend {
   cursor: pointer;
@@ -175,8 +177,9 @@
 .dropdown-content {
   display: none;
   position: absolute;
+  right: 0px;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }

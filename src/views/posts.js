@@ -8,24 +8,27 @@ const post = (data) => {
     ? `<img src='${data.photoURL}' class='img-post' alt='${data.author}' />`
     : '';
   return `
-<div class='container-post'>
+<div class='container-post ${data.postPrivate === false || (data.userID === data.currentUser && data.postPrivate === true) ? '' : 'hide'}'>
     <div class='user-post'>
         ${photo}
         <span class='titleUserPost'>${data.author}</span>
         <span class='timeUserPost'>${data.date}</span>
-        <img src='img/icon-world.svg' class='icon-createPost' alt='createPostPublic'>
-        <div class='dropdown ${data.userID === data.currentUser ? '' : 'hide'}'>
-            <img src='img/icon-threeDots.svg' class='icon-dropdown dropbtn' alt='icon dropdown'>
-            <div class='dropdown-content'>
-            <div class='iconTextDelete' data-value='${data.id}'>
-                <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
-                <span class='letter-color'> Eliminar post </span>
+        <div class='${data.userID === data.currentUser ? '' : 'hide'}'>
+            <img src='img/icon-world.svg' class='icon-createPost publicPosted ${data.postPrivate ? 'hide' : ''}' alt='createPostPublic'>
+            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${data.postPrivate ? '' : 'hide'}" alt='createPostPrivate'>
+            <div class='dropdown'>
+                <img src='img/icon-threeDots.svg' class='icon-dropdown dropbtn' alt='icon dropdown'>
+                <div class='dropdown-content'>
+                    <div class='iconTextDelete' data-value='${data.id}'>
+                        <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
+                        <span class='letter-color'> Eliminar post </span>
+                    </div> 
+                    <div class='iconTextEdit' data-value='${data.id}'>
+                        <img src='img/icon-edit.png' class='icon-editPost' alt='icon edit'>
+                        <span class='letter-color'> Editar post </span>
+                    </div>     
+                </div>  
             </div> 
-                <div class='iconTextEdit' data-value='${data.id}'>
-                    <img src='img/icon-edit.png' class='icon-editPost' alt='icon edit'>
-                    <span class='letter-color'> Editar post </span>
-                </div>     
-            </div>  
         </div> 
         <div class='${data.userID === data.currentUser ? 'hide' : 'space'}'>
         </div> 
@@ -77,7 +80,7 @@ const editComment = dataComment => `
         <p class='contentComment'>${dataComment.content}</p>
     </div>
     <div class='divTimeComment'>
-        <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
+        <img src='img/delete.png' data-value='${dataComment.id}' class='icon-deletePost' alt='icon delete'>
         <img src='img/save.png' class='icon-savePost' alt='icon save'>
     </div>
 </div>
@@ -124,7 +127,8 @@ const editingPost = data => `
           <p class='contentComment'>${dataComment.content}</p>
       </div>
       <div class='divTimeComment'>
-          <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
+          <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost'
+          alt='icon delete'>
           <img src='img/save.png' class='icon-savePost' alt='icon save'>
       </div>
   </div>
@@ -138,7 +142,8 @@ const editingPost = data => `
       <div class='content-post'>
           <input class='inputPost' placeholder='${data.content}'> </input>
           <div class='likeAndCommentPost'>
-              <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
+              <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost'
+              alt='icon delete'>
               <img src='img/save.png' class='icon-savePost' alt='icon save'>
           </div>
       </div>

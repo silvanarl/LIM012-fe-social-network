@@ -9,6 +9,7 @@ import {
   updateLikesUser,
   getComments,
   createComment,
+  updatePostPrivate,
   getUserData,
 } from '../models/crud.js';
 
@@ -53,6 +54,9 @@ export default async () => {
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
       e.preventDefault();
+      const elementsListOfComment = child.querySelectorAll('.containerComments');
+      const spanCounterComments = child.querySelector('.counterComments');
+      spanCounterComments.textContent = elementsListOfComment.length;
       divCreateComment.classList.toggle('hide');
       listOfComments.classList.toggle('hide');
       buttonComment.addEventListener('click', async (event) => {
@@ -65,13 +69,14 @@ export default async () => {
           content: inputComment,
           postID,
         });
-        // inputComment.innerHTML = '';
+        const newInputComment = child.querySelector('.textComment');
+        newInputComment.value = '';
       });
     });
-    const buildComment = (dataComment) => {
+    const buildComment = (commentData) => {
       const createCommentDivChild = document.createElement('div');
       createCommentDivChild.setAttribute('class', 'containerToContainerComments');
-      createCommentDivChild.innerHTML = comment(dataComment);
+      createCommentDivChild.innerHTML = comment(commentData);
       return createCommentDivChild;
     };
 
@@ -89,20 +94,10 @@ export default async () => {
           userID: doc.userID,
           postID: doc.postID,
         };
-        const dataIdComment = listOfComments.getAttribute('data-id');
-        const postDataComments = [];
-        if (commentData.postID === dataIdComment) {
+        const dataIdPostByComment = listOfComments.getAttribute('data-id');
+        if (commentData.postID === dataIdPostByComment) {
           listOfComments.appendChild(buildComment(commentData));
-          console.log(listOfComments);
         }
-        const idComment = commentData.id;
-        console.log(idComment);
-        postDataComments.push(idComment);
-        console.log(postDataComments);
-        const newArrCommentsCounter = [...new Set(postDataComments)];
-        const spanCounterComments = child.querySelector('.counterComments');
-        console.log(newArrCommentsCounter);
-        spanCounterComments.textContent = newArrCommentsCounter.length;
       });
     });
 
@@ -123,39 +118,38 @@ export default async () => {
         const btnSave = child.querySelector('.icon-savePost');
         const id = btnDelete.getAttribute('data-value');
 
-        btnDelete.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnDelete.addEventListener('click', async (event) => {
+          event.preventDefault();
           onDeleteClick(id);
         });
-        btnSave.addEventListener('click', async (e) => {
-          e.preventDefault();
+        btnSave.addEventListener('click', async (event) => {
+          event.preventDefault();
           const inputPost = child.querySelector('.inputPost').value;
           await updatePost(id, inputPost);
         });
       }
     });
-    // FIN botones de editar y eliminar post
-    return child;
-  };
-
-  const buildEditingPost = (postData) => {
-    const child = document.createElement('div');
-    child.innerHTML = editingPost(postData);
-
-    const btnDelete = child.querySelector('.icon-deletePost');
-    const btnSave = child.querySelector('.icon-savePost');
-    const id = btnDelete.getAttribute('data-value');
-
-    btnDelete.addEventListener('click', async (e) => {
+    const buttonPublicPosted = child.querySelector('.publicPosted');
+    const buttonPrivatePosted = child.querySelector('.privatePosted');
+    // /console.log('public posted', buttonPublicPosted);
+    // console.log('private posted', buttonPrivatePosted);
+    buttonPublicPosted.addEventListener('click', async (e) => {
       e.preventDefault();
-      onDeleteClick(id);
+      console.log('clic mundo');
+      buttonPublicPosted.classList.toggle('hide');
+      buttonPrivatePosted.classList.toggle('hide');
+      console.log('de publico a privado');
+      postIsPrivate = true;
+      await updatePostPrivate(id, postIsPrivate);
     });
-    btnSave.addEventListener('click', async (e) => {
+    buttonPrivatePosted.addEventListener('click', async (e) => {
       e.preventDefault();
-      const inputPost = child.querySelector('.inputPost').value;
-      await updatePost(id, inputPost);
+      buttonPrivatePosted.classList.toggle('hide');
+      buttonPublicPosted.classList.toggle('hide');
+      console.log('de privado a publico');
+      postIsPrivate = false;
+      await updatePostPrivate(id, postIsPrivate);
     });
-
     return child;
   };
   // FIN de div con la data de POSTS
@@ -170,6 +164,7 @@ export default async () => {
     .collection('users')
     .doc(userId)
     .onSnapshot((querySnapshot) => {
+      console.log('asdfasdfadsfadsfasdfasdf', querySnapshot);
       const data = querySnapshot.data();
       const arrayOfUserNameDivs = divElement.querySelectorAll('.name-f');
       [].forEach.call(arrayOfUserNameDivs, (div) => {
@@ -184,7 +179,6 @@ export default async () => {
 
   divElement.innerHTML = home(userData);
 
-  let postList;
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
@@ -192,7 +186,6 @@ export default async () => {
     e.preventDefault();
     logOut();
   });
-
 
   getPosts((querySnapshot) => {
     listOfPosts.innerHTML = '';
@@ -224,20 +217,25 @@ export default async () => {
       }
     });
   });
-
-  const mapEditingList = async (id) => {
-    listOfPosts.innerHTML = '';
-    postList = await getPosts();
-    postList.forEach((postData) => {
-      let child;
-      if (id === postData.id) {
-        child = buildEditingPost(postData);
-      } else {
-        child = buildPost(postData);
-      }
-      listOfPosts.appendChild(child);
-    });
-  };
+  // INICIO privacidad de post por publicar
+  const buttonPublicPost = divElement.querySelector('.publicPost');
+  const buttonPrivatePost = divElement.querySelector('.privatePost');
+  let postIsPrivate = false;
+  buttonPublicPost.addEventListener('click', async (e) => {
+    e.preventDefault();
+    buttonPublicPost.classList.toggle('hide');
+    buttonPrivatePost.classList.toggle('hide');
+    console.log('de publico a privado');
+    postIsPrivate = true;
+  });
+  buttonPrivatePost.addEventListener('click', (e) => {
+    e.preventDefault();
+    buttonPrivatePost.classList.toggle('hide');
+    buttonPublicPost.classList.toggle('hide');
+    console.log('de privado a publico');
+    postIsPrivate = false;
+  });
+  // FIN privacidad de post por publicar
 
   const buttonPost = divElement.querySelector('.button-createPost');
   buttonPost.addEventListener('click', (e) => {
