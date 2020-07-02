@@ -62,13 +62,15 @@ const home = () => `
           <div class="text">
            <textarea class="createPost" type="text" cols="0" rows="5" placeholder="¡Comparte tus tips aquí!"></textarea>
           </div>
+          <img id="showPicture" class="post-new-image" src="#" alt="">
+          <button id="btnCancelImg" class="hide cancel-image"></button>
           <div id="containerIconsAndButton">
             <div class="icons-createPost">
             <label for="selectImage">
-              <p></p>
               <input type="file" id="selectImage" class="upload hide" accept="image/jpeg, image/png, image/gif">
               <img src="img/icon-addImage.svg" class="icon-addImage" alt="createPostAddImage">
             </label>
+              
               <img src="img/icon-world.svg" class="icon-world publicPost" alt="createPostPublic">
               <img src="img/icon-privacy.svg" class="icon-privacy privatePost hide " alt="createPostPrivate">
             </div> 

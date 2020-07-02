@@ -33,8 +33,17 @@
   flex-direction: row;
   padding-top: 20px;
 }
+/*boton para cancelar imagen*/
+.cancel-image {
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/delete.png);
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
 .container-createPost {
-  height: 120px;
+  /*height: 120px;*/
   width: 320px;
   border: solid 1px;
   border-radius: 5px;
@@ -200,6 +209,12 @@
   height: 20px;
   padding-top: 6px;
   cursor: pointer;
+}
+/*img cargada en post*/
+.post-new-image{
+  width: 40px;
+  height: auto;
+  margin: 0px 0px 10px 130px;
 }
 .profile-dropdown {
   color: #5d9cec;
