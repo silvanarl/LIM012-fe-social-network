@@ -205,6 +205,41 @@ export default async () => {
 
   divElement.innerHTML = home(userData);
 
+  // Inicio mostrar img cargada antes de publicar
+  const selectImage = divElement.querySelector('#selectImage');
+  const showPicture = divElement.querySelector('#showPicture');
+  const btnCancelImg = divElement.querySelector('#btnCancelImg');
+  let imgFile = '';
+  selectImage.addEventListener('change', (e) => {
+    // Vista previa de imagen cargada
+    console.log(e);
+    const input = e.target;
+    console.log(input);
+    const reader = new FileReader();
+    console.log(reader);
+    reader.onload = () => {
+      const dataURL = reader.result;
+      console.log(dataURL);
+      showPicture.src = dataURL;
+      // Almacena url en localStorage
+      localStorage.setItem('image', dataURL);
+    };
+    reader.readAsDataURL(input.files[0]);
+    imgFile = e.target.files[0];
+    console.log(imgFile);
+    // Aparece botón para cancelar imagen
+    btnCancelImg.classList.remove('hide');
+  });
+  // Cancela imagen antes de publicar
+  btnCancelImg.addEventListener('click', () => {
+    localStorage.removeItem('image');
+    showPicture.src = '';
+    btnCancelImg.classList.add('hide');
+  });
+  // Fin mostrar img cargada antes de publicar
+
+  let postList;
+
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
@@ -288,6 +323,13 @@ export default async () => {
             });
           });
         }
+        // Inicio quitar img de la pre visualizacion
+        localStorage.removeItem('image');
+        showPicture.src = '';
+        btnCancelImg.classList.add('hide');
+        // Fin quitar img de la pre visualizacion
+        const newfileButton = divElement.querySelector('#selectImage');
+        newfileButton.value = '';
         const newInput = divElement.querySelector('.createPost');
         newInput.value = '';
       });
