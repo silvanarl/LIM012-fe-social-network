@@ -8,7 +8,7 @@ const getUserData = async () => {
 const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
 
 const createPost = async ({
-  photo, author, content, photoURL,
+  photo, author, content, photoURL, postPrivate,
 }) => {
   console.log(photo, author, content);
   const time = firebase.firestore.Timestamp.fromDate(new Date());
@@ -19,6 +19,7 @@ const createPost = async ({
     date: time,
     userID: user().uid,
     likesUsers: [],
+    postPrivate,
     commentsID: [],
     photoURL,
   });
@@ -53,7 +54,6 @@ const deletePost = async (id) => {
 const deleteComment = async (idComment) => {
   await firebase.firestore().collection('comments').doc(idComment).delete();
 };
-
 
 const updatePost = async (id, content) => {
   await firebase.firestore().collection('posts').doc(id).update({

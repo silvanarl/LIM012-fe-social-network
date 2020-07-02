@@ -24,6 +24,34 @@
 .content-post {
   width: 90%;
   padding: 12px;
+  padding-bottom: 0px;
+}
+.saveAndCancelEditPost {
+  width: 100%;
+  margin: 8px;
+  justify-content: space-evenly;
+}
+.inputEditPost {
+  width: 290px;
+  padding: 5px;
+}
+.cancelEditPost {
+  background-color: #5d9becdc;
+  border-radius: 15px;
+  border: 0;
+  width: 70px;
+  padding: 3px;
+  font-size: 13px;
+  color: white;
+}
+.saveEditPost {
+  background-color: #5d9becdc;
+  border-radius: 15px;
+  border: 0;
+  width: 70px;
+  padding: 3px;
+  font-size: 13px;
+  color: white;
 }
 .photoUser {
   border-radius: 50%;
@@ -71,7 +99,7 @@
   width: 20px;
   cursor: pointer;
 }
-.letter-color{
+.letter-color {
   font-size: 12px;
 }
 .dropdown-content .icon-deletePost {
@@ -83,12 +111,6 @@
   width: 20px;
   height: 20px;
   padding: 6px;
-}
-.icon-savePost {
-  width: 25px;
-  height: 25px;
-  padding-top: 8px;
-  cursor: pointer;
 }
 .likeAndCommentPost {
   width: 285px;
@@ -125,6 +147,7 @@
 .createComment {
   width: 300px;
   height: 40px;
+  padding-top: 5px;
 }
 .userPhotoComment {
   width: 25px;
@@ -139,7 +162,6 @@
   color: #5d9becdc;
 }
 .contentComment {
-  padding-top: 5px;
   font-size: 12px;
 }
 .divTimeComment {
@@ -147,6 +169,11 @@
   padding: 3px;
 }
 .commentEdit {
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.commentDelete {
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
