@@ -65,28 +65,17 @@ const comment = dataComment => `
     </div>
     <div class='mainComment'>
         <p class='userComment'>${dataComment.author}</p>
-        <p class='contentComment'>${dataComment.content}</p>
+        <p data-value='${dataComment.userID}' class='dataContentComment'>${dataComment.content}</p>
+        <textarea class='inputEditComment hide' placeholder='${dataComment.content}'></textarea>
+        <div class='saveAndCancelEditComment hide'>
+            <button class='cancelEditComment' alt='Cancelar'>Cancelar</button>
+            <button data-value='${dataComment.id}' class='saveEditComment' alt='Guardar'>Guardar</button>
+        </div>
     </div>
     <div class='divTimeComment'>
         <span class='timeComment'>${dataComment.date}</span>
-        <span class='commentEdit' id='edit'> editar </span>
-        <span class='commentEdit' id='delete'> eliminar </span>
-    </div>
-</div>
-`;
-const editComment = dataComment => `
-<div class='containerComments'>
-    <div class='user-photo-comment'>
-        <img src='${dataComment.photo}' class='userPhotoComment' alt='${dataComment.author}'>
-    </div>
-    <div class='mainComment'>
-        <p class='editing'>Editando comentario</p>
-        <p class='userComment'>${dataComment.author}</p>
-        <p class='contentComment'>${dataComment.content}</p>
-    </div>
-    <div class='divTimeComment'>
-        <img src='img/delete.png' data-value='${dataComment.id}' class='icon-deletePost' alt='icon delete'>
-        <img src='img/save.png' class='icon-savePost' alt='icon save'>
+        <span class='commentEdit' id='editComment'> Editar </span>
+        <span class='commentEdit' id='delete'> Eliminar </span>
     </div>
 </div>
 `;
