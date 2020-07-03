@@ -61,11 +61,12 @@
 .btnLikes {
   border-style: none;
   background-color: transparent;
+  outline: none;
 }
-.btnLikes:focus {
+.btnLikes:active {
   border-style: none;
   outline: none;
-  border-radius: 30%;
+  border-radius: 50%;
   background-color: rgb(241, 93, 93);
 }
 .timeUserPost {
@@ -130,11 +131,12 @@
 .buttonSend {
   cursor: pointer;
   border: none;
+  outline: none;
   background-color: transparent;
 }
 .containerToContainerComments {
-  width: 290px;
-  padding-bottom: 6px;
+  width: 350px;
+  padding-bottom: 8px;
 }
 .containerComments {
   width: 100%;
@@ -163,10 +165,11 @@
 }
 .dataContentComment {
   font-size: 12px;
+  padding: 4px;
 }
 .divTimeComment {
   align-content: flex-end;
-  padding: 3px;
+  padding-left: 8px;
 }
 .commentEdit {
   font-size: 10px;

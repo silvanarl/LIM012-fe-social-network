@@ -3,9 +3,7 @@ import { user } from '../models/auth.js';
 // eslint-disable-next-line arrow-body-style
 const photo = () => {
   return user().photoURL !== undefined
-    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${
-      user().displayName
-    }" />`
+    ? `<img src="${user().photoURL}" class="photoUserProfile" alt="${user().displayName}" />`
     : `<div class="no-photoProfile"><span>${user().displayName[0].toUpperCase()}</span></div>`;
 };
 const home = () => `

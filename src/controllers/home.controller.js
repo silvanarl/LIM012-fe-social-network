@@ -233,6 +233,7 @@ export default async () => {
   const selectImage = divElement.querySelector('#selectImage');
   const showPicture = divElement.querySelector('#showPicture');
   const btnCancelImg = divElement.querySelector('#btnCancelImg');
+  // eslint-disable-next-line no-unused-vars
   let imgFile = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
