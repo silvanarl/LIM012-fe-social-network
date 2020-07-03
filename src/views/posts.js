@@ -8,29 +8,22 @@ const post = (data) => {
     ? `<img src='${data.photoURL}' class='img-post' alt='${data.author}' />`
     : '';
   return `
-<div class='container-post ${
-  data.postPrivate === false || (data.userID === data.currentUser && data.postPrivate === true)
+<div class='container-post 
+${data.postPrivate === false || (data.userID === data.currentUser && data.postPrivate === true)
     ? ''
-    : 'hide'
-}'>
+    : 'hide'}'>
     <div class='user-post'>
         ${photo}
         <span class='titleUserPost'>${data.author}</span>
         <span class='timeUserPost'>${data.date}</span>
         <div class='${data.userID === data.currentUser ? '' : 'hide'}'>
-            <img src='img/icon-world.svg' class='icon-createPost publicPosted ${
-  data.postPrivate ? 'hide' : ''
-}' alt='createPostPublic'>
-            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${
-  data.postPrivate ? '' : 'hide'
-}" alt='createPostPrivate'>
+            <img src='img/icon-world.svg' class='icon-createPost publicPosted ${data.postPrivate ? 'hide' : ''}' alt='createPostPublic'>
+            <img src="img/icon-privacy.svg" class="icon-createPost privatePosted ${data.postPrivate ? '' : 'hide'}" alt='createPostPrivate'>
             <div class='dropdown'>
                 <img src='img/icon-threeDots.svg' class='icon-dropdown dropbtn' alt='icon dropdown'>
                 <div class='dropdown-content'>
                     <div class='iconTextDelete' data-value='${data.id}'>
-                        <img src='img/delete.png' data-value='${
-  data.id
-}' class='icon-deletePost' alt='icon delete'>
+                        <img src='img/delete.png' data-value='${data.id}' class='icon-deletePost' alt='icon delete'>
                         <span class='letter-color'> Eliminar post </span>
                     </div> 
                     <div class='iconTextEdit' data-value='${data.id}'>
@@ -84,6 +77,8 @@ const comment = dataComment => `
     </div>
     <div class='divTimeComment'>
         <span class='timeComment'>${dataComment.date}</span>
+    </div>
+    <div class=${dataComment.userID === dataComment.currentUser ? 'editAndDeleteButtons' : 'hide'}>
         <span class='commentEdit' id='editComment'> editar </span>
         <span class='commentDelete' id='delete' data-value='${dataComment.id}'> eliminar </span>
     </div>
