@@ -74,6 +74,7 @@ const comment = dataComment => `
     </div>
 </div>
 `;
+/*
 const editComment = dataComment => `
 <div class='containerComments'>
     <div class='user-photo-comment'>
@@ -85,10 +86,11 @@ const editComment = dataComment => `
         <p class='contentComment'>${dataComment.content}</p>
     </div>
     <div class='divTimeComment'>
-        <img src='img/delete.png' data-value='${dataComment.id}' class='icon-deletePost' alt='icon delete'>
+        <img src='img/delete.png' data-value='${dataComment.id}'
+        class='icon-deletePost' alt='icon delete'>
         <img src='img/save.png' class='icon-savePost' alt='icon save'>
     </div>
 </div>
 `;
-
+*/
 export { post, comment };

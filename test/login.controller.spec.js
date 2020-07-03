@@ -4,15 +4,25 @@ import {
   loginWithGoogle,
   createUser,
   logOut,
+  user,
 } from '../src/models/auth.js';
 
+//  package.json
+// "scripts": {
+// "htmlhint": "htmlhint dist/*.html ",
+// "eslint": "eslint --ext .js src/ test/",
+// "stylelint": "stylelint --aei src/**/*.css",
+// "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
+
+/* */
 describe('createUser', () => {
   it('debería ser una función', () => {
     expect(typeof createUser).toBe('function');
   });
-  it('deberia crear un usuario con nombre de usuario, correo y password', (done) => {
-    createUser('Ben', 'ben@example.com', 'examplePass').then((user) => {
-      expect(user.email).toBe('ben@example.com');
+  it('Debería poder crear un nuevo usuario', (done) => {
+    createUser('ben@example.com', 'examplePass').then((newUser) => {
+      expect(newUser.email).toBe('ben@example.com');
+      expect(newUser.isAnonymous).toBe(false);
       done();
     });
   });
@@ -23,8 +33,8 @@ describe('loginUser', () => {
     expect(typeof loginUser).toBe('function');
   });
   it('deberia registar un usuario con correo y password', (done) => {
-    loginUser('ben@example.com', 'examplePass').then((user) => {
-      expect(user.email).toBe('ben@example.com');
+    loginUser('ben@example.com', 'examplePass').then((userLog) => {
+      expect(userLog.email).toBe('ben@example.com');
       done();
     });
   });
@@ -40,6 +50,15 @@ describe('loginUser with Google', () => {
       expect(userGoogle.providerData).toEqual([{ providerId: 'google.com' }]);
       done();
     });
+  });
+});
+
+describe('Current user', () => {
+  it('debería reconocer a current user', () => {
+    loginUser('ben@example.com.com', '123456')
+      .then(() => {
+        expect(user().email).toBe('ben@example.com');
+      });
   });
 });
 

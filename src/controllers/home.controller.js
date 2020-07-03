@@ -238,7 +238,7 @@ export default async () => {
   });
   // Fin mostrar img cargada antes de publicar
 
-  let postList;
+  // let postList;
 
   const listOfPosts = divElement.querySelector('#publicPost');
 

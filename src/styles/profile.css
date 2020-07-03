@@ -50,6 +50,8 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  background-image: url(../img/icon-user.svg);
+  background-size: contain;
 }
 .title-user-edit {
   font-size: 25px;
