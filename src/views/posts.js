@@ -75,12 +75,14 @@ const comment = dataComment => `
             <button data-value='${dataComment.id}' class='saveEditComment' alt='Guardar'>Guardar</button>
         </div>
     </div>
-    <div class='divTimeComment'>
-        <span class='timeComment'>${dataComment.date}</span>
-    </div>
-    <div class=${dataComment.userID === dataComment.currentUser ? 'editAndDeleteButtons' : 'hide'}>
-        <span class='commentEdit' id='editComment'> editar </span>
-        <span class='commentDelete' id='delete' data-value='${dataComment.id}'> eliminar </span>
+    <div class='timeAndEditDeleteComment'>
+        <div class='divTimeComment'>
+            <span class='timeComment'>${dataComment.date}</span>
+        </div>
+        <div class=${dataComment.userID === dataComment.currentUser ? 'editAndDeleteButtons' : 'hide'}>
+            <span class='commentEdit' id='editComment'>Editar</span>
+            <span class='commentDelete' id='delete' data-value='${dataComment.id}'>Eliminar</span>
+        </div>
     </div>
 </div>
 `;
