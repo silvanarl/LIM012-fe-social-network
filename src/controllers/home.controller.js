@@ -51,8 +51,6 @@ export default async () => {
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
     const listOfComments = child.querySelector('.contentComment');
-    // const contentCommentToEdit = listOfComments.querySelector('.dataContentComment');
-    // console.log(contentCommentToEdit);
     const divCreateComment = child.querySelector('.createComment');
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
@@ -100,10 +98,7 @@ export default async () => {
       const cancelEditComment = createCommentDivChild.querySelector('.cancelEditComment');
       const saveEditComment = createCommentDivChild.querySelector('.saveEditComment');
       const idCommentEdit = saveEditComment.getAttribute('data-value');
-      // const editAndDeleteButtons = createCommentDivChild.querySelector('.editAndDeleteButtons');
-      // if (userCommentID !== currentUserUID) {
-      //   editAndDeleteButtons
-      // }
+
       commentEdit.addEventListener('click', (event) => {
         event.preventDefault();
         contentCommentToEdit.classList.add('hide');
@@ -132,6 +127,7 @@ export default async () => {
         const idC = document.id;
         const doc = document.data();
         const commentData = {
+          currentUser: user().uid,
           id: idC,
           photo: doc.photo,
           author: doc.author,
