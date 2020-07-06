@@ -11,6 +11,8 @@ import {
   createComment,
   updatePostPrivate,
   getUserData,
+  deleteComment,
+  updateComment,
 } from '../models/crud.js';
 
 export default async () => {
@@ -21,7 +23,6 @@ export default async () => {
   const onDeleteClick = async (id) => {
     await deletePost(id);
   };
-
   // Llenando div con la data de POSTS
   const buildPost = (postData) => {
     const userPostID = postData.userID;
@@ -77,6 +78,46 @@ export default async () => {
       const createCommentDivChild = document.createElement('div');
       createCommentDivChild.setAttribute('class', 'containerToContainerComments');
       createCommentDivChild.innerHTML = comment(commentData);
+      const btnDeleteComment = createCommentDivChild.querySelector('.commentDelete');
+
+      const onDeleteClickComment = async (idComment) => {
+        await deleteComment(idComment);
+      };
+      btnDeleteComment.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('eliminando comentario');
+        const idDeleteComment = btnDeleteComment.getAttribute('data-value');
+        onDeleteClickComment(idDeleteComment);
+      });
+      // Editar comentarios
+      const contentCommentToEdit = createCommentDivChild.querySelector('.dataContentComment');
+      const userCommentID = contentCommentToEdit.getAttribute('data-value');
+      const inputEditComment = createCommentDivChild.querySelector('.inputEditComment');
+      const commentEdit = createCommentDivChild.querySelector('#editComment');
+      const saveAndCancelEditComment = createCommentDivChild.querySelector('.saveAndCancelEditComment');
+      const cancelEditComment = createCommentDivChild.querySelector('.cancelEditComment');
+      const saveEditComment = createCommentDivChild.querySelector('.saveEditComment');
+      const idCommentEdit = saveEditComment.getAttribute('data-value');
+
+      commentEdit.addEventListener('click', (event) => {
+        event.preventDefault();
+        contentCommentToEdit.classList.add('hide');
+        inputEditComment.classList.remove('hide');
+        saveAndCancelEditComment.classList.remove('hide');
+        if (userCommentID === currentUserUID) {
+          saveEditComment.addEventListener('click', async (ev) => {
+            ev.preventDefault();
+            const inputCommentEdited = inputEditComment.value;
+            await updateComment(idCommentEdit, inputCommentEdited);
+          });
+          cancelEditComment.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            contentCommentToEdit.classList.remove('hide');
+            inputEditComment.classList.add('hide');
+            saveAndCancelEditComment.classList.add('hide');
+          });
+        }
+      });
       return createCommentDivChild;
     };
 
@@ -86,6 +127,7 @@ export default async () => {
         const idC = document.id;
         const doc = document.data();
         const commentData = {
+          currentUser: user().uid,
           id: idC,
           photo: doc.photo,
           author: doc.author,
@@ -159,28 +201,6 @@ export default async () => {
     return child;
   };
 
-  // const buildEditingPost = (postData) => {
-  //   const child = document.createElement('div');
-  //   child.innerHTML = editingPost(postData);
-
-  //   const btnDelete = child.querySelector('.icon-deletePost');
-  //   const btnSave = child.querySelector('.icon-savePost');
-  //   const id = btnDelete.getAttribute('data-value');
-
-  //   btnDelete.addEventListener('click', async (e) => {
-  //     e.preventDefault();
-  //     onDeleteClick(id);
-  //   });
-  //   btnSave.addEventListener('click', async (e) => {
-  //     e.preventDefault();
-  //     const inputPost = child.querySelector('.inputPost').value;
-  //     await updatePost(id, inputPost);
-  //   });
-
-  //   return child;
-  // };
-  // FIN de div con la data de POSTS
-
   // Llenando div con la data de HOME - seccion de publicar
   const divElement = document.createElement('div');
   await userStatus();
@@ -209,24 +229,20 @@ export default async () => {
   const selectImage = divElement.querySelector('#selectImage');
   const showPicture = divElement.querySelector('#showPicture');
   const btnCancelImg = divElement.querySelector('#btnCancelImg');
+  // eslint-disable-next-line no-unused-vars
   let imgFile = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
-    console.log(e);
     const input = e.target;
-    console.log(input);
     const reader = new FileReader();
-    console.log(reader);
     reader.onload = () => {
       const dataURL = reader.result;
-      console.log(dataURL);
       showPicture.src = dataURL;
       // Almacena url en localStorage
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     imgFile = e.target.files[0];
-    console.log(imgFile);
     // Aparece botón para cancelar imagen
     btnCancelImg.classList.remove('hide');
   });
@@ -238,8 +254,6 @@ export default async () => {
   });
   // Fin mostrar img cargada antes de publicar
 
-  // let postList;
-
   const listOfPosts = divElement.querySelector('#publicPost');
 
   const logoutBtn = divElement.querySelector('#logout');
@@ -247,7 +261,6 @@ export default async () => {
     e.preventDefault();
     logOut();
   });
-
 
   getPosts((querySnapshot) => {
     listOfPosts.innerHTML = '';
@@ -288,14 +301,12 @@ export default async () => {
     e.preventDefault();
     buttonPublicPost.classList.toggle('hide');
     buttonPrivatePost.classList.toggle('hide');
-    console.log('de publico a privado');
     postIsPrivate = true;
   });
   buttonPrivatePost.addEventListener('click', (e) => {
     e.preventDefault();
     buttonPrivatePost.classList.toggle('hide');
     buttonPublicPost.classList.toggle('hide');
-    console.log('de privado a publico');
     postIsPrivate = false;
   });
   // FIN privacidad de post por publicar
@@ -313,7 +324,6 @@ export default async () => {
         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         if (percentage === 100) {
           snapshot.ref.getDownloadURL().then((url) => {
-            console.log('input', inputPost);
             createPost({
               photo: userPhoto,
               author: userName,

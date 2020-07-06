@@ -1,14 +1,10 @@
 .posts {
   display: flex;
-}
-
-.containerToContainerPost {
-  display: flex;
+  width: 350px;
 }
 
 .container-post {
   margin: 10px 22px;
-  width: 100%;
   max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
@@ -30,25 +26,16 @@
   padding: 12px;
   padding-bottom: 0px;
 }
-.saveAndCancelEditPost{
+.saveAndCancelEditPost {
   width: 100%;
   margin: 8px;
   justify-content: space-evenly;
 }
-.inputEditPost{
+.inputEditPost {
   width: 290px;
   padding: 5px;
 }
-.cancelEditPost{
-  background-color: #5d9becdc;
-  border-radius: 15px;
-  border: 0;
-  width: 70px;
-  padding: 3px;
-  font-size: 13px;
-  color: white;
-}
-.saveEditPost{
+.cancelEditPost,.saveEditPost{
   background-color: #5d9becdc;
   border-radius: 15px;
   border: 0;
@@ -65,11 +52,12 @@
 .btnLikes {
   border-style: none;
   background-color: transparent;
+  outline: none;
 }
-.btnLikes:focus {
+.btnLikes:active {
   border-style: none;
   outline: none;
-  border-radius: 30%;
+  border-radius: 50%;
   background-color: rgb(241, 93, 93);
 }
 .timeUserPost {
@@ -84,10 +72,10 @@
   overflow-wrap: break-word;
   margin-bottom: 15px;
 }
-.content-post[data-visible="true"] {
+.content-post[data-visible='true'] {
   visibility: visible;
 }
-.content-post[data-visible="false"] {
+.content-post[data-visible='false'] {
   visibility: hidden;
 }
 .icon-contentPost {
@@ -103,7 +91,7 @@
   width: 20px;
   cursor: pointer;
 }
-.letter-color{
+.letter-color {
   font-size: 12px;
 }
 .dropdown-content .icon-deletePost {
@@ -134,19 +122,24 @@
 .buttonSend {
   cursor: pointer;
   border: none;
+  outline: none;
   background-color: transparent;
 }
 .containerToContainerComments {
-  width: 290px;
-  padding-bottom: 6px;
+  width: 350px;
+  padding-bottom: 8px;
 }
 .containerComments {
-  width: 100%;
+  width: 285px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
   border-radius: 4px;
   display: flex;
   box-sizing: border-box;
+}
+.inputEditComment{
+  padding: 5px;
+  font-size: 13px;
 }
 .createComment {
   width: 300px;
@@ -165,14 +158,34 @@
   font-size: 13px;
   color: #5d9becdc;
 }
-.contentComment {
+.dataContentComment {
   font-size: 12px;
+  padding: 4px;
+}
+.timeAndEditDeleteComment{
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .divTimeComment {
   align-content: flex-end;
-  padding: 3px;
+  padding: 5px;
 }
-.commentEdit {
+.saveAndCancelEditComment{
+  padding-bottom: 3px;
+}
+.editAndDeleteButtons{
+  justify-content: flex-end;
+}
+.cancelEditComment,.saveEditComment{
+  background-color: #5d9becdc;
+  border-radius: 15px;
+  border: 0;
+  width: 50px;
+  padding: 2px;
+  font-size: 12px;
+  color: white;
+}
+.commentEdit,.commentDelete {
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
@@ -242,7 +255,7 @@
     height: 30px;
     border-radius: 50%;
     font-size: small;
-    background-image: url(../img/icon-user.svg);
+    /* background-image: url(../img/icon-user.svg);*/
     background-size: contain;
     text-align: center;
   }
@@ -278,7 +291,6 @@
   }
   .createComment {
     width: 400px;
-    height: 50px;
   }
   .mainComment {
     flex-direction: column;
@@ -286,6 +298,7 @@
   .textComment {
     width: 350px;
     height: 20px;
+    margin-left: 4px;
   }
   .user-photo-comment {
     margin: auto 6px;
@@ -302,5 +315,23 @@
   }
   .numberLikes {
     padding-bottom: 20px;
+  }
+  .inputEditPost{
+    width: 300px;
+  }
+  .dataContentComment {
+    font-size: 13px;
+    padding: 4px;
+  }
+  .commentEdit,.commentDelete {
+    font-size: 11px;
+  }
+  .inputEditComment{
+    width: 280px;
+  }
+  .cancelEditComment,.saveEditComment{
+    width: 60px;
+    padding: 4px;
+    font-size: 13px;
   }
 }
