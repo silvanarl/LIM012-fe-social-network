@@ -1,18 +1,24 @@
 import MockFirebase from 'mock-cloud-firestore';
 
+import {
+  createPost,
+  getPosts,
+  deletePost,
+  updatePost,
+  updatePostPrivate,
+} from '../src/models/crud.js';
+
 const fixtureData = {
   __collection__: {
     posts: {
       __doc__: {
         post1: {
           id: '38cj45y3BhxiGHsx6pF0XfnJC',
-          name: 'mock',
+          photo: '',
+          author: 'mock',
           content: 'post',
-          user: '01',
-          date: '5/7/2020 18:45:11',
-          postPrivate: 'public',
-          img: '',
-          like: 0,
+          photoURL: '',
+          postPrivate: 'private',
           arrayLikesUsers: '',
           __collection___: {
             comments: {
@@ -35,19 +41,10 @@ const fixtureData = {
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
-// eslint-disable-next-line import/first
-import {
-  createPost,
-  getPosts,
-  deletePost,
-  updatePost,
-  updatePostPrivate,
-} from '../src/models/crud.js';
-
 describe('agregar y mostrar post', () => {
-  it('Debería agregar un post', done => createPost('01', 'mock', 'post').then(() => {
+  it('Debería agregar un post', done => createPost('', 'mock', 'post', '', 'private').then(() => {
     const callback = (post) => {
-      const result = post.find(Element => Element.post === 'mock');
+      const result = post.find(element => element.post === 'mock');
       expect(result.name).toEqual('mock');
       done();
     };
