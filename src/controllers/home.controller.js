@@ -51,8 +51,6 @@ export default async () => {
     // Control de crear y ver comentarios
     const buttonViewComment = child.querySelector('.btnComments');
     const listOfComments = child.querySelector('.contentComment');
-    // const contentCommentToEdit = listOfComments.querySelector('.dataContentComment');
-    // console.log(contentCommentToEdit);
     const divCreateComment = child.querySelector('.createComment');
     const buttonComment = child.querySelector('.buttonSend');
     buttonViewComment.addEventListener('click', async (e) => {
@@ -75,35 +73,6 @@ export default async () => {
         const newInputComment = child.querySelector('.textComment');
         newInputComment.value = '';
       });
-      // Editar comentarios
-      const contentCommentToEdit = child.querySelector('.dataContentComment');
-      const userCommentID = contentCommentToEdit.getAttribute('data-value');
-      const inputEditComment = child.querySelector('.inputEditComment');
-      const commentEdit = child.querySelector('#editComment');
-      const saveAndCancelEditComment = child.querySelector('.saveAndCancelEditComment');
-      const cancelEditComment = child.querySelector('.cancelEditComment');
-      const saveEditComment = child.querySelector('.saveEditComment');
-      const idCommentEdit = saveEditComment.getAttribute('data-value');
-      commentEdit.addEventListener('click', (event) => {
-        event.preventDefault();
-        contentCommentToEdit.classList.add('hide');
-        inputEditComment.classList.remove('hide');
-        saveAndCancelEditComment.classList.remove('hide');
-        if (userCommentID === currentUserUID) {
-          console.log('id del usuario que comenta', userCommentID);
-          saveEditComment.addEventListener('click', async (ev) => {
-            ev.preventDefault();
-            const inputCommentEdited = inputEditComment.value;
-            await updateComment(idCommentEdit, inputCommentEdited);
-          });
-          cancelEditComment.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            contentCommentToEdit.classList.remove('hide');
-            inputEditComment.classList.add('hide');
-            saveAndCancelEditComment.classList.add('hide');
-          });
-        }
-      });
     });
     const buildComment = (commentData) => {
       const createCommentDivChild = document.createElement('div');
@@ -120,6 +89,35 @@ export default async () => {
         const idDeleteComment = btnDeleteComment.getAttribute('data-value');
         onDeleteClickComment(idDeleteComment);
       });
+      // Editar comentarios
+      const contentCommentToEdit = createCommentDivChild.querySelector('.dataContentComment');
+      const userCommentID = contentCommentToEdit.getAttribute('data-value');
+      const inputEditComment = createCommentDivChild.querySelector('.inputEditComment');
+      const commentEdit = createCommentDivChild.querySelector('#editComment');
+      const saveAndCancelEditComment = createCommentDivChild.querySelector('.saveAndCancelEditComment');
+      const cancelEditComment = createCommentDivChild.querySelector('.cancelEditComment');
+      const saveEditComment = createCommentDivChild.querySelector('.saveEditComment');
+      const idCommentEdit = saveEditComment.getAttribute('data-value');
+
+      commentEdit.addEventListener('click', (event) => {
+        event.preventDefault();
+        contentCommentToEdit.classList.add('hide');
+        inputEditComment.classList.remove('hide');
+        saveAndCancelEditComment.classList.remove('hide');
+        if (userCommentID === currentUserUID) {
+          saveEditComment.addEventListener('click', async (ev) => {
+            ev.preventDefault();
+            const inputCommentEdited = inputEditComment.value;
+            await updateComment(idCommentEdit, inputCommentEdited);
+          });
+          cancelEditComment.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            contentCommentToEdit.classList.remove('hide');
+            inputEditComment.classList.add('hide');
+            saveAndCancelEditComment.classList.add('hide');
+          });
+        }
+      });
       return createCommentDivChild;
     };
 
@@ -129,6 +127,7 @@ export default async () => {
         const idC = document.id;
         const doc = document.data();
         const commentData = {
+          currentUser: user().uid,
           id: idC,
           photo: doc.photo,
           author: doc.author,

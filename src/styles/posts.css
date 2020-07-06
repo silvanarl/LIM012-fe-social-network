@@ -1,10 +1,10 @@
 .posts {
   display: flex;
+  width: 350px;
 }
 
 .container-post {
   margin: 10px 22px;
-  width: 100%;
   max-width: 400px;
   border: solid 1px;
   border-radius: 5px;
@@ -35,16 +35,7 @@
   width: 290px;
   padding: 5px;
 }
-.cancelEditPost {
-  background-color: #5d9becdc;
-  border-radius: 15px;
-  border: 0;
-  width: 70px;
-  padding: 3px;
-  font-size: 13px;
-  color: white;
-}
-.saveEditPost {
+.cancelEditPost,.saveEditPost{
   background-color: #5d9becdc;
   border-radius: 15px;
   border: 0;
@@ -139,12 +130,16 @@
   padding-bottom: 8px;
 }
 .containerComments {
-  width: 100%;
+  width: 285px;
   border: solid 1px;
   border-color: rgba(107, 163, 236, 0.486);
   border-radius: 4px;
   display: flex;
   box-sizing: border-box;
+}
+.inputEditComment{
+  padding: 5px;
+  font-size: 13px;
 }
 .createComment {
   width: 300px;
@@ -167,16 +162,30 @@
   font-size: 12px;
   padding: 4px;
 }
+.timeAndEditDeleteComment{
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 .divTimeComment {
   align-content: flex-end;
-  padding-left: 8px;
+  padding: 5px;
 }
-.commentEdit {
-  font-size: 10px;
-  font-weight: bold;
-  cursor: pointer;
+.saveAndCancelEditComment{
+  padding-bottom: 3px;
 }
-.commentDelete {
+.editAndDeleteButtons{
+  justify-content: flex-end;
+}
+.cancelEditComment,.saveEditComment{
+  background-color: #5d9becdc;
+  border-radius: 15px;
+  border: 0;
+  width: 50px;
+  padding: 2px;
+  font-size: 12px;
+  color: white;
+}
+.commentEdit,.commentDelete {
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
@@ -246,7 +255,8 @@
     height: 30px;
     border-radius: 50%;
     font-size: small;
-    background-color: #fff;
+    /* background-image: url(../img/icon-user.svg);*/
+    background-size: contain;
     text-align: center;
   }
   .containerToContainerPost {
@@ -281,7 +291,6 @@
   }
   .createComment {
     width: 400px;
-    height: 50px;
   }
   .mainComment {
     flex-direction: column;
@@ -289,6 +298,7 @@
   .textComment {
     width: 350px;
     height: 20px;
+    margin-left: 4px;
   }
   .user-photo-comment {
     margin: auto 6px;
@@ -305,5 +315,23 @@
   }
   .numberLikes {
     padding-bottom: 20px;
+  }
+  .inputEditPost{
+    width: 300px;
+  }
+  .dataContentComment {
+    font-size: 13px;
+    padding: 4px;
+  }
+  .commentEdit,.commentDelete {
+    font-size: 11px;
+  }
+  .inputEditComment{
+    width: 280px;
+  }
+  .cancelEditComment,.saveEditComment{
+    width: 60px;
+    padding: 4px;
+    font-size: 13px;
   }
 }

@@ -1,5 +1,5 @@
 import { registerForm } from '../views/register.js';
-import { createUser } from '../models/auth.js';
+import { user, createUser } from '../models/auth.js';
 
 export default () => {
   const divRegister = document.createElement('div');
@@ -14,7 +14,7 @@ export default () => {
   formRegister.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const user = formRegister.user.value;
+    const userName = formRegister.user.value;
     const email = formRegister.email.value;
     const password = formRegister.password.value;
 
@@ -24,12 +24,29 @@ export default () => {
     const validationEmail = email.match(regexpEmail);
     const validationPassword = password.match(regexpPassword);
 
-    if (user && email && password) {
+    const addNameInCreateUser = (addName, userEmail, userPassword) => {
+      createUser(userEmail, userPassword).then(async () => {
+        console.log('addingName', addName);
+        const userF = user();
+        await userF.updateProfile({
+          displayName: addName,
+        });
+        firebase.firestore().collection('users').doc(userF.uid).set(
+          {
+            name: addName,
+          },
+          { merge: true },
+        );
+        window.location.hash = '/home';
+        console.log('adding', user().displayName);
+      });
+      // .catch(error => console.error(error));
+    };
+    if (userName && email && password) {
       if (validationEmail === null && validationPassword === null) {
         return 'hubo un error';
       }
-    }
-    return createUser(user, email, password);
+    } return addNameInCreateUser(userName, email, password);
   });
 
   return divRegister;
