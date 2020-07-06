@@ -1,3 +1,4 @@
+
 const registerForm = `
 <div class ="container-general">
   <div class="container-backgroundImage">
