@@ -1,24 +1,6 @@
-const createUser = async (inputUser, inputEmail, inputPassword) => {
-  console.log('creando usuario con nombre:', inputUser);
-
-  await firebase
-    .auth()
-    .createUserWithEmailAndPassword(inputEmail, inputPassword)
-    .then(async () => {
-      const userF = user();
-      await userF.updateProfile({
-        displayName: inputUser,
-      });
-      firebase.firestore().collection('users').doc(userF.uid).set(
-        {
-          name: inputUser,
-        },
-        { merge: true },
-      );
-      window.location.hash = '/home';
-    })
-    .catch(error => console.error(error));
-};
+const createUser = (inputEmail, inputPassword) => firebase
+  .auth()
+  .createUserWithEmailAndPassword(inputEmail, inputPassword);
 
 const loginUser = (inputEmail, InputPassword) => firebase
   .auth()
@@ -41,21 +23,16 @@ const loginWithGoogle = () => {
 };
 const user = () => firebase.auth().currentUser;
 
-const userStatus = () => {
-  firebase.auth().onAuthStateChanged((userExist) => {
+const userStatus = () => firebase
+  .auth().onAuthStateChanged((userExist) => {
     if (!userExist) {
       return 'Usuario no existe';
     }
     return userExist;
   });
-};
 
-const logOut = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => console.log('funcion logOut en auth'));
-};
+
+const logOut = () => firebase.auth().signOut();
 
 const changePassword = (password) => {
   const userF = user();
