@@ -255,7 +255,8 @@
     height: 30px;
     border-radius: 50%;
     font-size: small;
-    background-color: #fff;
+    /* background-image: url(../img/icon-user.svg);*/
+    background-size: contain;
     text-align: center;
   }
   .containerToContainerPost {

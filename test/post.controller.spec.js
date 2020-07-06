@@ -1,3 +1,4 @@
+/*
 import { resolvePlugin } from '@babel/core';
 import { createPost } from '../models/crud.js';
 import '../__mocks__/functionMock.js';
@@ -10,3 +11,4 @@ describe('agregar post', () => {
     expect(data).toBe('el post fue agregado');
   });
 });
+*/
