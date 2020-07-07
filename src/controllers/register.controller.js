@@ -1,6 +1,11 @@
 import { registerForm } from '../views/register.js';
 import { user, createUser } from '../models/auth.js';
 
+
+const divRegister = document.createElement('div');
+divRegister.innerHTML = registerForm;
+return divRegister;
+
 export default () => {
   const divRegister = document.createElement('div');
   divRegister.innerHTML = registerForm;
