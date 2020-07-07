@@ -1,11 +1,6 @@
 import { registerForm } from '../views/register.js';
 import { user, createUser } from '../models/auth.js';
 
-
-const divRegister = document.createElement('div');
-divRegister.innerHTML = registerForm;
-return divRegister;
-
 export default () => {
   const divRegister = document.createElement('div');
   divRegister.innerHTML = registerForm;
@@ -51,7 +46,8 @@ export default () => {
       if (validationEmail === null && validationPassword === null) {
         return 'hubo un error';
       }
-    } return addNameInCreateUser(userName, email, password);
+    }
+    return addNameInCreateUser(userName, email, password);
   });
 
   return divRegister;
