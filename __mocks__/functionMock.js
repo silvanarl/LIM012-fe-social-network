@@ -1,22 +1,10 @@
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockAuthentication();
+const mockfirestore = new firebasemock.MockFirestore();
 mockauth.autoFlush();
 global.firebase = firebasemock.MockFirebaseSdk(
   () => null,
   () => mockauth,
+  () => mockfirestore,
 );
-
-const firestore = () => ({
-  collection: () => ({
-    add: () => new Promise((resolve) => {
-      resolve('la nota se agregó');
-    }),
-  }),
-});
-
-const firebase = {
-  firestore,
-};
-
-export default jest.fn(() => firebase);

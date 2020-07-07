@@ -15,6 +15,8 @@ import {
   updateComment,
 } from '../models/crud.js';
 
+const date = firebase.firestore.Timestamp.fromDate(new Date());
+
 export default async () => {
   const currentUserUID = user().uid;
   const userName = user().displayName;
@@ -69,6 +71,7 @@ export default async () => {
           author: userName,
           content: inputComment,
           postID,
+          date,
         });
         const newInputComment = child.querySelector('.textComment');
         newInputComment.value = '';
@@ -94,7 +97,9 @@ export default async () => {
       const userCommentID = contentCommentToEdit.getAttribute('data-value');
       const inputEditComment = createCommentDivChild.querySelector('.inputEditComment');
       const commentEdit = createCommentDivChild.querySelector('#editComment');
-      const saveAndCancelEditComment = createCommentDivChild.querySelector('.saveAndCancelEditComment');
+      const saveAndCancelEditComment = createCommentDivChild.querySelector(
+        '.saveAndCancelEditComment',
+      );
       const cancelEditComment = createCommentDivChild.querySelector('.cancelEditComment');
       const saveEditComment = createCommentDivChild.querySelector('.saveEditComment');
       const idCommentEdit = saveEditComment.getAttribute('data-value');
@@ -330,6 +335,7 @@ export default async () => {
               content: inputPost,
               postPrivate: postIsPrivate,
               photoURL: url,
+              date,
             });
           });
         }
