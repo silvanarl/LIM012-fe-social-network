@@ -1,10 +1,6 @@
 import '../__mocks__/functionMock.js';
 import {
-  loginUser,
-  loginWithGoogle,
-  createUser,
-  logOut,
-  user,
+  loginUser, loginWithGoogle, createUser, logOut, user,
 } from '../src/models/auth.js';
 
 //  package.json
@@ -55,16 +51,14 @@ describe('loginUser with Google', () => {
 
 describe('Current user', () => {
   it('debería reconocer a current user', () => {
-    loginUser('ben@example.com.com', '123456')
-      .then(() => {
-        expect(user().email).toBe('ben@example.com');
-      });
+    loginUser('ben@example.com.com', '123456').then(() => {
+      expect(user().email).toBe('ben@example.com');
+    });
   });
 });
 
 describe('Log out', () => {
-  it('Cerrar sesión', () => logOut()
-    .then((userOut) => {
-      expect(userOut).toBe(undefined);
-    }));
+  it('Cerrar sesión', () => logOut().then((userOut) => {
+    expect(userOut).toBe(undefined);
+  }));
 });
