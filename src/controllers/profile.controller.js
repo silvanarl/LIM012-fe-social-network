@@ -1,6 +1,6 @@
 import { profile } from '../views/profile.js';
-import { user, changePassword, changeProfileImg } from '../models/auth.js';
-import { updateProfileInfo } from '../models/crud.js';
+import { user } from '../models/auth.js';
+import { updateProfileInfo, changePassword, changeProfileImg } from '../models/crud.js';
 
 const validatePassword = (password, confirmPassword) =>
   // eslint-disable-next-line implicit-arrow-linebreak
@@ -77,6 +77,11 @@ export default async () => {
   });
   const returnToHome = divEdit.querySelector('#logoImageProfile');
   returnToHome.addEventListener('click', async (evt) => {
+    evt.preventDefault();
+    window.location.hash = '#/home';
+  });
+  const buttonBackToHome = divEdit.querySelector('.backToHome');
+  buttonBackToHome.addEventListener('click', async (evt) => {
     evt.preventDefault();
     window.location.hash = '#/home';
   });

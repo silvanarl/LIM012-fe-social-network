@@ -15,12 +15,12 @@ import {
   updateComment,
 } from '../models/crud.js';
 
-const date = firebase.firestore.Timestamp.fromDate(new Date());
 
 export default async () => {
   const currentUserUID = user().uid;
   const userName = user().displayName;
   const userPhoto = user().photoURL;
+  const time = firebase.firestore.Timestamp.fromDate(new Date());
 
   const onDeleteClick = async (id) => {
     await deletePost(id);
@@ -71,7 +71,7 @@ export default async () => {
           author: userName,
           content: inputComment,
           postID,
-          date,
+          time,
         });
         const newInputComment = child.querySelector('.textComment');
         newInputComment.value = '';
@@ -335,7 +335,7 @@ export default async () => {
               content: inputPost,
               postPrivate: postIsPrivate,
               photoURL: url,
-              date,
+              time,
             });
           });
         }
