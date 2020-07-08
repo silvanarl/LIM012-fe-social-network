@@ -83,7 +83,7 @@
   outline-style: none;
   padding-left: 2px;
 }
-.btn-save-info {
+.btn-save-info,.btn-save-password,.backToHome {
   margin: 10px;
   outline: none;
   border: 1px solid #5d9cec;
@@ -93,17 +93,6 @@
   color: white;
   cursor: pointer;
 }
-.btn-save-password {
-  margin: 10px;
-  outline: none;
-  border: 1px solid #5d9cec;
-  border-radius: 20px;
-  background-color: #75abf3;
-  padding: 5px 1rem;
-  color: white;
-  cursor: pointer;
-}
-
 .horizontal-line {
   border-left: 2px solid #5d9cec;
   height: 600px;
