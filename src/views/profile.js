@@ -37,6 +37,9 @@ const profile = (data) => {
           <button class="btn-save-password">Guardar</button>
           <span class="passwordError"></span>
         </div>
+        <div>
+        <button class= 'backToHome'>Volver</button>
+        </div>
       </div>
     </div>
 `;
