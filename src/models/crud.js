@@ -1,27 +1,27 @@
 import { user } from './auth.js';
 
+const time = firebase.firestore.Timestamp.fromDate(new Date());
+
 const getUserData = async () => {
   const id = user().uid;
   return firebase.firestore().collection('users').doc(id);
 };
 
-const getPosts = onSnapshot => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(onSnapshot);
+const getPosts = callback => firebase.firestore().collection('posts').orderBy('date', 'desc').onSnapshot(callback);
 
 const createPost = async ({
   photo, author, content, photoURL, postPrivate,
 }) => {
-  console.log(photo, author, content);
-  const time = firebase.firestore.Timestamp.fromDate(new Date());
   const result = await firebase.firestore().collection('posts').add({
     photo,
     author,
     content,
-    date: time,
     userID: user().uid,
     likesUsers: [],
     postPrivate,
     commentsID: [],
     photoURL,
+    date: time,
   });
   console.log(result);
 };
@@ -36,14 +36,14 @@ const getComments = callback => firebase.firestore().collection('comments').orde
 const createComment = ({
   photo, author, content, postID,
 }) => {
-  const time = firebase.firestore.Timestamp.fromDate(new Date());
+  // const time = firebase.firestore.Timestamp.fromDate(new Date());
   firebase.firestore().collection('comments').add({
     photo,
     author,
     content,
-    date: time,
     userID: user().uid,
     postID,
+    date: time,
   });
 };
 
@@ -90,6 +90,24 @@ const updateProfileInfo = async (name, country, aboutMe) => {
     { merge: true },
   );
 };
+
+const changePassword = (password) => {
+  const userF = user();
+  userF
+    .updatePassword(password)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+const changeProfileImg = async (url) => {
+  const userF = user();
+  await userF.updateProfile({
+    photoURL: url,
+  });
+};
 export {
   getPosts,
   createPost,
@@ -104,4 +122,6 @@ export {
   addImage,
   deleteComment,
   updateComment,
+  changePassword,
+  changeProfileImg,
 };

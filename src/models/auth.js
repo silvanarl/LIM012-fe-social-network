@@ -34,30 +34,11 @@ const userStatus = () => firebase
 
 const logOut = () => firebase.auth().signOut();
 
-const changePassword = (password) => {
-  const userF = user();
-  userF
-    .updatePassword(password)
-    .then((result) => {
-      console.log('result', result);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-const changeProfileImg = async (url) => {
-  const userF = user();
-  await userF.updateProfile({
-    photoURL: url,
-  });
-};
 export {
-  changeProfileImg,
   loginUser,
   loginWithGoogle,
   userStatus,
   user,
   logOut,
   createUser,
-  changePassword,
 };
