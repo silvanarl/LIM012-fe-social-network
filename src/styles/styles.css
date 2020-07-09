@@ -6,6 +6,7 @@
 }
 
 .container-general {
+  height: 100vh;
   display: grid;
   grid-template-columns: 60% 40%;
   background-color: #ffe9d4;
